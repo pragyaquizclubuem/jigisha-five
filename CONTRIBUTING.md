@@ -13,6 +13,7 @@ This document defines the architecture, development workflow, coding standards, 
 - [Application Architecture](#application-architecture)
 - [Folder Structure](#folder-structure)
 - [Component Architecture](#component-architecture)
+- [Navbar and Footer Layout](#navbar-and-footer-layout)
 - [Naming Conventions](#naming-conventions)
 - [Server and Client Components](#server-and-client-components)
 - [Constants and Data Management](#constants-and-data-management)
@@ -94,10 +95,8 @@ app/page.tsx
 
 ```tsx
 <PageWrapper>
-    <Navbar />
     <HomeHero />
     <HomeAccordion />
-    <Footer />
 </PageWrapper>
 ```
 
@@ -176,16 +175,47 @@ Example page component:
 
 ```tsx
 <PageWrapper>
-    <Navbar />
     <HomeHero />
     <HomeAccordion />
-    <Footer />
 </PageWrapper>
 ```
 
 Page components orchestrate sections.
 
 Sections orchestrate reusable UI components.
+
+---
+
+# Navbar and Footer Layout
+
+The `Navbar` and `Footer` are layout-level components and must be rendered globally inside the root layout (`app/layout.tsx`) or layout route groups rather than inside individual pages. This preserves their state, avoids re-renders on page transitions, and ensures consistent page wrapper hierarchy.
+
+Example:
+
+```tsx
+// app/layout.tsx
+
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+
+export default function RootLayout({
+    children,
+}: Readonly<{
+    children: React.ReactNode;
+}>) {
+    return (
+        <html lang="en">
+            <body className="min-h-full flex flex-col">
+                <Navbar />
+                <main className="flex-1">{children}</main>
+                <Footer />
+            </body>
+        </html>
+    );
+}
+```
+
+If a specific set of routes requires a different page structure or must exclude the main navbar/footer (e.g. admin dashboards or registration forms), use Next.js route groups (like `(main)` and `(admin)`) with their own isolated `layout.tsx` files.
 
 ---
 
