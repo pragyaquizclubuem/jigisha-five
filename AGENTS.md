@@ -5,3 +5,5 @@ This version has breaking changes — APIs, conventions, and file structure may 
 <!-- END:nextjs-agent-rules -->
 
 Write Scalable, responsive code. Follow proper file structure.
+
+Please refer to the [Contributing Guide](./CONTRIBUTING.md) for architecture, coding standards, styling rules, and development workflows.
