@@ -1,36 +1,328 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# JIGISHA 2026
+
+> [!NOTE]
+> If you are a developer and developing JIGISHA, visit [CONTRIBUTING.md](./CONTRIBUTING.md) for the detailed contribution guide.
+
+Official website for **JIGISHA 2026**, the annual quiz fest.
+
+Built with **Next.js**, **React**, **TypeScript**, and **Tailwind CSS**.
+
+---
+
+## Overview
+
+This repository contains the source code for the official JIGISHA 2026 website.
+
+The website serves as the central platform for:
+
+- Event information
+- Schedule and announcements
+- Registration links
+- Sponsors
+- Team information
+- Contact information
+
+This project does not include a dedicated backend. Most content is maintained through static files and constants within the codebase.
+
+---
+
+## Tech Stack
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+
+---
+
+## Prerequisites
+
+Before starting development, ensure the following are installed:
+
+- Node.js (LTS version recommended)
+- npm
+
+Verify installation:
+
+```bash
+node -v
+npm -v
+```
+
+---
+
+## If npm Is Not Available
+
+If running:
+
+```bash
+npm -v
+```
+
+returns an error such as:
+
+```text
+npm: command not found
+```
+
+install Node.js from:
+
+https://nodejs.org
+
+After installation, restart your terminal and verify:
+
+```bash
+node -v
+npm -v
+```
+
+---
 
 ## Getting Started
 
-First, run the development server:
+Clone the repository:
+
+```bash
+git clone <repository-url>
+cd jigisha-2026
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## First Contribution
 
-To learn more about Next.js, take a look at the following resources:
+If this is your first time contributing:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Clone the repository.
+2. Run `npm install`.
+3. Run `npm run dev`.
+4. Verify the website loads successfully at `localhost:3000`.
+5. Create a feature branch before making changes.
+6. Read `CONTRIBUTING.md` before opening a Pull Request.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```text
+src/
+├── app/            # Next.js App Router pages and routes
+├── components/     # Reusable UI components
+├── constants/      # Static content, configuration, and data
+├── hooks/          # Custom React hooks
+├── lib/            # Utility/helper functions
+├── types/          # TypeScript type definitions
+└── styles/         # Global styles
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+public/
+├── images/
+├── icons/
+└── assets/
+```
+
+---
+
+## Available Scripts
+
+Start development server:
+
+```bash
+npm run dev
+```
+
+Create production build:
+
+```bash
+npm run build
+```
+
+Run production build locally:
+
+```bash
+npm run start
+```
+
+Run lint checks:
+
+```bash
+npm run lint
+```
+
+---
+
+## Local Testing on Mobile Devices
+
+Real-device testing is highly encouraged before submitting changes.
+
+### Method 1: Same Wi-Fi Network
+
+Expose the development server on your local network:
+
+```bash
+npm run dev -- --hostname 0.0.0.0
+```
+
+or
+
+```bash
+npx next dev --hostname 0.0.0.0
+```
+
+Find your local IP address.
+
+#### Windows
+
+```bash
+ipconfig
+```
+
+Look for:
+
+```text
+IPv4 Address . . . . . . . . . . : 192.168.x.x
+```
+
+#### macOS / Linux
+
+```bash
+ifconfig
+```
+
+or
+
+```bash
+ip addr
+```
+
+Look for an address similar to:
+
+```text
+192.168.x.x
+```
+
+Open the website on a phone connected to the same Wi-Fi network:
+
+```text
+http://YOUR_IP:3000
+```
+
+Example:
+
+```text
+http://192.168.1.25:3000
+```
+
+If the page does not load:
+
+- Ensure both devices are connected to the same network.
+- Check firewall settings.
+- Verify the development server is running.
+
+---
+
+### Method 2: Cloudflare Tunnel
+
+Cloudflare Tunnel allows testing on devices outside your local network without deploying the application.
+
+#### Install Cloudflared
+
+##### Windows
+
+Download:
+
+https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/
+
+##### macOS
+
+```bash
+brew install cloudflared
+```
+
+##### Linux
+
+Follow the official Cloudflare installation guide.
+
+---
+
+#### Start Next.js
+
+```bash
+npm run dev
+```
+
+---
+
+#### Create Tunnel
+
+```bash
+cloudflared tunnel --url http://localhost:3000
+```
+
+Cloudflare will generate a public URL similar to:
+
+```text
+https://random-name.trycloudflare.com
+```
+
+Open that URL on any device.
+
+#### Notes
+
+- Tunnel URLs are temporary.
+- A new URL is generated every time a new tunnel is created.
+- Do not expose sensitive information through public tunnels.
+- Tunnels are intended for testing and demonstration purposes only.
+
+---
+
+## Environment Variables
+
+Create:
+
+```bash
+.env.local
+```
+
+Example:
+
+```env
+NEXT_PUBLIC_REGISTRATION_URL=
+```
+
+Only add environment variables when required.
+
+---
+
+## Contributing
+
+Please read:
+
+```text
+CONTRIBUTING.md
+```
+
+before creating branches, commits, or pull requests.
+
+---
+
+## Maintainers
+
+JIGISHA 2026 Web Team
