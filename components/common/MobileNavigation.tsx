@@ -1,33 +1,5 @@
 "use client";
 
-/**
- * MobileNavigation — dedicated Client Component.
- *
- * All interactive mobile-menu logic lives here so Navbar.tsx stays a
- * Server Component. This satisfies the "Server Components First" requirement.
- *
- * Behaviour
- * ─────────
- * Closed state  →  Only: Pragya logo  +  menu button (Hamburger icon)
- * Open state    →  Slide-down overlay with all nav links  +  Close icon
- *
- * Accessibility
- * ─────────────
- * • aria-label on the toggle button (changes with state)
- * • aria-expanded on the toggle button
- * • aria-controls linking button → menu panel
- * • aria-modal + role="dialog" on the overlay
- * • aria-hidden on SVG icons (labels are on the button)
- * • Body scroll locked while menu is open
- * • Menu auto-closes on route change (SPA navigation)
- * • Full keyboard navigation: Tab, Enter, Escape
- *
- * Animation
- * ─────────
- * Tailwind CSS transitions only — no animation libraries.
- * Icon swap: opacity + rotate (hamburger ↔ close)
- * Menu reveal: opacity + translateY
- */
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
@@ -42,12 +14,10 @@ export default function MobileNavigation() {
   const pathname = usePathname();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
 
-  // ── Close on route change ────────────────────────────────────────────────
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
 
-  // ── Lock body scroll while open ──────────────────────────────────────────
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
     return () => {
@@ -55,7 +25,6 @@ export default function MobileNavigation() {
     };
   }, [isOpen]);
 
-  // ── Escape key closes menu ───────────────────────────────────────────────
   useEffect(() => {
     if (!isOpen) return;
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -73,16 +42,12 @@ export default function MobileNavigation() {
 
   return (
     <>
-      {/* ────────────────────────────────────────────────────────────────────
-          CLOSED STATE
-          Per spec: only Logo + Menu Button visible.
-      ──────────────────────────────────────────────────────────────────── */}
       <div className="flex items-center justify-between px-4 py-3 sm:px-6">
 
-        {/* Pragya logo — acts as mobile brand mark */}
+        {/* Pragya logo */}
         <div className="flex-shrink-0">
           <Image
-            src="/images/pragya-logo.png"
+            src="/images/pragya-logo.svg"   
             width={56}
             height={53}
             alt="Pragya — UEM Kolkata Quiz Club"
@@ -91,7 +56,6 @@ export default function MobileNavigation() {
           />
         </div>
 
-        {/* ── Hamburger / Close toggle ─────────────────────────────────── */}
         <button
           ref={menuButtonRef}
           type="button"
@@ -108,7 +72,6 @@ export default function MobileNavigation() {
             focus-visible:ring-[#513081] focus-visible:ring-offset-2
           "
         >
-          {/* Hamburger — visible when menu is closed */}
           <span
             className={[
               "absolute transition-all duration-200 ease-in-out",
@@ -120,7 +83,6 @@ export default function MobileNavigation() {
             <Hamburger />
           </span>
 
-          {/* Close icon — visible when menu is open */}
           <span
             className={[
               "absolute transition-all duration-200 ease-in-out",
@@ -134,11 +96,6 @@ export default function MobileNavigation() {
         </button>
       </div>
 
-      {/* ────────────────────────────────────────────────────────────────────
-          OPEN STATE — slide-down overlay
-          position: absolute  →  anchors to the sticky <header> (which has
-          position: relative applied in Navbar.tsx).
-      ──────────────────────────────────────────────────────────────────── */}
       <div
         id="mobile-nav-menu"
         role="dialog"
@@ -146,11 +103,8 @@ export default function MobileNavigation() {
         aria-modal="true"
         aria-hidden={!isOpen}
         className={[
-          // Positioning — anchored below the sticky header
           "absolute top-full left-0 right-0 z-50",
-          // Visuals
           "bg-[#FFEDE0] border-t border-black",
-          // Slide + fade animation (CSS only, no libraries)
           "transition-all duration-300 ease-in-out overflow-hidden",
           isOpen
             ? "opacity-100 translate-y-0 pointer-events-auto"
