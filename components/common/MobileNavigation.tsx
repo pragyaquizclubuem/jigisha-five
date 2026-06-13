@@ -1,12 +1,10 @@
 "use client";
 
-
 import { useCallback, useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 import { navigationData } from "@/constants/NavigationData";
-import { CloseIcon, Hamburger } from "./Icons";
+import { CloseIcon, Hamburger, PragyaLogo } from "./Icons";
 import NavLink from "./NavLink";
 
 export default function MobileNavigation() {
@@ -46,14 +44,7 @@ export default function MobileNavigation() {
 
         {/* Pragya logo */}
         <div className="flex-shrink-0">
-          <Image
-            src="/images/pragya-logo.svg"   
-            width={56}
-            height={53}
-            alt="Pragya — UEM Kolkata Quiz Club"
-            className="object-contain w-auto h-12"
-            priority
-          />
+          <PragyaLogo className="h-12 w-auto" />
         </div>
 
         <button

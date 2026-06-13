@@ -1,5 +1,4 @@
-
-import Image from "next/image";
+import { UEMLogo, PragyaLogo, IEMLogo } from "./Icons";
 import { navigationData } from "@/constants/NavigationData";
 import MobileNavigation from "./MobileNavigation";
 import NavLink from "./NavLink";
@@ -26,14 +25,7 @@ export default function Navbar() {
       >
         {/* UEM Logo */}
         <div className="flex-shrink-0">
-          <Image
-            src="/images/uem-logo.svg"
-            width={106}
-            height={77}
-            alt="University of Engineering & Management"
-            className="object-contain h-[77px] w-auto"
-            priority
-          />
+          <UEMLogo className="h-[77px] w-auto" />
         </div>
 
         {/* Centre: left links · Pragya · right links */}
@@ -45,14 +37,7 @@ export default function Navbar() {
 
           {/* Pragya logo — central brand mark */}
           <div className="mx-2 2xl:mx-4 flex-shrink-0">
-            <Image
-              src="/images/pragya-logo.svg"
-              width={96}
-              height={91}
-              alt="Pragya — UEM Kolkata Quiz Club"
-              className="object-contain h-[91px] w-auto"
-              priority
-            />
+            <PragyaLogo className="h-[91px] w-auto" />
           </div>
 
           {rightNav.map((item) => (
@@ -62,14 +47,7 @@ export default function Navbar() {
 
         {/* IEM Logo */}
         <div className="flex-shrink-0">
-          <Image
-            src="/images/iem-logo.svg"
-            width={109}
-            height={79}
-            alt="Institute of Engineering & Management"
-            className="object-contain h-[79px] w-auto"
-            priority
-          />
+          <IEMLogo className="h-[79px] w-auto" />
         </div>
       </nav>
 
