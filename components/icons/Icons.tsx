@@ -106,7 +106,7 @@ export function CloseIcon({ className = "" }: IconProps) {
       focusable="false"
     >
       <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      <line x1="6"  y1="6" x2="18" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
     </svg>
   );
 }
@@ -124,7 +124,7 @@ interface LogoProps {
 export function PragyaLogo({ className = "", width = 96, height = 91, priority = true }: LogoProps) {
   return (
     <Image
-      src="/images/pragya.webp"
+      src="/images/pragya.avif"
       width={width}
       height={height}
       alt="Pragya — UEM Kolkata Quiz Club"
@@ -137,13 +137,13 @@ export function PragyaLogo({ className = "", width = 96, height = 91, priority =
 export function UEMLogo({ className = "", width = 106, height = 77, priority = true }: LogoProps) {
   return (
     <Image
-      src="/images/uem.webp"
+      src="/images/uem.avif"
       width={width}
       height={height}
       alt="University of Engineering & Management"
       className={`object-contain ${className}`}
       priority={priority}
-      
+
     />
   );
 }
@@ -151,13 +151,13 @@ export function UEMLogo({ className = "", width = 106, height = 77, priority = t
 export function IEMLogo({ className = "", width = 109, height = 79, priority = true }: LogoProps) {
   return (
     <Image
-      src="/images/iem.webp"
+      src="/images/iem.avif"
       width={width}
       height={height}
       alt="Institute of Engineering & Management"
       className={`object-contain ${className}`}
       priority={priority}
-      
+
     />
   );
 }
