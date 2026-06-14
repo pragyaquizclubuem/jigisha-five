@@ -39,24 +39,29 @@ export default function NavLink({
       onClick={onClick}
       aria-current={isActive ? "page" : undefined}
       className={[
-        // Pill shape — padding scales up at wider breakpoints
-        "inline-block px-4 xl:px-5 py-2 rounded-full border",
-        // Typography
-        "font-bold uppercase tracking-wider text-xs xl:text-sm",
-        // Transitions (CSS only — no animation libraries)
-        "transition-colors duration-200 ease-in-out",
-        // Visible keyboard focus ring (accessibility requirement)
+        // Container
+        "nav-link-btn",
+        "relative inline-block overflow-hidden",
+        "px-5 xl:px-8 py-2.5 rounded-[14px] border-2 border-black",
+        // Typography — larger, bolder
+        "font-bold uppercase tracking-widest text-sm xl:text-base font-roboto-condensed",
+        // Focus ring
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#513081] focus-visible:ring-offset-2",
-        // Active vs inactive colours
+        // Active state: always purple bg, white text, no hover effect needed
         isActive
-          ? "bg-[#513081] text-white border-[#513081]"
-          : "bg-transparent text-black border-black hover:bg-[#513081]/10 hover:border-[#513081] hover:text-[#513081]",
+          ? "bg-[#513081] text-white border-black cursor-default"
+          : "bg-transparent text-black border-black",
         className,
       ]
         .filter(Boolean)
         .join(" ")}
     >
-      {label}
+      {/* Bottom-fill hover slab — only shown for inactive items */}
+      {!isActive && (
+        <span aria-hidden="true" className="nav-fill-layer" />
+      )}
+      {/* Label — always on top */}
+      <span className="nav-link-label">{label}</span>
     </Link>
   );
 }
