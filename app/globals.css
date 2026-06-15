@@ -2,7 +2,7 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: transparent;
   --page-padding: clamp(1rem, 5vw, 2.5rem);
   --content-max-width: 80rem;
 }
@@ -17,8 +17,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: transparent;
+    --foreground: transparent;
   }
 }
 
@@ -117,6 +117,7 @@ body {
     opacity: 0;
     transform: translateY(32px) scale(0.97);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -132,10 +133,8 @@ body {
 
 .grid-layout-bleed {
   display: grid;
-  grid-template-columns: 
-    [full-width-start] minmax(var(--page-padding, 1.5rem), 1fr) 
-    [content-start] min(100% - (2 * var(--page-padding, 1.5rem)), var(--content-max-width, 80rem)) [content-end] 
-    minmax(var(--page-padding, 1.5rem), 1fr) [full-width-end];
+  grid-template-columns:
+    [full-width-start] minmax(var(--page-padding, 1.5rem), 1fr) [content-start] min(100% - (2 * var(--page-padding, 1.5rem)), var(--content-max-width, 80rem)) [content-end] minmax(var(--page-padding, 1.5rem), 1fr) [full-width-end];
 }
 
 .col-content {

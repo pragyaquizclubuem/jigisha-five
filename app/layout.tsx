@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Roboto_Condensed } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/layout/Navbar";   
+import Navbar from "@/components/layout/Navbar";
+import SquareGridBackground from "@/components/layout/SquareGridBackground";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,7 +36,9 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${robotoCondensed.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Navbar />      
+
+        <Navbar />
+        <SquareGridBackground />
         {children}
       </body>
     </html>
