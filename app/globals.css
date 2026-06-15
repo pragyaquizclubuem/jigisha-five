@@ -3,6 +3,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --page-padding: clamp(1rem, 5vw, 2.5rem);
+  --content-max-width: 80rem;
 }
 
 @theme inline {
@@ -124,4 +126,22 @@ body {
 .animate-slide-up {
   animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   opacity: 0;
+}
+
+/* ── Layout & Centering grid (without max-w-...) ─────────────────────────── */
+
+.grid-layout-bleed {
+  display: grid;
+  grid-template-columns: 
+    [full-width-start] minmax(var(--page-padding, 1.5rem), 1fr) 
+    [content-start] min(100% - (2 * var(--page-padding, 1.5rem)), var(--content-max-width, 80rem)) [content-end] 
+    minmax(var(--page-padding, 1.5rem), 1fr) [full-width-end];
+}
+
+.col-content {
+  grid-column: content-start / content-end;
+}
+
+.col-full-width {
+  grid-column: full-width-start / full-width-end;
 }
