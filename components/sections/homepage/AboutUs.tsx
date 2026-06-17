@@ -30,8 +30,9 @@ export default function AboutUs() {
               alt={aboutUsData.image.alt}
               fill
               priority
-              sizes="(min-width: 1024px) 58vw, 100vw"
-              className="object-cover grayscale transition-all duration-500 hover:grayscale-0"
+              quality={75}
+              sizes="(max-width: 768px) 92vw, (max-width: 1024px) 58vw, 720px"
+              className="object-cover grayscale transition-[filter] duration-300 hover:grayscale-0"
             />
           </div>
 
@@ -70,15 +71,15 @@ export default function AboutUs() {
               {renderSegments(aboutUsData.description)}
             </p>
 
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-[minmax(0,1fr)_4.5rem] md:items-end">
-              <div className="rounded-[18px] bg-[#5A1FA1] px-5 py-5 text-white shadow-[0_2px_0_0_#2F0F56] md:px-6 md:py-6">
-                <div className="grid grid-cols-2 gap-x-8 gap-y-6">
+            <div className="mt-1 flex items-stretch gap-3 sm:gap-4">
+              <div className="min-w-0 flex-1 rounded-[18px] bg-[#5A1FA1] px-4 py-4 text-white shadow-[0_2px_0_0_#2F0F56] sm:px-5 sm:py-5 md:px-6 md:py-6">
+                <div className="grid grid-cols-2 gap-x-3 gap-y-4 sm:gap-x-6 sm:gap-y-5">
                   {aboutUsData.stats.map((stat) => (
                     <div key={stat.label} className="min-w-0">
-                      <p className="font-roboto-condensed text-2xl font-bold leading-none tracking-[0.03em] text-[#F4D21F] md:text-[2.2rem]">
+                      <p className="font-roboto-condensed text-xl font-bold leading-none tracking-[0.03em] text-[#F4D21F] sm:text-2xl md:text-[2.2rem]">
                         {stat.value}
                       </p>
-                      <p className="mt-1 font-roboto-condensed text-sm leading-none tracking-[0.03em] text-white md:text-[1rem]">
+                      <p className="mt-1 font-roboto-condensed text-xs leading-none tracking-[0.03em] text-white sm:text-sm md:text-base">
                         {stat.label}
                       </p>
                     </div>
@@ -86,12 +87,12 @@ export default function AboutUs() {
                 </div>
               </div>
 
-              <button
-                type="button"
+              <button type="button"
                 aria-label="Scroll to next section"
-                className="flex h-44 w-16 items-center justify-center self-end rounded-full border-2 border-[#3F136F] bg-[#5A1FA1] text-white shadow-[0_2px_0_0_#3F136F] transition-transform duration-200 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5A1FA1] focus-visible:ring-offset-2 focus-visible:ring-offset-[#F5E4D8]"
+                className=" flex self-stretch w-12 shrink-0 items-center justify-center rounded-full border-2 border-[#3F136F] bg-[#5A1FA1] text-white shadow-[0_2px_0_0_#3F136F] transition-transform duration-200 hover:-translate-y-0.5 sm:w-14 md:w-16
+              "
               >
-                <ArrowIcon className="h-28 w-6" />
+                <ArrowIcon className="h-20 w-5 sm:h-24 sm:w-6 md:h-28 md:w-6" />
               </button>
             </div>
           </div>
