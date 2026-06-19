@@ -1,8 +1,7 @@
+import HomePage from "@/components/pages/HomePage";
 
-export default function Home() {
+export default function Page() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center font-sans">
-     <h1>Welcome to Jigisha !</h1>
-    </div>
+    <HomePage />
   );
 }
