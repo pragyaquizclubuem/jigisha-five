@@ -144,3 +144,83 @@ body {
 .col-full-width {
   grid-column: full-width-start / full-width-end;
 }
+
+/* ── Content Visibility Utility ────────────────────────────────────────────── */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
+/* ── Gallery Section Keyframe Animations ────────────────────────────────────── */
+
+/* Left-to-right infinite scrolling marquee */
+@keyframes galleryMarquee {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Subtle pulse / wobble for sparkles and camera icons */
+@keyframes bounceSubtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes wobbleSubtle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-3deg);
+  }
+  75% {
+    transform: rotate(3deg);
+  }
+}
+
+/* Marquee Track */
+.gallery-track {
+  animation: galleryMarquee 38s linear infinite;
+  will-change: transform;
+}
+
+.gallery-track-running {
+  animation-play-state: running;
+}
+
+.gallery-track-paused {
+  animation-play-state: paused;
+}
+
+.animate-bounce-subtle {
+  animation: bounceSubtle 3s ease-in-out infinite;
+}
+
+.animate-wobble-subtle {
+  animation: wobbleSubtle 4s ease-in-out infinite;
+}
+
+/* Pause marquee on hover (desktop fine-pointer only) */
+@media (hover: hover) and (pointer: fine) {
+  .gallery-track-running:hover {
+    animation-play-state: paused;
+  }
+}
+
+/* Accessibility: disables animation for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .gallery-track {
+    animation: none !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    width: auto !important;
+    max-width: 100% !important;
+  }
+}
