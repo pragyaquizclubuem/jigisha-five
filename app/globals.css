@@ -144,3 +144,70 @@ body {
 .col-full-width {
   grid-column: full-width-start / full-width-end;
 }
+
+/* ── FAQ Section — Accordion animations ─────────────────────────────────────── */
+
+/* Staggered fade-slide entrance for each FAQ item */
+@keyframes faqFadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.faq-item-enter {
+  animation: faqFadeSlideIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+/* Smooth height collapse/expand using grid-template-rows trick */
+.faq-answer-grid {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── FAQ card — Retro press-in interaction (matches Register Now button) ──── */
+.faq-card {
+  box-shadow: 0 0 12px rgba(81, 48, 129, 0.2), 3px 3px 0 0 #2F0F56;
+  transition: box-shadow 0.2s ease, translate 0.2s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .faq-card:hover {
+    box-shadow: 0 0 8px rgba(81, 48, 129, 0.12), 1.5px 1.5px 0 0 #2F0F56;
+    translate: 1.5px 1.5px;
+  }
+
+  .faq-card:active {
+    box-shadow: 0 0 4px rgba(81, 48, 129, 0.06);
+    translate: 3px 3px;
+  }
+}
+
+/* ── Reduced motion — disable FAQ animations for a11y ─────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .faq-item-enter {
+    animation: none;
+    opacity: 1;
+  }
+
+  .faq-answer-grid {
+    transition: none;
+  }
+
+  .faq-card {
+    transition: none;
+  }
+}
+
+/* ── Performance — content-visibility for below-fold sections ─────────────── */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
