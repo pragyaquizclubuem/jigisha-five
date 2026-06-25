@@ -1,7 +1,7 @@
-import React from "react";
 import Link from "next/link";
 import { DoubleDShape } from "../common/icons/DecorativeShapes";
 import { DownloadIcon } from "../common/icons/DownloadIcon";
+import SectionWrapper from "../wrappers/SectionWrapper";
 import {
   BROCHURE_URL,
   BROCHURE_HEADING,
@@ -14,9 +14,9 @@ import {
 function highlightText(text: string, terms: string[]) {
   // Create a regex to match any of the terms
   const regex = new RegExp(`(${terms.map(t => t.replace(/[.*+?^$()|[\\]\\\\]/g, '\\\\$&')).join('|')})`, 'gi');
-  
+
   const parts = text.split(regex);
-  
+
   return parts.map((part, i) => {
     if (terms.some(t => t.toLowerCase() === part.toLowerCase())) {
       return (
@@ -31,15 +31,13 @@ function highlightText(text: string, terms: string[]) {
 
 export default function BrochureSection() {
   return (
-    <section className="relative w-full py-16 px-4 md:px-8 lg:px-12 overflow-hidden">
-
-      
+    <SectionWrapper id="brochure" className="py-10 md:py-14 lg:py-16">
       <div className="max-w-[1400px] mx-auto relative z-10">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-10">
-          
+
           {/* Content Card (Left) */}
           <div className="w-full lg:w-7/12 bg-[#FFEDE0] border-[3px] border-[#252525] rounded-[25.5px] p-8 md:p-10 lg:p-12 shadow-sm relative overflow-hidden flex flex-col justify-between">
-            
+
             <div className="flex items-start gap-5 mb-8">
               <DoubleDShape className="w-16 h-16 text-[#513081] shrink-0" />
               <div className="relative pt-2">
@@ -52,7 +50,7 @@ export default function BrochureSection() {
                 </svg>
               </div>
             </div>
-            
+
             <div className="text-[#252525] text-[17px] md:text-[19px] leading-[1.6] mb-8">
               {BROCHURE_DESCRIPTION.split('\\n').map((paragraph, idx) => (
                 <p key={idx} className={idx > 0 ? "mt-4" : ""}>
@@ -60,13 +58,13 @@ export default function BrochureSection() {
                 </p>
               ))}
             </div>
-            
+
             <p className="text-[#513081] font-bold text-lg md:text-[20px] uppercase mb-10 tracking-wide">
               {BROCHURE_CTA}
             </p>
-            
+
             <div className="flex flex-wrap items-center justify-between gap-6 mt-auto">
-              <Link 
+              <Link
                 href={BROCHURE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -76,20 +74,20 @@ export default function BrochureSection() {
                 DOWNLOAD BROCHURE
                 <DownloadIcon className="w-5 h-5" />
               </Link>
-              
+
               <DoubleDShape className="w-[88px] h-[70px] text-[#513081] hidden sm:block" />
             </div>
-            
+
           </div>
-          
+
           {/* Brochure Preview Area (Right) */}
           <div className="w-full lg:w-5/12 min-h-[400px] lg:min-h-full bg-[#252525] rounded-[24px] flex items-center justify-center shadow-lg">
             {/* Placeholder for Book Animation / Preview */}
             <span className="text-gray-500 sr-only">Brochure Preview Area</span>
           </div>
-          
+
         </div>
       </div>
-    </section>
+    </SectionWrapper>
   );
 }
