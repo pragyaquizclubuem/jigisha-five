@@ -65,11 +65,21 @@ const SquareGridBackground: React.FC = () => {
         .jigisha-grid-ambient {
           opacity: 0.3;
           animation: ambientPulse 15s ease-in-out infinite alternate;
+          will-change: transform, opacity;
         }
 
         @keyframes ambientPulse {
           0% { opacity: 0.2; transform: scale(0.95); }
           100% { opacity: 0.5; transform: scale(1.05); }
+        }
+
+        /* Disable expensive ambient animation on mobile for performance */
+        @media (hover: none), (pointer: coarse) {
+          .jigisha-grid-ambient {
+            animation: none;
+            will-change: auto;
+            opacity: 0.25;
+          }
         }
 
         /* Interactive Layer: Hover spotlight */
