@@ -1,9 +1,14 @@
-import BrochureSection from "@/components/home/BrochureSection";
+import PageWrapper from "@/components/wrappers/PageWrapper";
+import HomeHero from "@/components/home/HomeHero";
+import AboutUs from "@/components/sections/homepage/AboutUs";
+import Venue from "@/components/home/Venue";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center font-sans w-full">
-      <BrochureSection />
-    </div>
+    <PageWrapper>
+      <HomeHero />
+      <AboutUs />
+      <Venue />
+    </PageWrapper>
   );
 }

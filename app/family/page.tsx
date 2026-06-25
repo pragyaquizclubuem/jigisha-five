@@ -1,7 +1,7 @@
-export default function FamilyPage() {
+import FamilyPage from "@/components/pages/FamilyPage";
+
+export default function Page() {
     return (
-        <div>
-            <h1>Family</h1>
-        </div>
+        <FamilyPage />
     );
 }
