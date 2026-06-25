@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { DoubleDShape } from "../common/icons/DecorativeShapes";
-import { DownloadIcon } from "../common/icons/DownloadIcon";
+import { DoubleDShape } from "../icons/DecorativeShapes";
+import { DownloadIcon } from "../icons/DownloadIcon";
 import SectionWrapper from "../wrappers/SectionWrapper";
 import {
   BROCHURE_URL,
