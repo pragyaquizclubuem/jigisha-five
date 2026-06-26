@@ -80,7 +80,7 @@ export default function MobileNavigation() {
         flex items-center justify-between
         border-2 border-black rounded-3xl
         bg-[#FFEDE0]
-        mx-4 mt-4 mb-2
+        mx-2 mt-2 mb-2
         pl-4 pr-2 py-2
       ">
         <div className="shrink-0 flex items-center h-12">
