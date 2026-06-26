@@ -10,7 +10,7 @@ const rightNav = navigationData.slice(3);
 
 export default function Navbar() {
   return (
-    <header className="w-full bg-[#FFEDE0] sticky top-0 z-50">
+    <header className="w-full sticky top-0 z-50">
 
       {/* DESKTOP NAVIGATION — xl (1280px) and above
           All 9 items in ONE flex row with justify-between so the
@@ -22,7 +22,7 @@ export default function Navbar() {
           items-center justify-between
           border-2 border-black rounded-[35px]
           bg-[#FFEDE0]
-          mx-6 mt-5 mb-3
+          mx-6 my-5
           px-8 py-2.5
         "
         aria-label="Main navigation"

@@ -14,7 +14,7 @@ export const navigationData: NavItem[] = [
   },
   {
     label: "About",
-    href: "/about",
+    href: "/#homeAbout",
   },
   {
     label: "Events",
