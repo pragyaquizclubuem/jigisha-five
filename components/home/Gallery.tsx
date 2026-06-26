@@ -53,7 +53,7 @@ export default function Gallery() {
           aria-label="Event Gallery"
         >
           {/* Heading Container: Constrained to standard content width */}
-          <div className="max-w-[var(--content-max-width)] mx-auto px-[var(--page-padding)] mb-10 md:mb-14">
+          <div className="max-w-(--content-max-width) mx-auto px-(--page-padding) mb-10 md:mb-14">
             <div className="flex flex-col items-center text-center">
               {/* Header with decorative icons & star sparkles */}
               <div className="flex items-center gap-4 relative">

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { DoubleDShape } from "../icons/DecorativeShapes";
 import { DownloadIcon } from "../icons/DownloadIcon";
 import SectionWrapper from "../wrappers/SectionWrapper";
+import Book3D from "./dflip/Book3D";
 import {
   BROCHURE_URL,
   BROCHURE_HEADING,
@@ -81,9 +82,8 @@ export default function BrochureSection() {
           </div>
 
           {/* Brochure Preview Area (Right) */}
-          <div className="w-full lg:w-5/12 min-h-[400px] lg:min-h-full bg-[#252525] rounded-[24px] flex items-center justify-center shadow-lg">
-            {/* Placeholder for Book Animation / Preview */}
-            <span className="text-gray-500 sr-only">Brochure Preview Area</span>
+          <div className="w-full lg:w-5/12 min-h-[400px] lg:min-h-full flex items-center justify-center">
+            <Book3D coverImage="/dummycover.avif" pdfUrl={BROCHURE_URL} priority={true} width={340} height={480} />
           </div>
 
         </div>
