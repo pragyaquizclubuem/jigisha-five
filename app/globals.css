@@ -285,3 +285,41 @@ body {
     max-width: 100% !important;
   }
 }
+
+/* ── Footer — Contributors Modal animations ─────────────────────────────────── */
+
+@keyframes modalBackdropIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalPanelIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.contributors-modal-backdrop {
+  animation: modalBackdropIn 0.2s ease-out forwards;
+}
+
+.contributors-modal-panel {
+  animation: modalPanelIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contributors-modal-backdrop,
+  .contributors-modal-panel {
+    animation: none;
+  }
+}
+
