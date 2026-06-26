@@ -1,9 +1,6 @@
 import HomeHero from "@/components/home/HomeHero";
 import AboutUs from "@/components/home/AboutUs";
-import Countdown from "@/components/home/Countdown";
-import Challenge from "@/components/home/Challenge";
-import Quizzes from "@/components/home/Quizzes";
-import Venue from "@/components/home/Venue";
+import OurQuizzes from "@/components/home/OurQuizzes";
 import Gallery from "@/components/home/Gallery";
 import FAQ from "@/components/home/FAQ";
 import BrochureSection from "../home/BrochureSection";
@@ -19,7 +16,7 @@ export default function HomePage() {
       <AboutUs />
       {/* <Countdown /> */}
       {/* <Challenge /> */}
-      {/* <Quizzes /> */}
+      <OurQuizzes />
       {/* <Venue /> */}
       <BrochureSection/>
       <MapSection/>

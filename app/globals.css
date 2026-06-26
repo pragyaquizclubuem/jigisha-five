@@ -145,6 +145,12 @@ body {
   grid-column: full-width-start / full-width-end;
 }
 
+/* ── Performance — content-visibility for below-fold sections ─────────────── */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
 /* ── FAQ Section — Accordion animations ─────────────────────────────────────── */
 
 /* Staggered fade-slide entrance for each FAQ item */
@@ -172,7 +178,7 @@ body {
   transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ── FAQ card — Retro press-in interaction (matches Register Now button) ──── */
+/* FAQ card — Retro press-in interaction (matches Register Now button) ──── */
 .faq-card {
   box-shadow: 0 0 12px rgba(81, 48, 129, 0.2), 3px 3px 0 0 #2F0F56;
   transition: box-shadow 0.2s ease, translate 0.2s ease;
@@ -190,7 +196,7 @@ body {
   }
 }
 
-/* ── Reduced motion — disable FAQ animations for a11y ─────────────────────── */
+/* Reduced motion — disable FAQ animations for a11y ─────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .faq-item-enter {
     animation: none;
@@ -204,164 +210,6 @@ body {
   .faq-card {
     transition: none;
   }
-}
-
-/* ── Performance — content-visibility for below-fold sections ─────────────── */
-.cv-auto {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 600px;
-}
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: transparent;
-  --page-padding: clamp(1rem, 5vw, 2.5rem);
-  --content-max-width: 80rem;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-roboto-condensed: var(--font-roboto-condensed);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: transparent;
-    --foreground: transparent;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
-}
-
-/* ── NavLink — Bottom-fill hover effect ────────────────────────────────────── */
-
-/* The link container — must be position:relative + overflow:hidden */
-.nav-link-btn {
-  position: relative;
-  overflow: hidden;
-}
-
-/* The purple fill slab that rises from below */
-.nav-fill-layer {
-  position: absolute;
-  inset: 0;
-  background-color: #513081;
-  border-radius: 12px;
-  transform: translateY(100%);
-  will-change: transform;
-  z-index: 0;
-  /* Transition only on devices that support hover (not touch) */
-  transition: none;
-}
-
-/* Label text — always above the fill slab */
-.nav-link-label {
-  position: relative;
-  z-index: 1;
-}
-
-/* ── Hover effects — only on pointer devices (not touch screens) ──────────── */
-@media (hover: hover) and (pointer: fine) {
-  .nav-fill-layer {
-    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
-  /* Slide slab up on hover */
-  .nav-link-btn:hover .nav-fill-layer {
-    transform: translateY(0);
-  }
-
-  /* Turn label white as slab arrives */
-  .nav-link-label {
-    transition: color 0.15s ease-in-out;
-  }
-
-  .nav-link-btn:hover .nav-link-label {
-    color: #ffffff;
-  }
-
-  /* Mobile header menu button (light bg) hover */
-  .mobile-menu-btn:hover {
-    background-color: #513081;
-    border-color: #513081;
-    color: white;
-  }
-
-  /* Overlay close button (dark bg) hover */
-  .mobile-menu-btn-dark:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.35);
-  }
-
-  /* Full-screen overlay nav link hover */
-  .mobile-drawer-link:not([aria-current="page"]):hover {
-    background-color: rgba(255, 255, 255, 0.05);
-    color: rgba(255, 255, 255, 0.85);
-  }
-}
-
-/* ── Mobile nav items — sizing override for side drawer ─────────────────────── */
-.mobile-nav-item {
-  padding-top: 1.1rem;
-  padding-bottom: 1.1rem;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-  border-radius: 16px;
-  font-size: 0.95rem;
-  letter-spacing: 0.12em;
-}
-
-/* ── Custom transition duration (400ms) for drawer / backdrop ────────────────── */
-.duration-400 {
-  transition-duration: 400ms;
-}
-
-/* ── Mobile menu — staggered slide-up animation ─────────────────────────────── */
-@keyframes slideUp {
-  0% {
-    opacity: 0;
-    transform: translateY(32px) scale(0.97);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.animate-slide-up {
-  animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  opacity: 0;
-}
-
-/* ── Layout & Centering grid (without max-w-...) ─────────────────────────── */
-
-.grid-layout-bleed {
-  display: grid;
-  grid-template-columns:
-    [full-width-start] minmax(var(--page-padding, 1.5rem), 1fr) [content-start] min(100% - (2 * var(--page-padding, 1.5rem)), var(--content-max-width, 80rem)) [content-end] minmax(var(--page-padding, 1.5rem), 1fr) [full-width-end];
-}
-
-.col-content {
-  grid-column: content-start / content-end;
-}
-
-.col-full-width {
-  grid-column: full-width-start / full-width-end;
-}
-
-/* ── Content Visibility Utility ────────────────────────────────────────────── */
-.cv-auto {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 600px;
 }
 
 /* ── Gallery Section Keyframe Animations ────────────────────────────────────── */

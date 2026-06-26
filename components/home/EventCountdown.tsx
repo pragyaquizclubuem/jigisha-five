@@ -263,6 +263,8 @@ function FlipDigit({ value }: { value: string }) {
   const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
     if (value !== prev) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsAnimating(true);
