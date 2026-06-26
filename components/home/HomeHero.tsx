@@ -110,7 +110,7 @@ export default function HomeHero() {
         }}
       >
         {/* Neon top border highlight */}
-        <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#c084fc]/30 to-transparent blur-[1px]" />
+        <div className="absolute top-0 left-0 w-full h-[2px] bg-linear-to-r from-transparent via-[#c084fc]/30 to-transparent blur-[1px]" />
 
         {/* Centered Register Now Button inside the block */}
         <div className="relative z-10">
@@ -120,8 +120,8 @@ export default function HomeHero() {
               inline-flex items-center gap-6 rounded-full border border-[#8B5CF6]/50 
               bg-[#0A002A] px-12 py-5
               font-mono text-lg sm:text-xl font-bold uppercase tracking-[0.2em] text-white transition-all
-              shadow-[0_0_15px_rgba(139,92,246,0.25),_4px_4px_0_0_#8B5CF6]
-              hover:shadow-[0_0_10px_rgba(139,92,246,0.15),_2px_2px_0_0_#8B5CF6]
+              shadow-[0_0_15px_rgba(139,92,246,0.25),4px_4px_0_0_#8B5CF6]
+              hover:shadow-[0_0_10px_rgba(139,92,246,0.15),2px_2px_0_0_#8B5CF6]
               hover:translate-x-[2px] hover:translate-y-[2px]
               active:translate-x-[4px] active:translate-y-[4px]
               active:shadow-none
