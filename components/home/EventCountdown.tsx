@@ -264,6 +264,7 @@ function FlipDigit({ value }: { value: string }) {
 
   useEffect(() => {
     if (value !== prev) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsAnimating(true);
       const timer = setTimeout(() => {
         setPrev(value);
@@ -322,6 +323,7 @@ export default function EventCountdown({ targetDate }: EventCountdownProps) {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>(() => calculateTimeLeft(targetDate));
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     const timer = setInterval(() => setTimeLeft(calculateTimeLeft(targetDate)), 1000);
     return () => clearInterval(timer);
