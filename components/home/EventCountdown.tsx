@@ -88,7 +88,7 @@ const css = `
     align-items: center;
     position: relative;
     overflow: hidden;
-    animation: pulseOuter 3s ease-in-out infinite, subtleBreathe 4s ease-in-out infinite;
+    animation: subtleBreathe 4s ease-in-out infinite;
     max-width: 100%;
   }
   .jg-shimmer-bar {
