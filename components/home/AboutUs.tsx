@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 
 import SectionWrapper from "@/components/wrappers/SectionWrapper";
 import FlowerIcon from "@/components/icons/FlowerIcon";
@@ -19,10 +22,63 @@ function renderSegments(segments: AboutUsTextSegment[]) {
   });
 }
 
+function AnimatedStat({ value }: { value: string }) {
+  const [count, setCount] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const ref = useRef<HTMLParagraphElement>(null);
+
+  const targetNum = parseInt(value.replace(/[^0-9]/g, ""), 10) || 0;
+  const prefix = value.replace(/[0-9,].*/, "");
+  const suffix = value.replace(/.*[0-9]/, "");
+  const hasComma = value.includes(",");
+
+  useEffect(() => {
+    if (hasAnimated) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setHasAnimated(true);
+          const duration = 4000;
+          const startTime = performance.now();
+          const animate = (time: number) => {
+            const progress = Math.min((time - startTime) / duration, 1);
+            const easeProgress = 1 - Math.pow(1 - progress, 3);
+            setCount(Math.floor(easeProgress * targetNum));
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            } else {
+              setCount(targetNum);
+            }
+          };
+          requestAnimationFrame(animate);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [hasAnimated, targetNum]);
+
+  let formatted = new Intl.NumberFormat("en-IN").format(count);
+  if (!hasComma) formatted = formatted.replace(/,/g, "");
+
+  return (
+    <p
+      ref={ref}
+      className="font-roboto-condensed text-xl font-bold leading-none tracking-[0.03em] text-[#F4D21F] sm:text-2xl md:text-[2.2rem]"
+    >
+      {prefix}
+      {formatted}
+      {suffix}
+    </p>
+  );
+}
+
 export default function AboutUs() {
   return (
     <SectionWrapper id="about" className="py-6 md:py-10 lg:py-12">
-      <div className="group rounded-[34px] border-2 border-[#252525] bg-[#FFEDE0] p-5 md:p-7 lg:p-8">
+      <div className="group scroll-mt-32 rounded-[34px] border-2 border-[#252525] bg-[#FFEDE0] p-5 md:p-7 lg:p-8" id="homeAbout">
         <div className="grid gap-8 lg:grid-cols-[1.12fr_0.88fr] lg:items-stretch">
           {/* Image Section - order-2 on mobile, order-1 on desktop */}
           <div className="relative min-h-[300px] overflow-hidden rounded-[28px] sm:min-h-[400px] lg:order-1 lg:min-h-[620px] order-2">
@@ -62,9 +118,7 @@ export default function AboutUs() {
                 <div className="grid grid-cols-2 gap-x-3 gap-y-4 sm:gap-x-6 sm:gap-y-5">
                   {aboutUsData.stats.map((stat) => (
                     <div key={stat.label} className="min-w-0">
-                      <p className="font-roboto-condensed text-xl font-bold leading-none tracking-[0.03em] text-[#F4D21F] sm:text-2xl md:text-[2.2rem]">
-                        {stat.value}
-                      </p>
+                      <AnimatedStat value={stat.value} />
                       <p className="mt-1.5 font-roboto-condensed text-xs leading-tight tracking-[0.03em] text-white sm:text-sm md:text-base">
                         {stat.label}
                       </p>
