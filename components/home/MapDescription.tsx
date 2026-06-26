@@ -15,7 +15,7 @@ export default function MapDescription() {
   } = mapData;
 
   return (
-    <div className="flex h-full flex-col justify-between rounded-[28px] border-2 border-black bg-[#FDF5E6] p-6 sm:p-8 md:p-10 text-[#513081] shadow-sm">
+    <div className="flex h-full flex-col justify-between rounded-[28px] border-2 border-black bg-[#FFEDE0] p-6 sm:p-8 md:p-10 text-[#513081] shadow-sm">
       {/* Header section with heading and hand-drawn double underline */}
       <div>
         <h2 className="font-roboto-condensed text-2xl font-bold uppercase leading-none tracking-[0.03em] sm:text-3xl lg:text-[2.2rem]">
@@ -47,12 +47,12 @@ export default function MapDescription() {
 
       {/* Details section */}
       <div className="mt-8 flex flex-col gap-5 text-left">
-        <p className="font-sans text-[0.98rem] leading-[1.5] text-black/90 sm:text-[1.06rem]">
+        <p className="font-sans text-[0.98rem] leading-normal text-black/90 sm:text-[1.06rem]">
           <span className="font-bold text-[#513081]">{venueLabel} : </span>
           {venueName}
         </p>
 
-        <p className="font-sans text-[0.98rem] leading-[1.5] text-black/90 sm:text-[1.06rem]">
+        <p className="font-sans text-[0.98rem] leading-normal text-black/90 sm:text-[1.06rem]">
           <span className="font-bold text-[#513081]">{locationLabel} : </span>
           {locationAddress}
         </p>
@@ -73,7 +73,7 @@ export default function MapDescription() {
         >
           <span>{ctaText}</span>
           <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#1E0D36] text-[#AB97C3] sm:h-7 sm:w-7">
-            <ArrowUpRightIcon className="h-3.5 w-3.5 stroke-[3] sm:h-4 sm:w-4" />
+            <ArrowUpRightIcon className="h-3.5 w-3.5 stroke-3 sm:h-4 sm:w-4" />
           </span>
         </a>
 
