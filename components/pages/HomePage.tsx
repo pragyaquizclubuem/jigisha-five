@@ -12,13 +12,10 @@ export default function HomePage() {
     <div className="flex-1">
       {/* Write your code here to orchestrate or customize the homepage */}
       <HomeHero />
-      <EventCountdown targetDate="2027-01-01T00:00:00"/>
       <AboutUs />
-      {/* <Countdown /> */}
-      {/* <Challenge /> */}
-      <OurQuizzes />
-      {/* <Venue /> */}
+      <EventCountdown targetDate="2027-01-01T00:00:00"/>
       <BrochureSection/>
+      <OurQuizzes />
       <MapSection/>
       <Gallery />
       <FAQ />
