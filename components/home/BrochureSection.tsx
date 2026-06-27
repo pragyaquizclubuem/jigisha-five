@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { DoubleDShape } from "../icons/DecorativeShapes";
-import { DownloadIcon } from "../icons/DownloadIcon";
+import { DoubleDShape, BrochureWavyUnderlineIcon } from "../icons/Icons";
+import { DownloadIcon } from "../icons/Icons";
 import SectionWrapper from "../wrappers/SectionWrapper";
 import Book3D from "./dflip/Book3D";
 import {
@@ -46,9 +46,7 @@ export default function BrochureSection() {
                   {BROCHURE_HEADING}
                 </h2>
                 {/* Decorative Underline */}
-                <svg className="absolute w-full h-3 -bottom-3 left-0 text-[#513081]" viewBox="0 0 300 12" fill="none" preserveAspectRatio="none">
-                  <path d="M2 5Q50 7 150 5T298 6" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
-                </svg>
+                <BrochureWavyUnderlineIcon className="absolute w-full h-3 -bottom-3 left-0 text-[#513081]" />
               </div>
             </div>
 
