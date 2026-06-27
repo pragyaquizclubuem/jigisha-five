@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 import SectionWrapper from "@/components/wrappers/SectionWrapper";
-import FAQAccordionItem from "@/components/home/FAQAccordionItem";
-import FAQSkeleton from "@/components/home/FAQSkeleton";
+import FAQAccordionItem from "@/components/home/faq/FAQAccordionItem";
+import FAQSkeleton from "@/components/home/faq/FAQSkeleton";
 import { FAQWavyUnderlineIcon } from "@/components/icons/Icons";
 import { faqData } from "@/constants/FAQData";
 
