@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Roboto_Condensed } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import SquareGridBackground from "@/components/layout/SquareGridBackground";
+import AudioVisualizer from "@/components/layout/AudioVisualizer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,6 +41,7 @@ export default function RootLayout({
         <Navbar />
         <SquareGridBackground />
         {children}
+        <AudioVisualizer />
       </body>
     </html>
   );

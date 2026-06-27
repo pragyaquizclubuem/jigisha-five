@@ -33,7 +33,7 @@ function highlightText(text: string, terms: string[]) {
 export default function BrochureSection() {
   return (
     <SectionWrapper id="brochure" className="py-10 md:py-14 lg:py-16">
-      <div className="max-w-[1400px] mx-auto relative z-10">
+      <div className="max-w-[1400px] mx-auto relative z-10 scroll-mt-28" id="brochureSection">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-10">
 
           {/* Content Card (Left) */}
