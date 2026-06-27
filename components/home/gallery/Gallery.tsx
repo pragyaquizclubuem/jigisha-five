@@ -94,9 +94,8 @@ export default function Gallery() {
           <div className="relative w-full overflow-hidden py-4 select-none">
             {/* Marquee Track: duplicated array inside */}
             <div
-              className={`gallery-track flex gap-6 md:gap-8 w-max ${
-                isInView ? "gallery-track-running" : "gallery-track-paused"
-              }`}
+              className={`gallery-track flex gap-6 md:gap-8 w-max ${isInView ? "gallery-track-running" : "gallery-track-paused"
+                }`}
             >
               {doubleImages.map((image, idx) => (
                 <GalleryCard
