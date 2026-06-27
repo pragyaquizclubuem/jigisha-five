@@ -96,7 +96,9 @@ export default function ContributorCard({
       {/* ── Social icons ─────────────────────────────── */}
       <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
         {SOCIALS.map(({ key, Icon, label, bg, hover, ...rest }) => {
-          const href = contributor[key] || "#";
+          const href = contributor[key];
+          if (!href) return null;
+          
           const isInsta = "instagram" in rest && rest.instagram;
 
           return (

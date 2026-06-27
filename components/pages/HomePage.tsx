@@ -1,12 +1,12 @@
-import HomeHero from "@/components/home/HomeHero";
-import AboutUs from "@/components/home/AboutUs";
-import OurQuizzes from "@/components/home/OurQuizzes";
-import Gallery from "@/components/home/Gallery";
-import FAQ from "@/components/home/FAQ";
-import BrochureSection from "../home/BrochureSection";
-import MapSection from "../home/MapSection";
-import EventCountdown from "../home/EventCountdown";
-import Footer from "../layout/Footer";
+import HomeHero from "@/components/home/hero/HomeHero";
+import AboutUs from "@/components/home/about-us/AboutUs";
+import OurQuizzes from "@/components/home/quizzes/OurQuizzes";
+import Gallery from "@/components/home/gallery/Gallery";
+import FAQ from "@/components/home/faq/FAQ";
+import BrochureSection from "@/components/home/brochure/BrochureSection";
+import MapSection from "@/components/home/map/MapSection";
+import EventCountdown from "@/components/home/counter/EventCountdown";
+import Footer from "@/components/layout/Footer";
 
 export default function HomePage() {
   return (
@@ -14,13 +14,13 @@ export default function HomePage() {
       {/* Write your code here to orchestrate or customize the homepage */}
       <HomeHero />
       <AboutUs />
-      <EventCountdown targetDate="2027-01-01T00:00:00"/>
-      <BrochureSection/>
+      <EventCountdown targetDate="2027-01-01T00:00:00" />
+      <BrochureSection />
       <OurQuizzes />
-      <MapSection/>
+      <MapSection />
       <Gallery />
       <FAQ />
-      <Footer/>
+      <Footer />
     </div>
   );
 }
