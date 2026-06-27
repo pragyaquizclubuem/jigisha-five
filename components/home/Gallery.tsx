@@ -5,7 +5,7 @@ import SectionWrapper from "@/components/wrappers/SectionWrapper";
 import GalleryCard from "./GalleryCard";
 import GallerySkeleton from "./GallerySkeleton";
 import { galleryData } from "@/constants/GalleryData";
-import { CameraIcon, PhotoCloudIcon, StarIcon } from "@/components/icons/GalleryIcons";
+import { CameraIcon, PhotoCloudIcon, StarIcon, GalleryWavyUnderlineIcon } from "@/components/icons/Icons";
 
 export default function Gallery() {
   const [isMounted, setIsMounted] = useState(false);
@@ -86,25 +86,7 @@ export default function Gallery() {
               </div>
 
               {/* Wavy Underline SVG */}
-              <svg
-                viewBox="0 0 260 16"
-                className="mt-3 h-4 w-44 text-[#513081] md:w-52 lg:w-60"
-                aria-hidden="true"
-                focusable="false"
-                fill="none"
-              >
-                <path
-                  d="M4 11
-                     C24 8, 36 13, 54 10
-                     S88 12, 108 10
-                     S144 12, 164 10
-                     S200 12, 220 10
-                     S240 8, 256 10"
-                  stroke="currentColor"
-                  strokeWidth="3.5"
-                  strokeLinecap="round"
-                />
-              </svg>
+              <GalleryWavyUnderlineIcon className="mt-3 h-4 w-44 text-[#513081] md:w-52 lg:w-60" />
             </div>
           </div>
 
