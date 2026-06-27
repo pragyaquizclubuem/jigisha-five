@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { DoubleDShape, BrochureWavyUnderlineIcon } from "../icons/Icons";
-import { DownloadIcon } from "../icons/Icons";
-import SectionWrapper from "../wrappers/SectionWrapper";
+import { DoubleDShape, BrochureWavyUnderlineIcon } from "../../icons/Icons";
+import { DownloadIcon } from "@/components/icons/Icons";
+import SectionWrapper from "@/components/wrappers/SectionWrapper";
 import Book3D from "./dflip/Book3D";
 import {
   BROCHURE_URL,
@@ -9,7 +9,7 @@ import {
   BROCHURE_DESCRIPTION,
   BROCHURE_CTA,
   BROCHURE_HIGHLIGHTED_TERMS,
-} from "../../constants/BrochureData";
+} from "@/constants/BrochureData";
 
 // Helper to highlight terms in description
 function highlightText(text: string, terms: string[]) {
