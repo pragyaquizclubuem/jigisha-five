@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import PlusIcon from "@/components/icons/PlusIcon";
+import { PlusIcon } from "@/components/icons/Icons";
 
 interface FAQAccordionItemProps {
   id: string;
@@ -38,7 +38,7 @@ export default function FAQAccordionItem({
   return (
     <div
       className={`faq-item-enter faq-card rounded-2xl border border-[#2F0F56]/30 ${
-        isOpen ? "bg-[#3A0E6E]" : "bg-[#513081]"
+        isOpen ? "bg-[#3A0E6E]" : "bg-[#4B008D]"
       }`}
       style={{
         animationDelay: isVisible ? `${index * 60}ms` : "0ms",

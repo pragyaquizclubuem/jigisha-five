@@ -5,6 +5,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import SectionWrapper from "@/components/wrappers/SectionWrapper";
 import FAQAccordionItem from "@/components/home/FAQAccordionItem";
 import FAQSkeleton from "@/components/home/FAQSkeleton";
+import { FAQWavyUnderlineIcon } from "@/components/icons/Icons";
 import { faqData } from "@/constants/FAQData";
 
 /**
@@ -69,7 +70,7 @@ export default function FAQ() {
     >
       <div
         ref={sectionRef}
-        className="rounded-[34px] border-2 border-black/20 bg-[#F5E4D8] p-5 md:p-7 lg:p-8"
+        className="rounded-[34px] border-2 border-black/20 bg-[#FFEDE0] p-5 md:p-7 lg:p-8"
       >
         {!isLoaded ? (
           <FAQSkeleton />
@@ -82,26 +83,7 @@ export default function FAQ() {
               </h2>
 
               {/* Wavy underline — matches About Us style */}
-              <svg
-                viewBox="0 0 420 16"
-                className="mt-2 h-4 w-64 text-[#513081] md:w-80 lg:w-96"
-                aria-hidden="true"
-                focusable="false"
-                fill="none"
-              >
-                <path
-                  d="M4 11
-                     C30 7, 50 14, 76 10
-                     S120 13, 152 10
-                     S196 13, 228 10
-                     S272 13, 304 10
-                     S348 13, 380 10
-                     S400 7, 416 10"
-                  stroke="currentColor"
-                  strokeWidth="3.25"
-                  strokeLinecap="round"
-                />
-              </svg>
+              <FAQWavyUnderlineIcon className="mt-2 h-4 w-64 text-[#513081] md:w-80 lg:w-96" />
             </div>
 
             {/* 2-column accordion grid */}
