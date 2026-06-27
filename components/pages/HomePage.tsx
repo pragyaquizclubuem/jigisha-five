@@ -7,11 +7,14 @@ import BrochureSection from "@/components/home/brochure/BrochureSection";
 import MapSection from "@/components/home/map/MapSection";
 import EventCountdown from "@/components/home/counter/EventCountdown";
 import Footer from "@/components/layout/Footer";
+import AnnouncementStrip from '@/components/home/AnnouncementStrip';
+
 
 export default function HomePage() {
   return (
     <div className="flex-1">
       {/* Write your code here to orchestrate or customize the homepage */}
+      <AnnouncementStrip />
       <HomeHero />
       <AboutUs />
       <EventCountdown targetDate="2027-01-01T00:00:00" />

@@ -1,0 +1,4 @@
+# Third-party and generated files — do not lint
+public/
+.next/
+node_modules/
