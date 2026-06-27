@@ -6,6 +6,7 @@ import FAQ from "@/components/home/FAQ";
 import BrochureSection from "../home/BrochureSection";
 import MapSection from "../home/MapSection";
 import EventCountdown from "../home/EventCountdown";
+import Footer from "../layout/Footer";
 
 export default function HomePage() {
   return (
@@ -19,6 +20,7 @@ export default function HomePage() {
       <MapSection/>
       <Gallery />
       <FAQ />
+      <Footer/>
     </div>
   );
 }

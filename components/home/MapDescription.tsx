@@ -1,5 +1,4 @@
-import ArrowUpRightIcon from "@/components/icons/ArrowUpRightIcon";
-import CompassIcon from "@/components/icons/CompassIcon";
+import { ArrowUpRightIcon, CompassIcon, MapPinIcon, MapDoubleUnderlineIcon } from "@/components/icons/Icons";
 import { mapData } from "@/constants/MapData";
 
 export default function MapDescription() {
@@ -21,28 +20,7 @@ export default function MapDescription() {
         <h2 className="font-roboto-condensed text-2xl font-bold uppercase leading-none tracking-[0.03em] sm:text-3xl lg:text-[2.2rem]">
           {heading}
         </h2>
-        <svg
-          viewBox="0 0 340 12"
-          className="mt-2 h-3 w-64 text-[#513081] sm:w-72 md:w-80"
-          aria-hidden="true"
-          focusable="false"
-          fill="none"
-        >
-          {/* Top scribble line */}
-          <path
-            d="M 4,6 C 50,4 100,8 150,5 C 200,3 250,7 300,5 C 315,4.5 330,4 336,5"
-            stroke="currentColor"
-            strokeWidth="3"
-            strokeLinecap="round"
-          />
-          {/* Bottom scribble line */}
-          <path
-            d="M 12,9 C 60,7 110,11 160,8 C 210,6 260,10 310,8"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
-        </svg>
+        <MapDoubleUnderlineIcon className="mt-2 h-3 w-64 text-[#513081] sm:w-72 md:w-80" />
       </div>
 
       {/* Details section */}

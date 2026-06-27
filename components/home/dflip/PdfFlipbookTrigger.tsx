@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useEffect } from 'react';
 import PdfFlipbook, { type PdfFlipbookProps } from './PdfFlipbook';
+import { CloseIcon } from '@/components/icons/Icons';
 
 export type PdfFlipbookTriggerProps = PdfFlipbookProps & {
   /** Button label when no children provided. */
@@ -89,9 +90,7 @@ export default function PdfFlipbookTrigger({
                   className="p-2 rounded-full bg-black/40 hover:bg-black/60 text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 backdrop-blur-sm"
                   aria-label="Close"
                 >
-                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
+                  <CloseIcon className="w-8 h-8" />
                 </button>
               </div>
 

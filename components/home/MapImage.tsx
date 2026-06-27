@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { mapData } from "@/constants/MapData";
+import { MapPinIcon } from "@/components/icons/Icons";
 
 // Note: Future compatibility comment for MapFramer:
 // When swapping this image with MapFramer, you can import MapFramer from the approved package
@@ -13,7 +14,7 @@ export default function MapImage() {
   const { mapImage, locationUrl } = mapData;
 
   return (
-    <div className="relative h-[320px] w-full overflow-hidden rounded-[28px] border-[12px] border-[#310D59] bg-[#310D59] sm:h-[400px] md:h-[450px] lg:h-full lg:rounded-[34px] lg:border-[16px] shadow-sm">
+    <div className="relative h-[320px] w-full overflow-hidden rounded-[28px] border-12 border-[#310D59] bg-[#310D59] sm:h-[400px] md:h-[450px] lg:h-full lg:rounded-[34px] lg:border-16 shadow-sm">
       <a
         href={locationUrl}
         target="_blank"
@@ -38,18 +39,7 @@ export default function MapImage() {
         >
           {/* Circular Pin Icon Wrapper */}
           <div className="flex h-14 w-14 scale-90 items-center justify-center rounded-full bg-white text-[#310D59] shadow-lg transition-transform duration-300 group-hover:scale-100">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="h-6 w-6"
-            >
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
+            <MapPinIcon className="h-6 w-6" />
           </div>
           <span className="font-roboto-condensed text-base font-bold tracking-wider uppercase">
             View Location
