@@ -26,13 +26,26 @@ export default function AnnouncementStrip() {
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLSpanElement>(null);
   const [shouldScroll, setShouldScroll] = useState(false);
-  const [reducedMotion, setReducedMotion] = useState(false);
+  // Lazy initializer reads the media query at render time — no synchronous
+  // setState inside the effect, which satisfies react-hooks/set-state-in-effect.
+  const [reducedMotion, setReducedMotion] = useState<boolean>(() =>
+    typeof window !== 'undefined'
+      ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      : false
+  );
   const [containerWidth, setContainerWidth] = useState(0);
   const [contentWidth, setContentWidth] = useState(0);
 
+  // Subscribe to future reduced-motion changes (separate concern from measurement)
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setReducedMotion(mediaQuery.matches);
+    const handleChange = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 
     const measure = () => {
       if (containerRef.current && contentRef.current) {
@@ -69,6 +82,7 @@ export default function AnnouncementStrip() {
     >
       <div className="flex justify-center items-center px-4">
         <div className="flex items-center gap-3 w-full min-w-0">
+
           {/* Message container */}
           <div ref={containerRef} className="overflow-hidden flex-1 min-w-0">
             <span
