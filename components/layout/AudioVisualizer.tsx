@@ -1,9 +1,10 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
+import { useAudio } from './AudioContext';
 
 export default function AudioVisualizer() {
-  const [isPlaying, setIsPlaying] = useState(true);
+  const { isPlaying, toggleAudio } = useAudio();
   const visualizerRef = useRef<HTMLButtonElement>(null);
   const barRefs = useRef<(HTMLDivElement | null)[]>([]);
   
@@ -88,7 +89,7 @@ export default function AudioVisualizer() {
 
       <button
         ref={visualizerRef}
-        onClick={() => setIsPlaying(!isPlaying)}
+        onClick={toggleAudio}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={handleMouseLeave}
         onMouseMove={handleMouseMove}
