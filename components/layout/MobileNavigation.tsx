@@ -83,9 +83,9 @@ export default function MobileNavigation() {
         mx-2 mt-2 mb-2
         pl-4 pr-2 py-2
       ">
-        <div className="shrink-0 flex items-center h-12">
+        <Link href="/" className="shrink-0 flex items-center h-12">
           <PragyaLogo className="h-12 w-auto block" />
-        </div>
+        </Link>
 
         {/* Menu button — 2-line icon from Icons.tsx, morphs into ✕ */}
         <button
@@ -135,9 +135,9 @@ export default function MobileNavigation() {
 
         {/* ── Overlay top bar ───────────────────────────────────────────────── */}
         <div className="flex items-center justify-between px-6 pt-6 pb-4 shrink-0 relative z-10">
-          <div className="shrink-0 flex items-center h-12">
+          <Link href="/" className="shrink-0 flex items-center h-12">
             <PragyaLogo className="h-12 w-auto brightness-0 invert block" priority={false} />
-          </div>
+          </Link>
 
           <button
             type="button"
