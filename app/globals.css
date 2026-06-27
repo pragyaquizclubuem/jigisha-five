@@ -285,3 +285,58 @@ body {
     max-width: 100% !important;
   }
 }
+
+/* ── Footer — Pro-level animations ──────────────────────────────────────── */
+
+@keyframes footerShimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes footerGlowPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(92, 0, 173, 0); }
+  50% { box-shadow: 0 0 18px 4px rgba(92, 0, 173, 0.45); }
+}
+
+@keyframes footerLinkDraw {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+.footer-brand-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.04) 0%,
+    rgba(176,126,255,0.18) 30%,
+    rgba(255,185,0,0.22) 50%,
+    rgba(176,126,255,0.18) 70%,
+    rgba(255,255,255,0.04) 100%
+  );
+  background-size: 200% auto;
+  animation: footerShimmer 5s linear infinite;
+}
+
+.footer-social-orb:hover {
+  animation: footerGlowPulse 0.9s ease-out forwards;
+}
+
+.footer-nav-link {
+  position: relative;
+}
+
+.footer-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, #B07EFF, #FFB900);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.footer-nav-link:hover::after {
+  transform: scaleX(1);
+}
