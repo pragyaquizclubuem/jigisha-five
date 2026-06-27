@@ -63,16 +63,15 @@ export default function BrochureSection() {
             </p>
 
             <div className="flex flex-wrap items-center justify-between gap-6 mt-auto">
-              <Link
+              <a
                 href={BROCHURE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+                download
                 className="inline-flex items-center gap-3 bg-[#BE9FCE] hover:bg-[#B08EC3] text-[#252525] font-bold text-lg uppercase tracking-wide py-3.5 px-6 rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-[#513081] focus:ring-offset-2 focus:ring-offset-[#FFEDE0]"
                 aria-label="Download Jigisha 5.0 Brochure"
               >
                 DOWNLOAD BROCHURE
                 <DownloadIcon className="w-5 h-5" />
-              </Link>
+              </a>
 
               <DoubleDShape className="w-[88px] h-[70px] text-[#513081] hidden sm:block" />
             </div>

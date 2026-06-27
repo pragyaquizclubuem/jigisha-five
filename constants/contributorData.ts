@@ -14,6 +14,15 @@ export interface Contributor {
 
 export const contributorData: Contributor[] = [
   {
+    name: "Mahulee Lahiri",
+    role: "UI/UX Design & Visual Identity",
+    image: "/images/Pragya_Team.avif",
+    linkedin: "https://linkedin.com/in/mahuleelahiri",
+    insta: "https://instagram.com/mahuleelahiri",
+    fb: "https://facebook.com/mahuleelahiri",
+    github: "#",
+  },
+  {
     name: "Supriyo Mondal",
     role: "Frontend Development & Component Design",
     image: "/images/Pragya_Team.avif",
@@ -39,14 +48,5 @@ export const contributorData: Contributor[] = [
     linkedin: "https://linkedin.com/in/anadirpaul",
     fb: "https://facebook.com/anadirpaul",
     insta: "#",
-  },
-  {
-    name: "Mahulee Lahiri",
-    role: "UI/UX Design & Visual Identity",
-    image: "/images/Pragya_Team.avif",
-    linkedin: "https://linkedin.com/in/mahuleelahiri",
-    insta: "https://instagram.com/mahuleelahiri",
-    fb: "https://facebook.com/mahuleelahiri",
-    github: "#",
   },
 ];
