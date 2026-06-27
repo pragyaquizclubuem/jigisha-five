@@ -16,7 +16,7 @@ export const contributorData: Contributor[] = [
   {
     name: "Supriyo Mondal",
     role: "Frontend Development & Component Design",
-    image: "/images/contributors/supriyo.avif",
+    image: "/images/Pragya_Team.avif",
     github: "https://github.com/supriyomondal",
     linkedin: "https://linkedin.com/in/supriyomondal",
     insta: "https://instagram.com/supriyomondal",
@@ -25,7 +25,7 @@ export const contributorData: Contributor[] = [
   {
     name: "Ritam Das Gupta",
     role: "Frontend Development & Component Design",
-    image: "/images/contributors/ritam.avif",
+    image: "/images/Pragya_Team.avif",
     github: "https://github.com/ritamdasgupta",
     linkedin: "https://linkedin.com/in/ritamdasgupta",
     insta: "https://instagram.com/ritamdasgupta",
@@ -34,7 +34,7 @@ export const contributorData: Contributor[] = [
   {
     name: "Anadir Paul",
     role: "Frontend Development & Asset Integration",
-    image: "/images/contributors/anadir.avif",
+    image: "/images/Pragya_Team.avif",
     github: "https://github.com/anadirpaul",
     linkedin: "https://linkedin.com/in/anadirpaul",
     fb: "https://facebook.com/anadirpaul",
@@ -43,7 +43,7 @@ export const contributorData: Contributor[] = [
   {
     name: "Mahulee Lahiri",
     role: "UI/UX Design & Visual Identity",
-    image: "/images/contributors/mahulee.avif",
+    image: "/images/Pragya_Team.avif",
     linkedin: "https://linkedin.com/in/mahuleelahiri",
     insta: "https://instagram.com/mahuleelahiri",
     fb: "https://facebook.com/mahuleelahiri",
