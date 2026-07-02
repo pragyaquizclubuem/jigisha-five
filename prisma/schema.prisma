@@ -1,0 +1,30 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model JanaOjanaRegistration {
+  id                 String   @id @default(uuid())
+  studentName        String
+  schoolName         String
+  mobileNumber       String
+  altMobileNumber    String?
+  class              String
+  dob                DateTime
+  email              String
+  idCardUrl          String
+  isAttended         Boolean  @default(false)
+  certificateIssued  Boolean  @default(false)
+  foodOption         String   @default("NON_VEG")
+  createdAt          DateTime @default(now())
+
+  @@index([studentName, schoolName, class, dob])
+}
