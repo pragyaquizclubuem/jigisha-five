@@ -5,6 +5,7 @@ import { UEMLogo, PragyaLogo, IEMLogo } from "@/components/icons/Icons";
 import { navigationData } from "@/constants/NavigationData";
 import MobileNavigation from "./MobileNavigation";
 import NavLink from "./NavLink";
+import { usePathname } from "next/navigation";
 
 // Items left of the Pragya logo: Home · About · Events
 const leftNav = navigationData.slice(0, 3);
@@ -12,9 +13,10 @@ const leftNav = navigationData.slice(0, 3);
 const rightNav = navigationData.slice(3);
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const [showNavbarOverride, setShowNavbarOverride] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollY = useRef(0);
-  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,11 +29,6 @@ export default function Navbar() {
       const currentScrollY = window.scrollY;
       const delta = currentScrollY - lastScrollY.current;
 
-      // Clear any pending reveal timer on active scrolling
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-      }
-
       if (currentScrollY <= 80) {
         // Always reveal navbar near the top of the page (prevents iOS rubber-band hide bugs)
         setIsVisible(true);
@@ -43,13 +40,6 @@ export default function Navbar() {
         setIsVisible(true);
       }
 
-      // If user stops scrolling (and is not at the top), reveal it immediately
-      if (currentScrollY > 80) {
-        scrollTimeoutRef.current = setTimeout(() => {
-          setIsVisible(true);
-        }, 150); // 150ms of scroll inactivity reveals the navbar
-      }
-
       lastScrollY.current = currentScrollY;
     };
 
@@ -57,11 +47,34 @@ export default function Navbar() {
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-      }
     };
   }, []);
+
+  if (pathname.startsWith('/admin')) {
+    return null;
+  }
+
+  const isJanaOjana = pathname === '/events/jana-ojana';
+
+  if (isJanaOjana && !showNavbarOverride) {
+    return (
+      <div className="fixed top-5 left-6 right-6 z-50 flex items-center justify-between pointer-events-none">
+        <a
+          href="/"
+          className="pointer-events-auto flex items-center gap-1 font-roboto-condensed font-bold uppercase text-xs sm:text-sm text-black border-2 border-black bg-white rounded-full px-4 py-1.5 hover:bg-[#FFEDE0] transition-colors shadow-[4px_4px_0_0_#000]"
+        >
+          ← Back to Website
+        </a>
+        
+        <button
+          onClick={() => setShowNavbarOverride(true)}
+          className="pointer-events-auto flex items-center gap-1 font-roboto-condensed font-bold uppercase text-xs sm:text-sm text-black border-2 border-black bg-[#D7ABFF] rounded-full px-4 py-1.5 hover:bg-white transition-colors cursor-pointer shadow-[4px_4px_0_0_#000]"
+        >
+          ☰ Show Navigation
+        </button>
+      </div>
+    );
+  }
 
   return (
     <header className={`w-full sticky top-0 z-50 transition-transform duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"}`}>

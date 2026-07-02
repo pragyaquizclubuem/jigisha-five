@@ -3,10 +3,14 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
 import { useAudio } from './AudioContext';
+import { usePathname } from 'next/navigation';
 
 export default function OverlayBanner() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(true);
   const { playAudio } = useAudio();
+
+  if (pathname !== '/') return null;
 
   const [imageFailed, setImageFailed] = useState(false);
   const [showHint, setShowHint] = useState(false);
