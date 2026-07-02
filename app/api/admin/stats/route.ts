@@ -15,26 +15,26 @@ export async function GET() {
     const totalParticipants = registrations.length;
 
     // Get unique schools
-    const uniqueSchools = new Set(registrations.map(r => r.schoolName.trim().toLowerCase()));
+    const uniqueSchools = new Set(registrations.map((r: any) => r.schoolName.trim().toLowerCase()));
     const totalSchools = uniqueSchools.size;
 
     // Get class counts
     const classCounts: { [key: string]: number } = {
       'VII': 0, 'VIII': 0, 'IX': 0, 'X': 0, 'XI': 0, 'XII': 0
     };
-    registrations.forEach(r => {
+    registrations.forEach((r: any) => {
       if (classCounts[r.class] !== undefined) {
         classCounts[r.class]++;
       }
     });
 
     // Attendance stats
-    const attended = registrations.filter(r => r.isAttended).length;
+    const attended = registrations.filter((r: any) => r.isAttended).length;
     const notAttended = totalParticipants - attended;
     const attendanceRate = totalParticipants > 0 ? Math.round((attended / totalParticipants) * 100) : 0;
 
     // Certificate stats
-    const issued = registrations.filter(r => r.certificateIssued).length;
+    const issued = registrations.filter((r: any) => r.certificateIssued).length;
     const notIssued = totalParticipants - issued;
     const issuanceRate = totalParticipants > 0 ? Math.round((issued / totalParticipants) * 100) : 0;
 
