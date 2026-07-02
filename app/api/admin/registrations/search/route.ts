@@ -32,7 +32,7 @@ export async function GET(request: Request) {
       }
     });
 
-    const formattedRegistrations = registrations.map(reg => ({
+    const formattedRegistrations = registrations.map((reg: any) => ({
       _id: reg.id,
       studentName: reg.studentName,
       schoolName: reg.schoolName,

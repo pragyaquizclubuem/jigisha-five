@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { prisma } from "@/lib/prisma";
 
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const page = parseInt(searchParams.get('page') || '1');
@@ -76,7 +77,7 @@ export async function GET(request: Request) {
     });
 
     // Format the response matching MongoDB expected output
-    const formattedRegistrations = registrations.map(reg => ({
+    const formattedRegistrations = registrations.map((reg: any) => ({
       _id: reg.id,
       studentName: reg.studentName,
       schoolName: reg.schoolName,
