@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from "@/lib/prisma";
-import { Prisma } from '.prisma/client';
+
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -15,7 +15,7 @@ export async function GET(request: Request) {
 
   try {
     // Build query filter
-    const where: Prisma.JanaOjanaRegistrationWhereInput = {};
+    const where: any = {};
     
     // Add search filter
     if (search) {
@@ -42,12 +42,12 @@ export async function GET(request: Request) {
     }
 
     // Build sort options
-    const allowedSortFields = ['studentName', 'schoolName', 'class', 'createdAt', 'email'] as const;
-    type SortField = typeof allowedSortFields[number];
-    const direction = sortOrder === 'asc' ? 'asc' : ('desc' as const);
-    const orderBy: Prisma.JanaOjanaRegistrationOrderByWithRelationInput = allowedSortFields.includes(sortBy as SortField)
-      ? { [sortBy as SortField]: direction }
-      : { createdAt: 'desc' };
+    const orderBy: any = {};
+    if (['studentName', 'schoolName', 'class', 'createdAt', 'email'].includes(sortBy)) {
+      orderBy[sortBy] = sortOrder === 'asc' ? 'asc' : 'desc';
+    } else {
+      orderBy.createdAt = 'desc';
+    }
 
     // Get total count for pagination
     const total = await prisma.janaOjanaRegistration.count({ where });
@@ -77,7 +77,7 @@ export async function GET(request: Request) {
     });
 
     // Format the response matching MongoDB expected output
-    const formattedRegistrations = registrations.map(reg => ({
+    const formattedRegistrations = registrations.map((reg: any) => ({
       _id: reg.id,
       studentName: reg.studentName,
       schoolName: reg.schoolName,
