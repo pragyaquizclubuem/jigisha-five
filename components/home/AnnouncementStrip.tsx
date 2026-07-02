@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { announcementData } from '@/constants/AnnouncementData';
+import { FlowerIcon } from '@/components/icons/Icons';
 
 function parseMessage(message: string) {
   const regex = /\[highlight\](.*?)\[\/highlight\]/g;
@@ -23,20 +24,12 @@ function parseMessage(message: string) {
 }
 
 export default function AnnouncementStrip() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLSpanElement>(null);
-  const [shouldScroll, setShouldScroll] = useState(false);
-  // Lazy initializer reads the media query at render time — no synchronous
-  // setState inside the effect, which satisfies react-hooks/set-state-in-effect.
   const [reducedMotion, setReducedMotion] = useState<boolean>(() =>
     typeof window !== 'undefined'
       ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
       : false
   );
-  const [containerWidth, setContainerWidth] = useState(0);
-  const [contentWidth, setContentWidth] = useState(0);
 
-  // Subscribe to future reduced-motion changes (separate concern from measurement)
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     const handleChange = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
@@ -44,83 +37,91 @@ export default function AnnouncementStrip() {
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-    const measure = () => {
-      if (containerRef.current && contentRef.current) {
-        const cw = containerRef.current.offsetWidth;
-        const tw = contentRef.current.scrollWidth;
-        setContainerWidth(cw);
-        setContentWidth(tw);
-        setShouldScroll(tw > cw && !mediaQuery.matches);
-      }
-    };
-
-    measure();
-    window.addEventListener('resize', measure);
-    return () => window.removeEventListener('resize', measure);
-  }, []);
-
   const parts = parseMessage(announcementData.message);
 
-  // Total travel: content enters from containerWidth px to the right,
-  // exits at -contentWidth px to the left.
-  // Speed ≈ 80 px/s → duration = (containerWidth + contentWidth) / 80
-  const totalTravel = containerWidth + contentWidth;
-  const duration = Math.max(8, totalTravel / 80);
-
-  const isScrolling = shouldScroll && !reducedMotion;
+  // We render the content multiple times to ensure a seamless continuous scroll.
+  const renderMessageContent = () => (
+    <span className="inline-block whitespace-pre font-mono text-base sm:text-lg lg:text-xl tracking-[0.15em] uppercase mx-8">
+      {parts.map((part, idx) => (
+        <span
+          key={idx}
+          className={
+            part.highlight 
+              ? 'font-bold text-[#FFD700]' 
+              : 'font-medium text-gray-100'
+          }
+          style={part.highlight ? { textShadow: '0 0 10px rgba(255,215,0,0.5)' } : {}}
+        >
+          {part.text}
+        </span>
+      ))}
+    </span>
+  );
 
   return (
     <aside
-      className="w-full bg-purple-700 text-white overflow-hidden py-2"
+      className="relative w-full overflow-hidden border-y border-purple-500/20 bg-[#160429] py-5 my-12 text-white shadow-2xl"
       role="note"
       aria-label="Announcement"
-      // Expose container width as a CSS variable so the keyframe can use it
-      style={{ '--ticker-start': `${containerWidth}px` } as React.CSSProperties}
     >
-      <div className="flex justify-center items-center px-4">
-        <div className="flex items-center gap-3 w-full min-w-0">
+      {/* Decorative gradient overlay */}
+      <div className="absolute inset-0 pointer-events-none bg-linear-to-r from-purple-900/40 via-transparent to-purple-900/40 z-0" />
 
-          {/* Message container */}
-          <div ref={containerRef} className="overflow-hidden flex-1 min-w-0">
-            <span
-              ref={contentRef}
-              className="inline-block whitespace-nowrap"
-              style={
-                isScrolling
-                  ? { animation: `ticker-rtl ${duration}s linear infinite` }
-                  : { display: 'block', textAlign: 'center' }
-              }
-            >
-              {parts.map((part, idx) => (
-                <span
-                  key={idx}
-                  className={part.highlight ? 'font-bold text-yellow-300' : ''}
-                >
-                  {part.text}
-                </span>
-              ))}
-            </span>
+      <div className="relative z-10 flex items-center w-full min-w-0">
+        {/* Message container with fade edges */}
+        <div 
+          className="overflow-hidden flex-1 min-w-0"
+          style={{ 
+            maskImage: 'linear-gradient(to right, transparent, black 5%, black 95%, transparent)', 
+            WebkitMaskImage: 'linear-gradient(to right, transparent, black 5%, black 95%, transparent)' 
+          }}
+        >
+          {/* 
+            The scrolling track: width is max-content to hold all duplicated items.
+            We animate from 0 to -50%. Because the content is duplicated 4 times,
+            translating by -50% means we exactly shift by 2 copies, creating a seamless loop.
+          */}
+          <div 
+            className={`flex w-max items-center ${reducedMotion ? '' : 'animate-marquee'}`}
+            style={reducedMotion ? { justifyContent: 'center', width: '100%' } : {}}
+          >
+            {renderMessageContent()}
+            {!reducedMotion && (
+              <>
+                <FlowerIcon className="h-5 w-5 text-purple-400/80 shrink-0 mx-2 animate-spin-slow" />
+                {renderMessageContent()}
+                <FlowerIcon className="h-5 w-5 text-purple-400/80 shrink-0 mx-2 animate-spin-slow" />
+                {renderMessageContent()}
+                <FlowerIcon className="h-5 w-5 text-purple-400/80 shrink-0 mx-2 animate-spin-slow" />
+                {renderMessageContent()}
+                <FlowerIcon className="h-5 w-5 text-purple-400/80 shrink-0 mx-2 animate-spin-slow" />
+              </>
+            )}
           </div>
-
         </div>
       </div>
 
-      {/*
-        The keyframe starts the element at containerWidth (right edge of the
-        container) and ends at -100% (element's own width past the left edge).
-        At both endpoints the element is fully off-screen, so there is never
-        a moment where two copies are visible simultaneously.
-      */}
       <style jsx>{`
-        @keyframes ticker-rtl {
-          0%   { transform: translateX(var(--ticker-start, 100vw)); }
-          100% { transform: translateX(-100%); }
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .animate-marquee {
+          /* Adjust duration as needed for speed */
+          animation: marquee 40s linear infinite;
+        }
+        .animate-spin-slow {
+          animation: spin-slow 15s linear infinite;
         }
         @media (prefers-reduced-motion: reduce) {
-          .animate-ticker-rtl {
+          .animate-marquee {
+            animation: none !important;
+          }
+          .animate-spin-slow {
             animation: none !important;
           }
         }

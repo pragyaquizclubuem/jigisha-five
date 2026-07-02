@@ -63,24 +63,30 @@ const SquareGridBackground: React.FC = () => {
 
         /* Ambient Layer: "Deep Breather" slow animation */
         .jigisha-grid-ambient {
-          opacity: 0.3;
-          animation: ambientPulse 15s ease-in-out infinite alternate;
+          opacity: 0.45;
+          animation: ambientPulse 8s ease-in-out infinite alternate;
           will-change: transform, opacity;
         }
 
         @keyframes ambientPulse {
-          0% { opacity: 0.2; transform: scale(0.95); }
-          100% { opacity: 0.5; transform: scale(1.05); }
+          0% { opacity: 0.35; transform: scale(0.95); }
+          100% { opacity: 0.65; transform: scale(1.05); }
         }
 
-        /* Disable expensive ambient animation on mobile for performance */
+        /* Mobile specific: faster scale pulse and higher opacity values */
         @media (hover: none), (pointer: coarse) {
           .jigisha-grid-ambient {
-            animation: none;
-            will-change: auto;
-            opacity: 0.25;
+            opacity: 1;
+            animation: mobileAmbientPulse 4s ease-in-out infinite alternate;
           }
         }
+
+        @keyframes mobileAmbientPulse {
+          0% { opacity: 0.45; transform: scale(0.92); }
+          100% { opacity: 1; transform: scale(1.08); }
+        }
+
+
 
         /* Interactive Layer: Hover spotlight */
         .jigisha-grid-interactive {

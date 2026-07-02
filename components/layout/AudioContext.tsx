@@ -31,11 +31,24 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 
   const playAudio = () => {
     if (audioRef.current) {
-      audioRef.current.play().then(() => {
-        setIsPlaying(true);
-      }).catch(err => {
-        console.error("Audio playback failed:", err);
-      });
+      try {
+        const playPromise = audioRef.current.play();
+        if (playPromise !== undefined && typeof playPromise.then === 'function') {
+          playPromise
+            .then(() => {
+              setIsPlaying(true);
+            })
+            .catch(err => {
+              // Log as normal console info instead of error to avoid console pollution
+              console.log("ℹ️ [AudioContext] Autoplay blocked by browser. Playback will start upon user interaction. Details:", err.message || err);
+            });
+        } else {
+          setIsPlaying(true);
+        }
+      } catch (err) {
+        const errMsg = err instanceof Error ? err.message : String(err);
+        console.log("ℹ️ [AudioContext] Synchronous exception during playAudio():", errMsg);
+      }
     }
   };
 

@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect, useRef } from "react";
 import { UEMLogo, PragyaLogo, IEMLogo } from "@/components/icons/Icons";
 import { navigationData } from "@/constants/NavigationData";
 import MobileNavigation from "./MobileNavigation";
@@ -9,8 +12,59 @@ const leftNav = navigationData.slice(0, 3);
 const rightNav = navigationData.slice(3);
 
 export default function Navbar() {
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // If scroll is locked (e.g. mobile drawer navigation or banner modal is active), keep navbar visible
+      if (document.body.style.overflow === "hidden") {
+        setIsVisible(true);
+        return;
+      }
+
+      const currentScrollY = window.scrollY;
+      const delta = currentScrollY - lastScrollY.current;
+
+      // Clear any pending reveal timer on active scrolling
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+
+      if (currentScrollY <= 80) {
+        // Always reveal navbar near the top of the page (prevents iOS rubber-band hide bugs)
+        setIsVisible(true);
+      } else if (delta > 10) {
+        // Scrolling down - hide navbar
+        setIsVisible(false);
+      } else if (delta < -10) {
+        // Scrolling up - show navbar
+        setIsVisible(true);
+      }
+
+      // If user stops scrolling (and is not at the top), reveal it immediately
+      if (currentScrollY > 80) {
+        scrollTimeoutRef.current = setTimeout(() => {
+          setIsVisible(true);
+        }, 150); // 150ms of scroll inactivity reveals the navbar
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <header className="w-full sticky top-0 z-50">
+    <header className={`w-full sticky top-0 z-50 transition-transform duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"}`}>
 
       {/* DESKTOP NAVIGATION — xl (1280px) and above
           All 9 items in ONE flex row with justify-between so the

@@ -14,8 +14,8 @@ export default function HomePage() {
   return (
     <div className="flex-1">
       {/* Write your code here to orchestrate or customize the homepage */}
-      <AnnouncementStrip />
       <HomeHero />
+      <AnnouncementStrip />
       <AboutUs />
       <EventCountdown targetDate="2027-01-01T00:00:00" />
       <BrochureSection />

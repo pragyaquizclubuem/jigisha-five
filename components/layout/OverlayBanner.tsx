@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
 import { useAudio } from './AudioContext';
 
@@ -11,14 +11,35 @@ export default function OverlayBanner() {
   const [imageFailed, setImageFailed] = useState(false);
   const [showHint, setShowHint] = useState(false);
 
+  const handleClose = useCallback(() => {
+    setIsOpen(false);
+    // If this was triggered automatically, audio autoplay will likely be blocked by the browser.
+    // Our AudioContext handles the rejection gracefully, and the user can just manually start audio later!
+    try {
+      playAudio();
+    } catch (err) {
+      const errMsg = err instanceof Error ? err.message : String(err);
+      console.log("⚠️ [OverlayBanner] Non-fatal error playing audio during close:", errMsg);
+    }
+  }, [playAudio]);
+
+  // Use a ref to store handleClose so that the useEffect auto-close timer does not clear and restart
+  // whenever handleClose changes (which can be triggered by external renders or context adjustments).
+  const handleCloseRef = useRef(handleClose);
+  useEffect(() => {
+    handleCloseRef.current = handleClose;
+  }, [handleClose]);
+
   // Prevent scroll when modal is open and handle auto-close
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
       
-      // Auto close after 10 seconds
+      // Auto close after exactly 10 seconds
+      console.log("ℹ️ [OverlayBanner] Modal opened. Setting 10s auto-close timer.");
       const timer = setTimeout(() => {
-        handleClose();
+        console.log("ℹ️ [OverlayBanner] 10s timer fired. Closing modal.");
+        handleCloseRef.current();
       }, 10000);
       
       return () => {
@@ -31,13 +52,6 @@ export default function OverlayBanner() {
   }, [isOpen]);
 
   if (!isOpen) return null;
-
-  const handleClose = () => {
-    setIsOpen(false);
-    // If this was triggered automatically, audio autoplay will likely be blocked by the browser.
-    // Our AudioContext handles the rejection gracefully, and the user can just manually start audio later!
-    playAudio();
-  };
 
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
@@ -53,7 +67,7 @@ export default function OverlayBanner() {
 
   return (
     <div 
-      className="fixed inset-0 z-100 flex items-center justify-center bg-black/40 p-4 sm:p-6 backdrop-blur-[2px]"
+      className="overlay-backdrop fixed inset-0 z-100 flex items-center justify-center bg-black/40 p-4 sm:p-6 backdrop-blur-[2px]"
       onClick={handleBackdropClick}
     >
       <div 
@@ -83,7 +97,7 @@ export default function OverlayBanner() {
             e.stopPropagation();
             handleClose();
           }}
-          className="absolute top-4 right-4 z-40 flex h-10 w-10 items-center justify-center rounded-full bg-black/50 border border-white/20 text-white hover:bg-[#8B5CF6] hover:scale-110 transition-all cursor-pointer shadow-lg"
+          className="close-banner-btn absolute top-4 right-4 z-40 flex h-10 w-10 items-center justify-center rounded-full bg-black/50 border border-white/20 text-white hover:bg-[#8B5CF6] hover:scale-110 transition-all cursor-pointer shadow-lg"
           aria-label="Close banner and start audio"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

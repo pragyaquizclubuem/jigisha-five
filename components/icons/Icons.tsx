@@ -121,9 +121,10 @@ interface LogoProps {
   width?: number;
   height?: number;
   priority?: boolean;
+  style?: React.CSSProperties;
 }
 
-export function PragyaLogo({ className = "", width = 96, height = 91, priority = true }: LogoProps) {
+export function PragyaLogo({ className = "", width = 96, height = 91, priority = true, style }: LogoProps) {
   return (
     <Image
       src="/images/pragya.avif"
@@ -132,6 +133,21 @@ export function PragyaLogo({ className = "", width = 96, height = 91, priority =
       alt="Pragya — UEM Kolkata Quiz Club"
       className={`object-contain ${className}`}
       priority={priority}
+      style={style}
+    />
+  );
+}
+
+export function JigishaLogo({ className = "", width = 758, height = 212, priority = true, style }: LogoProps) {
+  return (
+    <Image
+      src="/images/jigisha.avif"
+      width={width}
+      height={height}
+      alt="Jigisha — Annual Quiz Festival"
+      className={`object-contain ${className}`}
+      priority={priority}
+      style={style}
     />
   );
 }
