@@ -8,10 +8,12 @@ interface Registration {
   studentName: string;
   schoolName: string;
   class: string;
-  dob: string;
+  dob: string | null;
+  age?: number | null;
   email: string;
   mobileNumber: string;
   altMobileNumber: string;
+  contactName?: string;
   idCardUrl: string;
   createdAt: string;
   isAttended: boolean;
@@ -175,7 +177,7 @@ export default function AdminTable() {
     });
   };
 
-  const classes = ['VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
+  const classes = ['VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
 
   return (
     <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
@@ -360,7 +362,7 @@ export default function AdminTable() {
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium">
-                      {formatDate(registration.dob)}
+                      {registration.dob ? formatDate(registration.dob) : registration.age ? `${registration.age} years` : '-'}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                       <span title={new Date(registration.createdAt).toLocaleString('en-IN')}>
@@ -368,6 +370,9 @@ export default function AdminTable() {
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
+                      {registration.contactName && (
+                        <div className="text-xs font-bold text-[#72388f] mb-1">{registration.contactName} (Teacher)</div>
+                      )}
                       <div className="text-sm text-gray-900 font-medium">{registration.mobileNumber}</div>
                       {registration.altMobileNumber && (
                         <div className="text-sm text-gray-500">{registration.altMobileNumber}</div>

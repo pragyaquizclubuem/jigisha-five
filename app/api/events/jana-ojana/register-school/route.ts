@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { prisma } from "@/lib/prisma";
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 import { Resend } from 'resend';
-import { buildIndividualRegistrationEmail } from '@/lib/email-templates/registration';
+import { buildSchoolRegistrationEmail } from '@/lib/email-templates/registration';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -74,99 +74,98 @@ export async function POST(request: Request) {
   try {
     const formData = await request.formData();
 
-    const studentName = formData.get('studentName') as string;
+    const contactName = formData.get('contactName') as string;
     const schoolName = formData.get('schoolName') as string;
     const mobileNumber = formData.get('mobileNumber') as string;
-    const altMobileNumber = formData.get('altMobileNumber') as string;
-    const classVal = formData.get('class') as string;
-    const dobStr = formData.get('dob') as string;
     const email = formData.get('email') as string;
-    const foodOption = (formData.get('foodOption') as string) || 'VEG';
-    const idCard = formData.get('idCard') as File;
+    const studentsStr = formData.get('students') as string;
+    const document = formData.get('document') as File;
 
-    if (!studentName || !schoolName || !mobileNumber || !classVal || !dobStr || !email || !idCard) {
+    if (!contactName || !schoolName || !mobileNumber || !email || !studentsStr || !document) {
       return NextResponse.json({ message: 'All required fields must be filled.' }, { status: 400 });
     }
 
-    const dob = new Date(dobStr);
-    if (isNaN(dob.getTime())) {
-      return NextResponse.json({ message: 'Invalid Date of Birth.' }, { status: 400 });
-    }
-
-    // Check for duplicate registrations
-    const existingEntry = await prisma.janaOjanaRegistration.findFirst({
-      where: {
-        studentName,
-        schoolName,
-        class: classVal,
-        dob,
-      },
-    });
-
-    if (existingEntry) {
-      return NextResponse.json(
-        { message: 'This entry seems to be a duplicate. Please contact the co-ordinators.' },
-        { status: 409 }
-      );
+    let students: any[];
+    try {
+        students = JSON.parse(studentsStr);
+        if (!Array.isArray(students) || students.length === 0) {
+            throw new Error("Invalid students array");
+        }
+    } catch (e) {
+        return NextResponse.json({ message: 'Invalid students data.' }, { status: 400 });
     }
 
     // Connect and upload to Cloudflare R2
     const { s3, r2BucketName, publicUrl } = getR2Client();
-    const idCardBuffer = Buffer.from(await idCard.arrayBuffer());
-    const fileExtension = idCard.name.split('.').pop() || '';
-    const idCardKey = `id-cards/${Date.now()}-${Math.random().toString(36).substring(2, 9)}.${fileExtension}`;
+    const documentBuffer = Buffer.from(await document.arrayBuffer());
+    const fileExtension = document.name.split('.').pop() || '';
+    const documentKey = `school-docs/${Date.now()}-${Math.random().toString(36).substring(2, 9)}.${fileExtension}`;
 
     await s3.send(
       new PutObjectCommand({
         Bucket: r2BucketName,
-        Key: idCardKey,
-        Body: idCardBuffer,
-        ContentType: idCard.type,
+        Key: documentKey,
+        Body: documentBuffer,
+        ContentType: document.type,
       })
     );
 
-    const idCardUrl = `${publicUrl}/${idCardKey}`;
+    const documentUrl = `${publicUrl}/${documentKey}`;
 
-    const result = await prisma.janaOjanaRegistration.create({
-      data: {
-        studentName,
-        schoolName,
-        mobileNumber,
-        altMobileNumber: altMobileNumber || null,
-        class: classVal,
-        dob,
-        email,
-        idCardUrl,
-        foodOption,
-      },
+    const result = await prisma.$transaction(async (tx) => {
+        const schoolRegistration = await tx.janaOjanaSchoolRegistration.create({
+            data: {
+                contactName,
+                schoolName,
+                mobileNumber,
+                email,
+                documentUrl,
+            }
+        });
+
+        const studentData = students.map((s) => ({
+            studentName: s.name,
+            schoolName: schoolName, // inheriting from school registration
+            class: s.class,
+            age: parseInt(s.age, 10),
+            foodOption: s.foodOption,
+            schoolRegistrationId: schoolRegistration.id,
+        }));
+
+        await tx.janaOjanaRegistration.createMany({
+            data: studentData,
+        });
+
+        return schoolRegistration;
+    },
+    {
+        maxWait: 15000, // default: 2000
+        timeout: 20000, // default: 5000
     });
 
     try {
       await resend.emails.send({
         from: `${process.env.RESPONSE_SENDER_NAME} <${process.env.RESPONSE_SENDER_EMAIL}>`,
         to: [email],
-        subject: "Registration Confirmation - Jana Ojana",
-        html: buildIndividualRegistrationEmail({
-          studentName,
+        subject: "School Registration Confirmation - Jana Ojana",
+        html: buildSchoolRegistrationEmail({
+          contactName,
           schoolName,
-          classVal,
-          dobStr,
           mobileNumber,
-          altMobileNumber,
-          foodOption
+          students
         }),
       });
     } catch (emailError) {
-      console.error('Failed to send confirmation email:', emailError);
+      console.error('Failed to send school confirmation email:', emailError);
       // We don't fail the registration if email fails
     }
 
     return NextResponse.json(
-      { message: 'Registration successful!', data: { id: result.id } },
+      { message: 'School Registration successful!', data: { id: result.id } },
       { status: 201 }
     );
   } catch (error: any) {
-    console.error('Registration failed:', error);
+    console.error('School Registration failed:', error);
     return NextResponse.json({ message: error.message || 'Registration failed.' }, { status: 500 });
   }
 }

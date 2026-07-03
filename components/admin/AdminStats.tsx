@@ -65,7 +65,7 @@ export default function AdminStats() {
     fetchStats(true);
   };
 
-  const classes = ['VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
+  const classes = ['VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
 
   if (loading) {
     return (
