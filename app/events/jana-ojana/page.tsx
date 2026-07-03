@@ -12,7 +12,7 @@ export default function JanaOjanaPage() {
   return (
     <PageWrapper>
       <Toaster position="top-center" reverseOrder={false} />
-      <div className="flex-1 py-12 md:py-16 px-4 max-w-4xl mx-auto w-full">
+      <div className="flex-1 pt-24 pb-12 md:pt-28 md:pb-16 px-4 max-w-4xl mx-auto w-full">
         {/* Retro Header Panel */}
         <div className="text-center mb-10 select-none">
           <h1 className="font-roboto-condensed text-4xl sm:text-5xl md:text-6xl font-bold uppercase tracking-wide text-[#252525]">

@@ -597,30 +597,30 @@ export default function RegistrationForm() {
             <label className="text-xs font-bold uppercase text-[#513081] tracking-wider mb-2">
               Food Preference *
             </label>
-            <div className="flex gap-4">
+            <div className="flex gap-2 sm:gap-4">
               <button
                 type="button"
                 onClick={() => setFormData(prev => ({ ...prev, foodOption: 'VEG' }))}
-                className={`flex items-center gap-3 px-6 py-3.5 border-2 rounded-xl font-bold text-sm uppercase tracking-wide transition-all cursor-pointer bg-white ${
+                className={`flex-1 flex items-center justify-center gap-2 sm:gap-3 px-2 sm:px-6 py-3 sm:py-3.5 border-2 rounded-xl font-bold text-xs sm:text-sm uppercase tracking-wide transition-all cursor-pointer bg-white ${
                   formData.foodOption === 'VEG'
                     ? 'border-[#0f8a42] text-[#0f8a42] ring-2 ring-[#0f8a42]/30'
                     : 'border-[#252525] text-gray-500 hover:border-gray-400'
                 }`}
               >
-                <VegIcon className="h-5 w-5" />
+                <VegIcon className="h-4 w-4 sm:h-5 sm:w-5 shrink-0" />
                 Vegetarian
               </button>
               <button
                 type="button"
                 onClick={() => setFormData(prev => ({ ...prev, foodOption: 'NON_VEG' }))}
-                className={`flex items-center gap-3 px-6 py-3.5 border-2 rounded-xl font-bold text-sm uppercase tracking-wide transition-all cursor-pointer bg-white ${
+                className={`flex-1 flex items-center justify-center gap-2 sm:gap-3 px-2 sm:px-6 py-3 sm:py-3.5 border-2 rounded-xl font-bold text-xs sm:text-sm uppercase tracking-wide transition-all cursor-pointer bg-white ${
                   formData.foodOption === 'NON_VEG'
                     ? 'border-[#8b4513] text-[#8b4513] ring-2 ring-[#8b4513]/30'
                     : 'border-[#252525] text-gray-500 hover:border-gray-400'
                 }`}
               >
-                <NonVegIcon className="h-5 w-5" />
-                Non-Vegetarian
+                <NonVegIcon className="h-4 w-4 sm:h-5 sm:w-5 shrink-0" />
+                <span className="whitespace-nowrap">Non-Veg</span>
               </button>
             </div>
           </div>
