@@ -20,7 +20,7 @@ export async function GET() {
 
     // Get class counts
     const classCounts: { [key: string]: number } = {
-      'VII': 0, 'VIII': 0, 'IX': 0, 'X': 0, 'XI': 0, 'XII': 0
+      'VI': 0, 'VII': 0, 'VIII': 0, 'IX': 0, 'X': 0, 'XI': 0, 'XII': 0
     };
     registrations.forEach((r: any) => {
       if (classCounts[r.class] !== undefined) {

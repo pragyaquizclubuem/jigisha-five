@@ -89,7 +89,7 @@ const CustomHeader = ({
       </div>
   );
 
-const classes = ['VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
+const classes = ['VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
 
 export default function AdminCentralRegistration() {
   const [formData, setFormData] = useState({
@@ -119,6 +119,7 @@ export default function AdminCentralRegistration() {
     const currentYear = now.getFullYear();
     let approxAge = 0;
     switch (className) {
+        case 'VI': approxAge = 11; break;
         case 'VII': approxAge = 12; break;
         case 'VIII': approxAge = 13; break;
         case 'IX': approxAge = 14; break;

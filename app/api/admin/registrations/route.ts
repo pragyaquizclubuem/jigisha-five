@@ -66,6 +66,7 @@ export async function GET(request: Request) {
         schoolName: true,
         class: true,
         dob: true,
+        age: true,
         email: true,
         mobileNumber: true,
         altMobileNumber: true,
@@ -73,6 +74,14 @@ export async function GET(request: Request) {
         isAttended: true,
         certificateIssued: true,
         idCardUrl: true,
+        schoolRegistration: {
+            select: {
+                contactName: true,
+                mobileNumber: true,
+                documentUrl: true,
+                email: true,
+            }
+        }
       }
     });
 
@@ -82,11 +91,13 @@ export async function GET(request: Request) {
       studentName: reg.studentName,
       schoolName: reg.schoolName,
       class: reg.class,
-      dob: reg.dob.toISOString(),
-      email: reg.email,
-      mobileNumber: reg.mobileNumber,
+      dob: reg.dob ? reg.dob.toISOString() : null,
+      age: reg.age,
+      email: reg.email || reg.schoolRegistration?.email || '',
+      mobileNumber: reg.mobileNumber || reg.schoolRegistration?.mobileNumber || '',
       altMobileNumber: reg.altMobileNumber || '',
-      idCardUrl: reg.idCardUrl,
+      idCardUrl: reg.idCardUrl || reg.schoolRegistration?.documentUrl || '',
+      contactName: reg.schoolRegistration?.contactName || '',
       createdAt: reg.createdAt.toISOString(),
       isAttended: reg.isAttended,
       certificateIssued: reg.certificateIssued
