@@ -125,12 +125,13 @@ export default function AboutUs() {
                 </div>
               </div>
 
-              <button type="button"
-                aria-label="Scroll to next section"
+              <a
+                href="/about"
+                aria-label="Read more about us"
                 className="group flex w-12 shrink-0 items-center justify-center rounded-full border-2 border-[#3F136F] bg-[#5A1FA1] text-white shadow-[0_4px_0_0_#3F136F] transition-all duration-300 hover:translate-y-1 hover:bg-[#4d198a] hover:shadow-none sm:w-14 md:w-16"
               >
                 <ArrowIcon className="h-16 w-5 transition-transform duration-300 group-hover:scale-110 sm:h-20 sm:w-6 md:h-24 md:w-6" />
-              </button>
+              </a>
             </div>
           </div>
         </div>

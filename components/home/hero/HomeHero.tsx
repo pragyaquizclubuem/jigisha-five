@@ -1,6 +1,7 @@
 'use client';
 import Image from 'next/image';
 import { ArrowRightIcon } from "@/components/icons/Icons";
+import { Eye } from 'lucide-react';
 
 export default function HomeHero() {
   return (
@@ -88,6 +89,7 @@ export default function HomeHero() {
             "
           >
             <span>VIEW BROCHURE</span>
+            <Eye className="h-5 w-5 sm:h-6 sm:w-6 text-[#c77dff] stroke-[2.5]" />
           </a>
         </div>
       </section>

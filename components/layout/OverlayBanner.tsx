@@ -10,8 +10,6 @@ export default function OverlayBanner() {
   const [isOpen, setIsOpen] = useState(true);
   const { playAudio } = useAudio();
 
-  if (pathname !== '/') return null;
-
   const [imageFailed, setImageFailed] = useState(false);
   const [showHint, setShowHint] = useState(false);
 
@@ -36,7 +34,7 @@ export default function OverlayBanner() {
 
   // Prevent scroll when modal is open and handle auto-close
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && pathname === '/') {
       document.body.style.overflow = 'hidden';
       
       // Auto close after exactly 10 seconds
@@ -53,8 +51,9 @@ export default function OverlayBanner() {
     } else {
       document.body.style.overflow = '';
     }
-  }, [isOpen]);
+  }, [isOpen, pathname]);
 
+  if (pathname !== '/') return null;
   if (!isOpen) return null;
 
   const handleBackdropClick = (e: React.MouseEvent) => {
