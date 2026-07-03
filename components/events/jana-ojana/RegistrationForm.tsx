@@ -5,9 +5,9 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { toast } from 'react-hot-toast';
 import Fuse from 'fuse.js';
-import { schools } from '@/constants/Schools';
 import ThankYou from './ThankYou';
 import Image from 'next/image';
+import { schools } from '@/constants/Schools';
 import { VegIcon, NonVegIcon } from '@/components/icons/Icons';
 
 const stopWords = new Set(['the', 'for', 'of', 'and']);
@@ -536,18 +536,24 @@ export default function RegistrationForm() {
 
       {/* Registration Mode Toggle */}
       <div className="flex justify-center mb-10">
-        <div className="inline-flex bg-white rounded-full p-1 border-2 border-[#252525] shadow-[4px_4px_0_0_#252525]">
+        <div className="relative inline-grid grid-cols-2 bg-white rounded-full p-1 border-2 border-[#252525] shadow-[4px_4px_0_0_#252525] isolate">
+          {/* Animated Background Pill */}
+          <div
+            className={`absolute top-1 bottom-1 left-1 w-[calc(50%-4px)] bg-[#513081] rounded-full shadow-inner transition-transform duration-300 ease-out -z-10 ${
+              mode === 'individual' ? 'translate-x-0' : 'translate-x-full'
+            }`}
+          />
           <button
             type="button"
             onClick={() => setMode('individual')}
-            className={`px-3 py-1.5 sm:px-6 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition-all ${mode === 'individual' ? 'bg-[#513081] text-white shadow-inner' : 'text-[#252525] hover:bg-gray-100'}`}
+            className={`relative z-10 px-3 py-1.5 sm:px-6 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition-colors duration-300 text-center ${mode === 'individual' ? 'text-white' : 'text-[#252525] hover:text-[#513081]'}`}
           >
             Individual Registration
           </button>
           <button
             type="button"
             onClick={() => setMode('school')}
-            className={`px-3 py-1.5 sm:px-6 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition-all ${mode === 'school' ? 'bg-[#513081] text-white shadow-inner' : 'text-[#252525] hover:bg-gray-100'}`}
+            className={`relative z-10 px-3 py-1.5 sm:px-6 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition-colors duration-300 text-center ${mode === 'school' ? 'text-white' : 'text-[#252525] hover:text-[#513081]'}`}
           >
             School Registration
           </button>
