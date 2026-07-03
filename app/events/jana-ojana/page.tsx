@@ -1,6 +1,5 @@
 import PageWrapper from "@/components/wrappers/PageWrapper";
 import RegistrationForm from "@/components/events/jana-ojana/RegistrationForm";
-import Footer from "@/components/layout/Footer";
 import { Toaster } from "react-hot-toast";
 
 export const metadata = {
@@ -28,7 +27,6 @@ export default function JanaOjanaPage() {
           <RegistrationForm />
         </div>
       </div>
-      <Footer />
     </PageWrapper>
   );
 }

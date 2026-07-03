@@ -6,7 +6,6 @@ import FAQ from "@/components/home/faq/FAQ";
 import BrochureSection from "@/components/home/brochure/BrochureSection";
 import MapSection from "@/components/home/map/MapSection";
 import EventCountdown from "@/components/home/counter/EventCountdown";
-import Footer from "@/components/layout/Footer";
 import AnnouncementStrip from '@/components/home/AnnouncementStrip';
 
 
@@ -23,7 +22,6 @@ export default function HomePage() {
       <MapSection />
       <Gallery />
       <FAQ />
-      <Footer />
     </div>
   );
 }

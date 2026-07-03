@@ -1,4 +1,3 @@
-import Footer from "@/components/layout/Footer";
 import AboutHero from "@/components/about-us/AboutHero";
 import TheStory from "@/components/about-us/TheStory";
 import AboutPragya from "@/components/about-us/AboutPragya";
@@ -13,7 +12,6 @@ export default function AboutUsPage() {
       <AboutPragya />
       <AboutTimeline />
       <AboutStats />
-      <Footer />
     </div>
   );
 }

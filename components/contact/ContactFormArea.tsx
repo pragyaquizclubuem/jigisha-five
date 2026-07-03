@@ -286,7 +286,7 @@ const ContactFormArea = () => {
                     <div className="flex flex-col lg:flex-row gap-16 lg:gap-12">
                         {/* Dynamic Heading Left Side */}
                         <div className="w-full lg:w-[45%]">
-                            <div className="mb-12 text-center lg:text-left">
+                            <div className="mb-12 text-center lg:text-left hidden md:flex">
                                 <div className="flex items-center justify-center lg:justify-start gap-4 mb-4">
                                     <span className="text-sm font-bold uppercase tracking-[2px] text-black/60">
                                         {contactMethod === 'chat' ? 'Instant Chat' : 'Contact Us'}
