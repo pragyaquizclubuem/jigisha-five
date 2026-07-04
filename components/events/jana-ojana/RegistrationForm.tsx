@@ -8,7 +8,6 @@ import Fuse from 'fuse.js';
 import ThankYou from './ThankYou';
 import Image from 'next/image';
 import { schools } from '@/constants/Schools';
-import { VegIcon, NonVegIcon } from '@/components/icons/Icons';
 
 const stopWords = new Set(['the', 'for', 'of', 'and']);
 const getAcronym = (schoolName: string): string => {
@@ -103,7 +102,6 @@ export default function RegistrationForm() {
     altMobileNumber: '',
     class: '',
     email: '',
-    foodOption: 'NON_VEG',
   });
   const [dob, setDob] = useState<Date | null>(null);
   const [idCard, setIdCard] = useState<File | null>(null);
@@ -116,8 +114,8 @@ export default function RegistrationForm() {
     email: '',
   });
   const [schoolDocument, setSchoolDocument] = useState<File | null>(null);
-  const [schoolStudents, setSchoolStudents] = useState<Array<{ id: string, name: string, class: string, age: string, foodOption: string }>>([
-    { id: crypto.randomUUID(), name: '', class: '', age: '', foodOption: 'NON_VEG' }
+  const [schoolStudents, setSchoolStudents] = useState<Array<{ id: string, name: string, class: string, age: string }>>([
+    { id: crypto.randomUUID(), name: '', class: '', age: '' }
   ]);
 
   // Common State
@@ -222,7 +220,7 @@ export default function RegistrationForm() {
       if (schoolStudents.length === 0) allStudentsValid = false;
       schoolStudents.forEach(s => {
         const sAge = parseInt(s.age, 10);
-        if (!s.name || !s.class || !s.age || !s.foodOption || isNaN(sAge) || sAge < 10 || sAge > 20) allStudentsValid = false;
+        if (!s.name || !s.class || !s.age || isNaN(sAge) || sAge < 10 || sAge > 20) allStudentsValid = false;
       });
 
       const allValid =
@@ -375,7 +373,7 @@ export default function RegistrationForm() {
 
   // Add School Student
   const addStudent = () => {
-    setSchoolStudents(prev => [...prev, { id: crypto.randomUUID(), name: '', class: '', age: '', foodOption: 'NON_VEG' }]);
+    setSchoolStudents(prev => [...prev, { id: crypto.randomUUID(), name: '', class: '', age: '' }]);
   };
 
   const removeStudent = (id: string) => {
@@ -420,7 +418,7 @@ export default function RegistrationForm() {
           setShowThankYou(true);
 
           // Reset
-          setFormData({ studentName: '', schoolName: '', mobileNumber: '', altMobileNumber: '', class: '', email: '', foodOption: 'NON_VEG' });
+          setFormData({ studentName: '', schoolName: '', mobileNumber: '', altMobileNumber: '', class: '', email: '' });
           setDob(null); setIdCard(null); setAgreeRules(false); setAgreePartner(false);
           if (fileInputRef.current) fileInputRef.current.value = '';
         } else {
@@ -452,7 +450,7 @@ export default function RegistrationForm() {
 
           // Reset
           setSchoolFormData({ contactName: '', schoolName: '', mobileNumber: '', email: '' });
-          setSchoolStudents([{ id: crypto.randomUUID(), name: '', class: '', age: '', foodOption: 'NON_VEG' }]);
+          setSchoolStudents([{ id: crypto.randomUUID(), name: '', class: '', age: '' }]);
           setSchoolDocument(null); setAgreeRules(false); setAgreePartner(false);
           if (fileInputRef.current) fileInputRef.current.value = '';
         } else {
@@ -622,13 +620,6 @@ export default function RegistrationForm() {
                 <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none"><svg className="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm10 5H4v8h12V7z" clipRule="evenodd" /></svg></div>
               </div>
             </div>
-            <div className="md:col-span-2 flex flex-col gap-1">
-              <label className="text-xs font-bold uppercase text-[#513081] tracking-wider mb-2">Food Preference *</label>
-              <div className="flex gap-2 sm:gap-4">
-                <button type="button" onClick={() => setFormData(prev => ({ ...prev, foodOption: 'VEG' }))} className={`flex-1 flex items-center justify-center gap-2 sm:gap-3 px-2 sm:px-6 py-3 sm:py-3.5 border-2 rounded-xl font-bold text-xs sm:text-sm uppercase tracking-wide transition-all cursor-pointer bg-white ${formData.foodOption === 'VEG' ? 'border-[#0f8a42] text-[#0f8a42] ring-2 ring-[#0f8a42]/30' : 'border-[#252525] text-gray-500 hover:border-gray-400'}`}><VegIcon className="h-4 w-4 sm:h-5 sm:w-5 shrink-0" />Vegetarian</button>
-                <button type="button" onClick={() => setFormData(prev => ({ ...prev, foodOption: 'NON_VEG' }))} className={`flex-1 flex items-center justify-center gap-2 sm:gap-3 px-2 sm:px-6 py-3 sm:py-3.5 border-2 rounded-xl font-bold text-xs sm:text-sm uppercase tracking-wide transition-all cursor-pointer bg-white ${formData.foodOption === 'NON_VEG' ? 'border-[#8b4513] text-[#8b4513] ring-2 ring-[#8b4513]/30' : 'border-[#252525] text-gray-500 hover:border-gray-400'}`}><NonVegIcon className="h-4 w-4 sm:h-5 sm:w-5 shrink-0" /><span className="whitespace-nowrap">Non-Veg</span></button>
-              </div>
-            </div>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -711,18 +702,6 @@ export default function RegistrationForm() {
                       {student.age && (parseInt(student.age, 10) < 10 || parseInt(student.age, 10) > 20) && (
                         <p className="text-red-500 text-[10px] font-bold">Must be 10-20</p>
                       )}
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <label className="text-[10px] font-bold uppercase text-[#513081]">Food *</label>
-                      <div className="relative">
-                        <select value={student.foodOption} onChange={(e) => updateStudent(student.id, 'foodOption', e.target.value)} className="w-full px-3 py-2 rounded-lg border-2 border-[#252525] bg-white text-[#252525] font-semibold text-sm outline-none focus:ring-2 focus:ring-[#D7ABFF] appearance-none pr-8" required>
-                          <option value="NON_VEG">Non-Veg</option>
-                          <option value="VEG">Veg</option>
-                        </select>
-                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-[#252525]">
-                          <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </div>

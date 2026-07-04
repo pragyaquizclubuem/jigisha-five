@@ -81,7 +81,6 @@ export async function POST(request: Request) {
     const classVal = formData.get('class') as string;
     const dobStr = formData.get('dob') as string;
     const email = formData.get('email') as string;
-    const foodOption = (formData.get('foodOption') as string) || 'VEG';
     const idCard = formData.get('idCard') as File;
 
     if (!studentName || !schoolName || !mobileNumber || !classVal || !dobStr || !email || !idCard) {
@@ -137,7 +136,6 @@ export async function POST(request: Request) {
         dob,
         email,
         idCardUrl,
-        foodOption,
       },
     });
 
@@ -152,8 +150,7 @@ export async function POST(request: Request) {
           classVal,
           dobStr,
           mobileNumber,
-          altMobileNumber,
-          foodOption
+          altMobileNumber
         }),
       });
     } catch (emailError) {

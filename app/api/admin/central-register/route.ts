@@ -52,7 +52,6 @@ export async function POST(request: Request) {
     const classVal = formData.get('class') as string;
     const dobStr = formData.get('dob') as string;
     const email = formData.get('email') as string;
-    const foodOption = (formData.get('foodOption') as string) || 'VEG';
 
     if (!studentName || !schoolName || !mobileNumber || !classVal || !dobStr || !email) {
       return NextResponse.json({ message: 'All required fields must be filled.' }, { status: 400 });
@@ -111,7 +110,6 @@ export async function POST(request: Request) {
         idCardUrl,
         isAttended: true, // Always true for central registration
         certificateIssued: false,
-        foodOption
       },
     });
 
