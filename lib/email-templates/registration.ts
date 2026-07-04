@@ -7,9 +7,8 @@ export function buildIndividualRegistrationEmail(params: {
     dobStr: string;
     mobileNumber: string;
     altMobileNumber?: string;
-    foodOption: string;
 }) {
-    const { studentName, schoolName, classVal, dobStr, mobileNumber, altMobileNumber, foodOption } = params;
+    const { studentName, schoolName, classVal, dobStr, mobileNumber, altMobileNumber } = params;
     return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,12 +78,6 @@ export function buildIndividualRegistrationEmail(params: {
                     <p style="margin:6px 0 0 0;font-size:16px;font-weight:600;color:#1a1a1a;">${altMobileNumber}</p>
                   </td>
                 </tr>` : ''}
-                <tr>
-                  <td style="padding:14px 0;border-bottom:1px solid #ebebeb;">
-                    <p style="margin:0;font-size:11px;font-weight:700;color:#9b9b9b;text-transform:uppercase;letter-spacing:1px;">Food Preference</p>
-                    <p style="margin:6px 0 0 0;font-size:16px;font-weight:600;color:#1a1a1a;">${foodOption === 'NON_VEG' ? 'Non-Vegetarian' : 'Vegetarian'}</p>
-                  </td>
-                </tr>
               </table>
 
               <!-- Divider -->
@@ -118,7 +111,7 @@ export function buildSchoolRegistrationEmail(params: {
     contactName: string;
     schoolName: string;
     mobileNumber: string;
-    students: Array<{name: string, class: string, age: string, foodOption: string}>;
+    students: Array<{name: string, class: string, age: string}>;
 }) {
     const { contactName, schoolName, mobileNumber, students } = params;
     return `<!DOCTYPE html>
@@ -175,7 +168,6 @@ export function buildSchoolRegistrationEmail(params: {
                     <th align="left" style="font-size:12px;font-weight:700;color:#513081;border-bottom:1px solid #ebebeb;">Name</th>
                     <th align="left" style="font-size:12px;font-weight:700;color:#513081;border-bottom:1px solid #ebebeb;">Class</th>
                     <th align="left" style="font-size:12px;font-weight:700;color:#513081;border-bottom:1px solid #ebebeb;">Age</th>
-                    <th align="left" style="font-size:12px;font-weight:700;color:#513081;border-bottom:1px solid #ebebeb;">Food</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -184,7 +176,6 @@ export function buildSchoolRegistrationEmail(params: {
                     <td style="font-size:14px;color:#333333;border-bottom:1px solid #ebebeb;">${s.name}</td>
                     <td style="font-size:14px;color:#333333;border-bottom:1px solid #ebebeb;">${s.class}</td>
                     <td style="font-size:14px;color:#333333;border-bottom:1px solid #ebebeb;">${s.age}</td>
-                    <td style="font-size:14px;color:#333333;border-bottom:1px solid #ebebeb;">${s.foodOption === 'NON_VEG' ? 'Non-Veg' : 'Veg'}</td>
                   </tr>
                   `).join('')}
                 </tbody>

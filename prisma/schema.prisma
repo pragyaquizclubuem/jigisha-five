@@ -36,7 +36,6 @@ model JanaOjanaRegistration {
   idCardUrl          String?
   isAttended         Boolean  @default(false)
   certificateIssued  Boolean  @default(false)
-  foodOption         String   @default("NON_VEG")
   createdAt          DateTime @default(now())
 
   schoolRegistrationId String?

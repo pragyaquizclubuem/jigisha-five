@@ -128,7 +128,6 @@ export async function POST(request: Request) {
             schoolName: schoolName, // inheriting from school registration
             class: s.class,
             age: parseInt(s.age, 10),
-            foodOption: s.foodOption,
             schoolRegistrationId: schoolRegistration.id,
         }));
 

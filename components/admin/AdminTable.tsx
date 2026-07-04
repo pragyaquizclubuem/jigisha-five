@@ -14,11 +14,10 @@ interface Registration {
   mobileNumber: string;
   altMobileNumber: string;
   contactName?: string;
-  idCardUrl: string;
+  idCardUrl: string | null;
   createdAt: string;
   isAttended: boolean;
   certificateIssued: boolean;
-  foodOption: string;
 }
 
 interface TableData {
@@ -329,9 +328,6 @@ export default function AdminTable() {
                   Certificate
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                  Food
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
                   ID Card
                 </th>
               </tr>
@@ -430,7 +426,7 @@ export default function AdminTable() {
                     <td className="px-6 py-4 whitespace-nowrap">
                       {registration.idCardUrl ? (
                         <button
-                          onClick={() => openModal(registration.idCardUrl)}
+                          onClick={() => registration.idCardUrl && openModal(registration.idCardUrl)}
                           className="inline-flex items-center px-3 py-1 rounded-md text-sm font-semibold bg-purple-100 text-purple-800 hover:bg-purple-200 transition-colors cursor-pointer"
                         >
                           <Eye className="h-4 w-4 mr-1" />
@@ -439,17 +435,6 @@ export default function AdminTable() {
                       ) : (
                         <span className="text-xs text-gray-400 font-bold uppercase">No Attachment</span>
                       )}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span
-                        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold uppercase ${
-                          registration.foodOption === 'NON_VEG'
-                            ? 'bg-amber-50 text-amber-800 border border-amber-200'
-                            : 'bg-green-50 text-green-800 border border-green-200'
-                        }`}
-                      >
-                        {registration.foodOption === 'NON_VEG' ? '🔺 Non-Veg' : '🟢 Veg'}
-                      </span>
                     </td>
                   </tr>
                 ))

@@ -99,7 +99,6 @@ export default function AdminCentralRegistration() {
     altMobileNumber: '',
     class: '',
     email: '',
-    foodOption: 'NON_VEG',
   });
   const [dob, setDob] = useState<Date | null>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -289,7 +288,6 @@ export default function AdminCentralRegistration() {
           altMobileNumber: '', 
           class: '',
           email: '',
-          foodOption: 'NON_VEG',
         });
         setDob(null);
       } else {
@@ -506,39 +504,6 @@ export default function AdminCentralRegistration() {
                   <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm10 5H4v8h12V7z" clipRule="evenodd" />
                 </svg>
               </div>
-            </div>
-          </div>
-
-          {/* Food Option */}
-          <div className="md:col-span-2 flex flex-col gap-1">
-            <label className="text-xs font-bold uppercase text-[#72388f] tracking-wider mb-2">
-              Food Preference *
-            </label>
-            <div className="flex gap-4">
-              <button
-                type="button"
-                onClick={() => setFormData(prev => ({ ...prev, foodOption: 'VEG' }))}
-                className={`flex items-center gap-3 px-6 py-3.5 border-2 rounded-xl font-bold text-sm uppercase tracking-wide transition-all cursor-pointer bg-white ${
-                  formData.foodOption === 'VEG'
-                    ? 'border-[#0f8a42] text-[#0f8a42] ring-2 ring-[#0f8a42]/30'
-                    : 'border-gray-300 text-gray-500 hover:border-gray-400'
-                }`}
-              >
-                <VegIcon className="h-5 w-5" />
-                Vegetarian
-              </button>
-              <button
-                type="button"
-                onClick={() => setFormData(prev => ({ ...prev, foodOption: 'NON_VEG' }))}
-                className={`flex items-center gap-3 px-6 py-3.5 border-2 rounded-xl font-bold text-sm uppercase tracking-wide transition-all cursor-pointer bg-white ${
-                  formData.foodOption === 'NON_VEG'
-                    ? 'border-[#8b4513] text-[#8b4513] ring-2 ring-[#8b4513]/30'
-                    : 'border-gray-300 text-gray-500 hover:border-gray-400'
-                }`}
-              >
-                <NonVegIcon className="h-5 w-5" />
-                Non-Vegetarian
-              </button>
             </div>
           </div>
         </div>
