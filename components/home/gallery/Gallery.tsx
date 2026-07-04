@@ -5,7 +5,7 @@ import SectionWrapper from "@/components/wrappers/SectionWrapper";
 import GalleryCard from "./GalleryCard";
 import GallerySkeleton from "./GallerySkeleton";
 import { galleryData } from "@/constants/GalleryData";
-import { CameraIcon, PhotoCloudIcon, StarIcon, GalleryWavyUnderlineIcon } from "@/components/icons/Icons";
+import { CameraIcon, PhotoCloudIcon, StarIcon, WavyUnderlineIcon } from "@/components/icons/Icons";
 
 export default function Gallery() {
   const [isMounted, setIsMounted] = useState(false);
@@ -69,9 +69,12 @@ export default function Gallery() {
                 <CameraIcon className="h-8 w-8 text-[#513081] md:h-10 md:w-10 animate-wobble-subtle" />
 
                 {/* Heading */}
-                <h2 className="font-roboto-condensed text-4xl font-bold uppercase tracking-[0.03em] text-[#513081] md:text-5xl lg:text-6xl">
-                  {galleryData.heading}
-                </h2>
+                <div className="relative pb-3 w-fit flex flex-col items-center">
+                  <h2 className="font-roboto-condensed text-4xl font-bold uppercase tracking-[0.03em] text-[#513081] md:text-5xl lg:text-6xl">
+                    {galleryData.heading}
+                  </h2>
+                  <WavyUnderlineIcon className="absolute w-full h-3 bottom-0 left-0 text-[#513081]" />
+                </div>
 
                 {/* Decorative Cloud right */}
                 <PhotoCloudIcon className="h-8 w-8 text-[#513081] md:h-10 md:w-10" />
@@ -84,9 +87,6 @@ export default function Gallery() {
                   <StarIcon className="h-3 w-3" />
                 </div>
               </div>
-
-              {/* Wavy Underline SVG */}
-              <GalleryWavyUnderlineIcon className="mt-3 h-4 w-44 text-[#513081] md:w-52 lg:w-60" />
             </div>
           </div>
 

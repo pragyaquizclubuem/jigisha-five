@@ -10,7 +10,7 @@ import {
   HandDrawnSparkle,
   HandDrawnLightbulb,
   HandDrawnQuestionMark,
-  UnderlineBrushIcon
+  WavyUnderlineIcon
 } from "@/components/icons/Icons";
 
 export default function OurQuizzes() {
@@ -29,9 +29,13 @@ export default function OurQuizzes() {
               <HandDrawnStar className="absolute left-6 bottom-0 w-4 h-4 md:w-5 md:h-5 text-[#252525]" />
             </div>
 
-            <h2 className="font-roboto-condensed text-4xl sm:text-5xl md:text-6xl font-bold uppercase leading-none tracking-[0.02em] text-[#252525] px-2">
-              OUR QUIZZES
-            </h2>
+            {/* Heading */}
+            <div className="relative pb-3 w-fit flex flex-col items-center">
+              <h2 className="font-roboto-condensed text-4xl sm:text-5xl md:text-6xl font-bold uppercase leading-none tracking-[0.02em] text-[#252525]">
+                OUR QUIZZES
+              </h2>
+              <WavyUnderlineIcon className="absolute w-full h-3 bottom-0 left-0 text-[#252525]" />
+            </div>
 
             {/* Right Decorative Elements (Question Mark & Stars) */}
             <div className="absolute -right-20 md:-right-24 lg:-right-28 -top-8 hidden sm:flex items-center justify-start w-20 md:w-24 lg:w-28 h-20">
@@ -40,11 +44,6 @@ export default function OurQuizzes() {
               <HandDrawnSparkle className="absolute right-6 bottom-2 w-4 h-4 md:w-5 md:h-5 text-[#252525]" />
             </div>
 
-          </div>
-
-          {/* Underline Brush SVG */}
-          <div className="w-full flex justify-center mt-2.5 sm:mt-3 md:mt-4">
-            <UnderlineBrushIcon className="w-[220px] sm:w-[280px] md:w-[350px] lg:w-[410px] h-3 text-[#252525]" />
           </div>
         </div>
       </div>

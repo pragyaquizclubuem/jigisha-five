@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { DoubleDShape, BrochureWavyUnderlineIcon } from "../../icons/Icons";
+import { DoubleDShape, WavyUnderlineIcon } from "../../icons/Icons";
 import { DownloadIcon } from "@/components/icons/Icons";
 import SectionWrapper from "@/components/wrappers/SectionWrapper";
 import Book3D from "./dflip/Book3D";
@@ -37,16 +37,16 @@ export default function BrochureSection() {
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-10">
 
           {/* Content Card (Left) */}
-          <div className="w-full lg:w-7/12 bg-[#FFEDE0] border-[3px] border-[#252525] rounded-[25.5px] p-8 md:p-10 lg:p-12 shadow-sm relative overflow-hidden flex flex-col justify-between">
+          <div className="w-full lg:w-7/12 bg-[#FFEDE0] border-[3px] border-[#252525] rounded-[25.5px] p-8 md:p-10 lg:p-8 xl:p-12 shadow-sm relative overflow-hidden flex flex-col justify-between">
 
-            <div className="flex items-start gap-5 mb-8">
-              <DoubleDShape className="w-16 h-16 text-[#513081] shrink-0" />
-              <div className="relative pt-2">
-                <h2 className="text-3xl md:text-4xl lg:text-[40px] leading-none font-bold text-[#513081] uppercase tracking-wider font-mono">
+            <div className="flex items-start gap-3 lg:gap-4 xl:gap-5 mb-8">
+              <DoubleDShape className="w-16 h-16 lg:w-12 lg:h-12 xl:w-16 xl:h-16 text-[#513081] shrink-0" />
+              <div className="relative pb-3 w-fit">
+                <h2 className="text-3xl md:text-4xl lg:text-[26px] xl:text-[40px] leading-none font-bold text-[#513081] uppercase tracking-wider font-mono">
                   {BROCHURE_HEADING}
                 </h2>
                 {/* Decorative Underline */}
-                <BrochureWavyUnderlineIcon className="absolute w-full h-3 -bottom-3 left-0 text-[#513081]" />
+                <WavyUnderlineIcon className="absolute w-full h-3 bottom-0 left-0 text-[#513081]" />
               </div>
             </div>
 

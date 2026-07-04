@@ -1,4 +1,4 @@
-import { ArrowUpRightIcon, CompassIcon, MapPinIcon, MapDoubleUnderlineIcon } from "@/components/icons/Icons";
+import { ArrowUpRightIcon, CompassIcon, MapPinIcon, WavyUnderlineIcon } from "@/components/icons/Icons";
 import { mapData } from "@/constants/MapData";
 
 export default function MapDescription() {
@@ -14,13 +14,13 @@ export default function MapDescription() {
   } = mapData;
 
   return (
-    <div className="flex h-full flex-col justify-between rounded-[28px] border-2 border-black bg-[#FFEDE0] p-6 sm:p-8 md:p-10 text-[#513081] shadow-sm">
+    <div className="flex h-full flex-col justify-between rounded-[28px] border-2 border-black bg-[#FFEDE0] p-6 sm:p-8 lg:p-8 xl:p-10 text-[#513081] shadow-sm">
       {/* Header section with heading and hand-drawn double underline */}
-      <div>
-        <h2 className="font-roboto-condensed text-2xl font-bold uppercase leading-none tracking-[0.03em] sm:text-3xl lg:text-[2.2rem]">
+      <div className="relative pb-3 w-fit">
+        <h2 className="font-roboto-condensed text-2xl font-bold uppercase leading-none tracking-[0.03em] sm:text-3xl lg:text-2xl xl:text-[2.2rem]">
           {heading}
         </h2>
-        <MapDoubleUnderlineIcon className="mt-2 h-3 w-64 text-[#513081] sm:w-72 md:w-80" />
+        <WavyUnderlineIcon className="absolute w-full h-3 bottom-0 left-0 text-[#513081]" />
       </div>
 
       {/* Details section */}

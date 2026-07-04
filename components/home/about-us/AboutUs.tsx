@@ -95,16 +95,15 @@ export default function AboutUs() {
 
           {/* Text Section - order-1 on mobile, order-2 on desktop */}
           <div className="flex h-full flex-col justify-center gap-6 lg:order-2 lg:pr-2 order-1">
-            <div className="flex items-center justify-start gap-6 sm:gap-10">
-              <div className="flex flex-col items-start gap-y-4">
-                <h2 className="font-roboto-condensed text-4xl font-bold uppercase leading-none tracking-[0.02em] text-[#513081] md:text-5xl lg:text-6xl">
+            <div className="flex items-center justify-start gap-6 sm:gap-10 lg:gap-6 xl:gap-10">
+              <div className="relative pb-3 w-fit">
+                <h2 className="font-roboto-condensed text-4xl font-bold uppercase leading-none tracking-[0.02em] text-[#513081] md:text-5xl lg:text-5xl xl:text-6xl">
                   {aboutUsData.heading}
                 </h2>
-
-                <WavyUnderlineIcon className="w-[85%] max-w-[296px] h-auto sm:w-full text-[#513081]" />
+                <WavyUnderlineIcon className="absolute w-full h-3 bottom-0 left-0 text-[#513081]" />
               </div>
 
-              <FlowerIcon className="h-16 w-16 shrink-0 text-[#5C00AD]/90 animate-[spin_3s_linear_infinite] md:h-20 md:w-20 lg:h-24 lg:w-24" />
+              <FlowerIcon className="h-16 w-16 shrink-0 text-[#5C00AD]/90 animate-[spin_3s_linear_infinite] md:h-20 md:w-20 lg:h-20 lg:w-20 xl:h-24 xl:w-24" />
             </div>
 
             <p className="max-w-160 text-[0.98rem] leading-[1.6] text-black/90 md:text-[1.06rem]">
