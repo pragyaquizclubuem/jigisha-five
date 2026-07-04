@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { DoubleDShape, WavyUnderlineIcon } from "../../icons/Icons";
 import { DownloadIcon } from "@/components/icons/Icons";
 import SectionWrapper from "@/components/wrappers/SectionWrapper";

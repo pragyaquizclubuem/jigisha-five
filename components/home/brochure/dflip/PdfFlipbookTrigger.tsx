@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import PdfFlipbook, { type PdfFlipbookProps } from './PdfFlipbook';
 import { CloseIcon } from '@/components/icons/Icons';
 
@@ -110,6 +111,7 @@ function Portal({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     // Prevent scrolling on body when modal is open
     document.body.style.overflow = 'hidden';
@@ -121,6 +123,6 @@ function Portal({ children }: { children: React.ReactNode }) {
   if (!mounted) return null;
 
   return typeof document !== 'undefined'
-    ? require('react-dom').createPortal(children, document.body)
+    ? createPortal(children, document.body)
     : null;
 }

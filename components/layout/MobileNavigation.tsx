@@ -27,8 +27,9 @@ export default function MobileNavigation() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
+     // eslint-disable-next-line react-hooks/set-state-in-effect
+     setMounted(true);
+   }, []);
   const pathname = usePathname();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
