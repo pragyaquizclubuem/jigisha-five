@@ -1,4 +1,4 @@
-import { ArrowUpRightIcon, CompassIcon, MapPinIcon, WavyUnderlineIcon } from "@/components/icons/Icons";
+import { ArrowUpRightIcon, CompassIcon, WavyUnderlineIcon } from "@/components/icons/Icons";
 import { mapData } from "@/constants/MapData";
 
 export default function MapDescription() {
