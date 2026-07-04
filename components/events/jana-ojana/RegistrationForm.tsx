@@ -8,7 +8,6 @@ import Fuse from 'fuse.js';
 import ThankYou from './ThankYou';
 import Image from 'next/image';
 import { schools } from '@/constants/Schools';
-import { VegIcon, NonVegIcon } from '@/components/icons/Icons';
 
 const stopWords = new Set(['the', 'for', 'of', 'and']);
 const getAcronym = (schoolName: string): string => {
