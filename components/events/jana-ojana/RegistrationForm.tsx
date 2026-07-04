@@ -674,7 +674,7 @@ export default function RegistrationForm() {
                     </button>
                   )}
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-3">
-                    <div className="flex flex-col gap-1">
+                    <div className="flex flex-col gap-1 md:col-span-2">
                       <label className="text-[10px] font-bold uppercase text-[#513081]">Name *</label>
                       <input type="text" value={student.name} onChange={(e) => updateStudent(student.id, 'name', e.target.value)} className="w-full px-3 py-2 rounded-lg border-2 border-[#252525] bg-white text-[#252525] font-semibold text-sm outline-none focus:ring-2 focus:ring-[#D7ABFF]" placeholder="Name" required />
                     </div>
@@ -730,6 +730,8 @@ export default function RegistrationForm() {
           {mode === 'school' && (
             <p className="text-[10px] text-gray-500 font-semibold mb-2 leading-tight">
               Please upload a document from the school authority authorizing the teacher/contact person to register students on behalf of the school.
+              <br/>
+              You can also combine multiple students' ID cards into a single document, and upload that.
             </p>
           )}
           <input
