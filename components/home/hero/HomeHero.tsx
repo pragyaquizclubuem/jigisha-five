@@ -1,5 +1,6 @@
 'use client';
 import Image from 'next/image';
+import Link from 'next/link';
 import { ArrowRightIcon } from "@/components/icons/Icons";
 import { Eye } from 'lucide-react';
 import Link from 'next/link';
@@ -74,7 +75,7 @@ export default function HomeHero() {
             <ArrowRightIcon className="h-5 w-5 sm:h-6 sm:w-6 stroke-[#c77dff] stroke-[2.5]" />
           </Link>
 
-          <a
+          <Link
             href="/#brochureSection"
             className="
               inline-flex items-center justify-center gap-4 rounded-full border border-[#8B5CF6]/50 

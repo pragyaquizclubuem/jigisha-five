@@ -5,7 +5,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import SectionWrapper from "@/components/wrappers/SectionWrapper";
 import FAQAccordionItem from "@/components/home/faq/FAQAccordionItem";
 import FAQSkeleton from "@/components/home/faq/FAQSkeleton";
-import { FAQWavyUnderlineIcon } from "@/components/icons/Icons";
+import { WavyUnderlineIcon } from "@/components/icons/Icons";
 import { faqData } from "@/constants/FAQData";
 
 /**
@@ -78,12 +78,12 @@ export default function FAQ() {
           <>
             {/* Heading */}
             <div className="mb-8 flex flex-col items-center md:mb-10">
-              <h2 className="font-roboto-condensed text-3xl font-bold uppercase leading-none tracking-[0.02em] text-[#513081] md:text-4xl lg:text-5xl">
-                {faqData.heading}
-              </h2>
-
-              {/* Wavy underline — matches About Us style */}
-              <FAQWavyUnderlineIcon className="mt-2 h-4 w-64 text-[#513081] md:w-80 lg:w-96" />
+              <div className="relative pb-3 w-fit">
+                <h2 className="font-roboto-condensed text-3xl font-bold uppercase leading-none tracking-[0.02em] text-[#513081] md:text-4xl lg:text-5xl">
+                  {faqData.heading}
+                </h2>
+                <WavyUnderlineIcon className="absolute w-full h-3 bottom-0 left-0 text-[#513081]" />
+              </div>
             </div>
 
             {/* 2-column accordion grid */}
