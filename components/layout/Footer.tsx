@@ -26,8 +26,14 @@ const SOCIAL_COLORS: Record<string, string> = {
   linkedin:  "hover:bg-[#0A66C2]",
 };
 
-const NAV_LEFT  = [["Home", "/"], ["About Us", "#homeAbout"], ["Our Quizzes", "#quizzes"]] as const;
-const NAV_RIGHT = [["Gallery", "#gallery"], ["Brochure", "#brochure"], ["FAQ", "#faq"]] as const;
+const NAV_LINKS = [
+  ["Home", "/"],
+  ["About Us", "#homeAbout"],
+  ["Our Quizzes", "#quizzes"],
+  ["Gallery", "#gallery"],
+  ["Brochure", "#brochure"],
+  ["FAQ", "#faq"],
+] as const;
 
 /* ── Component ───────────────────────────────────────────────────────────────── */
 
@@ -35,6 +41,9 @@ export default function Footer() {
   const [open, setOpen] = useState(false);
   const openModal  = useCallback(() => setOpen(true),  []);
   const closeModal = useCallback(() => setOpen(false), []);
+
+  const leftColLinks = NAV_LINKS.slice(0, 3);
+  const rightColLinks = NAV_LINKS.slice(3);
 
   return (
     <>
@@ -116,37 +125,39 @@ export default function Footer() {
             MAIN BAND — Navigation + Contact pills
         ═══════════════════════════════════════════════════════════════════ */}
         <SectionWrapper as="div" className="relative z-10" contentClassName="py-8">
-          <div className="grid grid-cols-1 gap-12 sm:grid-cols-3">
+          <div className="grid grid-cols-1 gap-12 sm:grid-cols-2">
 
-              {/* Nav — left pages (hidden on mobile — ham menu covers this) */}
+              {/* Nav — links (hidden on mobile — ham menu covers this) */}
               <div className="hidden sm:flex flex-col gap-1.5">
                 <p className="mb-2 text-[0.58rem] font-bold uppercase tracking-[0.3em] text-[#B07EFF]/70">
                   Navigate
                 </p>
-                {NAV_LEFT.map(([label, href]) => (
-                  <Link
-                    key={label}
-                    href={href}
-                    className="footer-nav-link inline-block w-fit text-[0.78rem] font-semibold uppercase tracking-widest text-white/45 transition-colors duration-200 hover:text-white"
-                  >
-                    {label}
-                  </Link>
-                ))}
+                <div className="flex gap-8">
+                  <div className="flex flex-col gap-1.5 items-start">
+                    {leftColLinks.map(([label, href]) => (
+                      <Link
+                        key={label}
+                        href={href}
+                        className="footer-nav-link inline-block w-fit text-[0.78rem] font-semibold uppercase tracking-widest text-white/45 transition-colors duration-200 hover:text-white"
+                      >
+                        {label}
+                      </Link>
+                    ))}
+                  </div>
+                  <div className="flex flex-col gap-1.5 items-end text-right">
+                    {rightColLinks.map(([label, href]) => (
+                      <Link
+                        key={label}
+                        href={href}
+                        className="footer-nav-link inline-block w-fit text-[0.78rem] font-semibold uppercase tracking-widest text-white/45 transition-colors duration-200 hover:text-white"
+                      >
+                        {label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
               </div>
 
-              {/* Nav — right pages (hidden on mobile) */}
-              <div className="hidden sm:flex flex-col gap-1.5">
-                <p className="mb-2 text-[0.58rem] font-bold uppercase tracking-[0.3em] opacity-0 select-none">&nbsp;</p>
-                {NAV_RIGHT.map(([label, href]) => (
-                  <Link
-                    key={label}
-                    href={href}
-                    className="footer-nav-link inline-block w-fit text-[0.78rem] font-semibold uppercase tracking-widest text-white/45 transition-colors duration-200 hover:text-white"
-                  >
-                    {label}
-                  </Link>
-                ))}
-              </div>
 
               {/* Contact — editorial list style */}
               <div className="flex flex-col gap-3">
