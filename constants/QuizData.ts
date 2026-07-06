@@ -14,7 +14,7 @@ export const quizData = [
     image: "/images/Pragya_Team.avif",
     tags: ["School Quiz", "Class 6 To 12", "General"],
     description: "Calling all bright sparks from classes 6 to 12 (including 2026 passouts) to step up, team up, and take on the thrill of brain-busting trivia, quirky questions, and a whole lot of fun.",
-    link: "https://unstop.com/o/23Jigisha5",
+    link: "/events/jana-ojana",
   },
   {
     id: "hit-the-homerun",

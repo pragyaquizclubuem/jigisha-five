@@ -3,8 +3,10 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
 import { useAudio } from './AudioContext';
+import { usePathname } from 'next/navigation';
 
 export default function OverlayBanner() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(true);
   const { playAudio } = useAudio();
 
@@ -32,7 +34,7 @@ export default function OverlayBanner() {
 
   // Prevent scroll when modal is open and handle auto-close
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && pathname === '/') {
       document.body.style.overflow = 'hidden';
       
       // Auto close after exactly 10 seconds
@@ -49,8 +51,9 @@ export default function OverlayBanner() {
     } else {
       document.body.style.overflow = '';
     }
-  }, [isOpen]);
+  }, [isOpen, pathname]);
 
+  if (pathname !== '/') return null;
   if (!isOpen) return null;
 
   const handleBackdropClick = (e: React.MouseEvent) => {

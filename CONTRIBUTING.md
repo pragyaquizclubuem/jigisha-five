@@ -123,14 +123,14 @@ jigisha-five/
 │   │   ├── HomePage.tsx
 │   │   └── EventsPage.tsx
 │   │
-│   ├── sections/
-│   │   ├── homepage/
-│   │   │   ├── HomeHero.tsx
-│   │   │   └── HomeAccordion.tsx
-│   │   │
-│   │   └── events/
-│   │       ├── EventHeader.tsx
-│   │       └── EventTimeline.tsx
+│   | 
+│   │── home/
+│   │  │  ├── HomeHero.tsx
+│   │  │  └── HomeAccordion.tsx
+│   │  │
+│   │  └── events/
+│   │      ├── EventHeader.tsx
+│   │      └── EventTimeline.tsx
 │   │
 │   ├── wrappers/
 │   │   ├── PageWrapper.tsx

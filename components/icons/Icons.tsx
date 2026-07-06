@@ -1017,3 +1017,76 @@ export const GitHubIcon = React.forwardRef<SVGSVGElement, SVGIconProps>(
   )
 );
 GitHubIcon.displayName = 'GitHubIcon';
+
+export function VegIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      className={className}
+      aria-hidden="true"
+    >
+      <rect x="3" y="3" width="18" height="18" rx="2" stroke="#0f8a42" strokeWidth="2.5" />
+      <circle cx="12" cy="12" r="5" fill="#0f8a42" />
+    </svg>
+  );
+}
+
+export function NonVegIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      className={className}
+      aria-hidden="true"
+    >
+      <rect x="3" y="3" width="18" height="18" rx="2" stroke="#8b4513" strokeWidth="2.5" />
+      <polygon points="12,6 6,16 18,16" fill="#8b4513" />
+    </svg>
+  );
+}
+
+/**
+ * WhatsAppIcon
+ */
+export const WhatsAppIcon = React.forwardRef<SVGSVGElement, SVGIconProps>(
+    ({ className, title, ...props }, ref) => (
+        <svg
+            ref={ref}
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className={className}
+            aria-hidden={title ? undefined : "true"}
+            {...props}
+        >
+            {title && <title>{title}</title>}
+            <path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.274-.101-.473-.15-.673.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.065-.301-.15-1.265-.462-2.406-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.502.098-.203.048-.379-.025-.531-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.21 2.095 3.195 5.076 4.485.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.345z"/>
+            <path d="M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652c1.746.943 3.71 1.444 5.71 1.447h.005c6.585 0 11.944-5.336 11.947-11.893 0-3.158-1.245-6.13-3.477-8.453zm-8.475 18.22h-.003c-1.774 0-3.513-.473-5.035-1.365l-.36-.211-3.74.975.996-3.626-.235-.37c-.985-1.551-1.505-3.351-1.505-5.223.003-5.418 4.437-9.833 9.882-9.833 2.642.001 5.127 1.026 6.993 2.885 1.867 1.86 2.894 4.331 2.892 6.953-.003 5.418-4.437 9.833-9.882 9.833z"/>
+        </svg>
+    )
+);
+WhatsAppIcon.displayName = 'WhatsAppIcon';
+
+/**
+ * MessengerIcon
+ */
+export const MessengerIcon = React.forwardRef<SVGSVGElement, SVGIconProps>(
+    ({ className, title, ...props }, ref) => (
+        <svg
+            ref={ref}
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className={className}
+            aria-hidden={title ? undefined : "true"}
+            {...props}
+        >
+            {title && <title>{title}</title>}
+            <path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.614 4.469 8.654V24l4.088-2.242c1.092.3 2.246.464 3.443.464 6.627 0 12-4.974 12-11.111C24 4.974 18.627 0 12 0zm1.272 14.887l-3.08-3.281-6.01 3.281 6.61-7.019 3.08 3.281 6.01-3.281-6.61 7.019z" />
+        </svg>
+    )
+);
+MessengerIcon.displayName = 'MessengerIcon';

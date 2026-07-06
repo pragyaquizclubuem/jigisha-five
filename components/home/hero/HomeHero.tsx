@@ -2,6 +2,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRightIcon } from "@/components/icons/Icons";
+import { Eye } from 'lucide-react';
+import Link from 'next/link';
 
 export default function HomeHero() {
   return (
@@ -54,8 +56,8 @@ export default function HomeHero() {
 
         {/* Centered CTA Buttons inside the block */}
         <div className="relative z-10 flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mt-auto mb-10">
-          <a
-            href="#register"
+          <Link
+            href="/events/jana-ojana"
             className="
               inline-flex items-center justify-center gap-4 rounded-full border border-[#8B5CF6]/50 
               bg-[#0A002A] px-8 py-4 sm:px-10 sm:py-5
@@ -71,7 +73,7 @@ export default function HomeHero() {
           >
             <span>REGISTER NOW</span>
             <ArrowRightIcon className="h-5 w-5 sm:h-6 sm:w-6 stroke-[#c77dff] stroke-[2.5]" />
-          </a>
+          </Link>
 
           <Link
             href="/#brochureSection"
@@ -89,7 +91,8 @@ export default function HomeHero() {
             "
           >
             <span>VIEW BROCHURE</span>
-          </Link>
+            <Eye className="h-5 w-5 sm:h-6 sm:w-6 text-[#c77dff] stroke-[2.5]" />
+          </a>
         </div>
       </section>
     </>

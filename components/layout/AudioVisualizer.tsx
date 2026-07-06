@@ -2,11 +2,17 @@
 
 import React, { useState, useRef } from 'react';
 import { useAudio } from './AudioContext';
+import { usePathname } from 'next/navigation';
 
 export default function AudioVisualizer() {
+  const pathname = usePathname();
   const { isPlaying, toggleAudio } = useAudio();
   const visualizerRef = useRef<HTMLButtonElement>(null);
   const barRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  if (pathname.startsWith('/admin')) {
+    return null;
+  }
   
   const [translate, setTranslate] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);

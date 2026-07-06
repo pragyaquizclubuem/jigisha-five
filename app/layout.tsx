@@ -6,6 +6,7 @@ import SquareGridBackground from "@/components/layout/SquareGridBackground";
 import AudioVisualizer from "@/components/layout/AudioVisualizer";
 import { AudioProvider } from "@/components/layout/AudioContext";
 import OverlayBanner from "@/components/layout/OverlayBanner";
+import Footer from "@/components/layout/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,7 +39,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${robotoCondensed.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col bg-[#ffede0]">
         <AudioProvider>
           <OverlayBanner />
           <Navbar />
@@ -46,6 +47,7 @@ export default function RootLayout({
           {children}
           <AudioVisualizer />
         </AudioProvider>
+        <Footer/>
       </body>
     </html>
   );
