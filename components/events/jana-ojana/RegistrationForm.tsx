@@ -190,7 +190,8 @@ export default function RegistrationForm() {
             ? 'Invalid number pattern (repeating digits).'
             : (formData.altMobileNumber && formData.altMobileNumber.length !== 10)
               ? 'Number must be 10 digits.'
-              : null
+              : null,
+        email: formData.email && !isEmailValid ? 'Please enter a valid email address.' : null
       }));
 
       let isAgeValid = false;
@@ -215,6 +216,11 @@ export default function RegistrationForm() {
     } else {
       const isMobileValid = schoolFormData.mobileNumber.length === 10 && !/^(\d)\1{9}$/.test(schoolFormData.mobileNumber);
       const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(schoolFormData.email);
+
+      setErrors(prev => ({
+        ...prev,
+        email: schoolFormData.email && !isEmailValid ? 'Please enter a valid email address.' : null
+      }));
 
       let allStudentsValid = true;
       if (schoolStudents.length === 0) allStudentsValid = false;
@@ -648,7 +654,8 @@ export default function RegistrationForm() {
             </div>
             <div className="relative flex flex-col gap-1">
               <label htmlFor="email" className="text-xs font-bold uppercase text-[#513081] tracking-wider mb-1.5">Contact Email Address *</label>
-              <input type="email" name="email" id="email" value={schoolFormData.email} onChange={handleSchoolChange} required className="w-full px-4 py-3 rounded-xl border-2 border-[#252525] bg-white text-[#252525] font-semibold outline-none focus:ring-2 focus:ring-[#D7ABFF]" placeholder="e.g. school@example.com" />
+              <input type="email" name="email" id="email" value={schoolFormData.email} onChange={handleSchoolChange} required className={`w-full px-4 py-3 rounded-xl border-2 transition-all outline-none font-semibold text-[#252525] focus:ring-2 focus:ring-[#D7ABFF] ${errors.email ? 'border-red-500' : 'border-[#252525] bg-white'}`} placeholder="e.g. school@example.com" />
+              {errors.email && <p className="text-red-500 text-xs font-bold mt-1">{errors.email}</p>}
             </div>
           </div>
         )}
@@ -667,7 +674,7 @@ export default function RegistrationForm() {
                     </button>
                   )}
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-3">
-                    <div className="flex flex-col gap-1">
+                    <div className="flex flex-col gap-1 md:col-span-2">
                       <label className="text-[10px] font-bold uppercase text-[#513081]">Name *</label>
                       <input type="text" value={student.name} onChange={(e) => updateStudent(student.id, 'name', e.target.value)} className="w-full px-3 py-2 rounded-lg border-2 border-[#252525] bg-white text-[#252525] font-semibold text-sm outline-none focus:ring-2 focus:ring-[#D7ABFF]" placeholder="Name" required />
                     </div>
@@ -723,6 +730,8 @@ export default function RegistrationForm() {
           {mode === 'school' && (
             <p className="text-[10px] text-gray-500 font-semibold mb-2 leading-tight">
               Please upload a document from the school authority authorizing the teacher/contact person to register students on behalf of the school.
+              <br/>
+              You can also combine multiple students' ID cards into a single document, and upload that.
             </p>
           )}
           <input
@@ -772,18 +781,18 @@ export default function RegistrationForm() {
         <div className="mt-8 pt-6 border-t-2 border-[#252525]/10 space-y-4">
           <label className="flex items-start gap-3 cursor-pointer group">
             <div className="relative flex items-center justify-center mt-0.5">
-              <input type="checkbox" checked={agreeRules} onChange={(e) => setAgreeRules(e.target.checked)} className="peer sr-only" required />
+              <input type="checkbox" checked={agreeRules} onChange={(e) => setAgreeRules(e.target.checked)} className="peer absolute opacity-0 w-full h-full cursor-pointer m-0 p-0" required />
               <div className="w-5 h-5 border-2 border-[#252525] rounded bg-white peer-checked:bg-[#513081] peer-checked:border-[#513081] transition-colors"></div>
               <svg className="absolute w-3.5 h-3.5 text-white pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
             </div>
             <span className="text-sm font-semibold text-[#252525] select-none">
-              I have read the <button type="button" onClick={(e) => { e.preventDefault(); setShowGuidelines(true); }} className="text-[#513081] hover:underline font-bold">registration guidelines</button> and <button type="button" onClick={(e) => { e.preventDefault(); setShowTerms(true); }} className="text-[#513081] hover:underline font-bold">terms and conditions</button>. *
+              I have read the <button type="button" onClick={(e) => { e.preventDefault(); setShowGuidelines(true); }} className="text-[#513081] hover:underline font-bold">registration guidelines</button> and <button type="button" onClick={(e) => { e.preventDefault(); setShowTerms(true); }} className="text-[#513081] hover:underline font-bold">terms and conditions</button>.
             </span>
           </label>
 
           <label className="flex items-start gap-3 cursor-pointer group">
             <div className="relative flex items-center justify-center mt-0.5">
-              <input type="checkbox" checked={agreePartner} onChange={(e) => setAgreePartner(e.target.checked)} className="peer sr-only" required />
+              <input type="checkbox" checked={agreePartner} onChange={(e) => setAgreePartner(e.target.checked)} className="peer absolute opacity-0 w-full h-full cursor-pointer m-0 p-0" required />
               <div className="w-5 h-5 border-2 border-[#252525] rounded bg-white peer-checked:bg-[#513081] peer-checked:border-[#513081] transition-colors"></div>
               <svg className="absolute w-3.5 h-3.5 text-white pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
             </div>
@@ -800,7 +809,7 @@ export default function RegistrationForm() {
         <div className="pt-6 flex justify-center sm:justify-end">
           <button
             type="submit"
-            disabled={!isFormValid || submitting}
+            disabled={submitting}
             className="w-full sm:w-auto text-center py-4 px-8 rounded-full border-2 border-[#252525] bg-[#513081] text-[#FFEDE0] font-bold uppercase tracking-wider text-sm transition-transform hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_#252525] active:translate-y-0 active:shadow-none disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed disabled:shadow-none disabled:transform-none"
           >
             {submitting ? 'Submitting...' : 'Complete Registration'}
