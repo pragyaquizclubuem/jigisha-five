@@ -154,18 +154,9 @@ export function buildAutoResponder(params: {
 
           <!-- ── Header ── -->
           <tr>
-            <td style="background-color:#3d1f6e;padding:28px 40px;text-align:center;">
-              <h1 style="margin:0;font-size:24px;font-weight:700;color:#ffffff;letter-spacing:-0.5px;">Thank you for reaching out!</h1>
-              <p style="margin:10px 0 0 0;font-size:14px;color:rgba(255,255,255,0.75);">We have received your enquiry and will be in touch shortly.</p>
-            </td>
-          </tr>
-
-          <!-- ── Confirmation Badge ── -->
-          <tr>
-            <td style="background-color:#059669;padding:12px 40px;text-align:center;">
-              <p style="margin:0;color:#ffffff;font-size:13px;font-weight:600;letter-spacing:0.5px;">
-                ✅ &nbsp;Your message has been received successfully
-              </p>
+            <td style="background-color:#ffffff;padding:28px 40px;text-align:center;">
+              <h1 style="margin:0;font-size:24px;font-weight:700;color:#3d1f6e;letter-spacing:-0.5px;">Thank you for reaching out!</h1>
+              <p style="margin:10px 0 0 0;font-size:14px;color:rgba(0, 0, 0, 0.75);">We have received your enquiry and will be in touch shortly.</p>
             </td>
           </tr>
 
