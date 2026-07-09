@@ -14,7 +14,7 @@ export default function ContactForm() {
     ];
 
     return (
-        <SectionWrapper className="bg-[#FFEDE0] pt-6 pb-12 md:pt-10 md:pb-16 relative overflow-hidden">
+        <SectionWrapper className="bg-transparent pt-6 pb-12 md:pt-10 md:pb-16 relative overflow-hidden">
             {/* Background decorative elements */}
             <div className="absolute top-4 left-4 md:top-10 md:left-10 w-16 h-16 md:w-24 md:h-24 bg-[#F4D21F] rounded-full border-4 border-black shadow-[4px_4px_0_0_#000] animate-[bounce_5s_infinite]"></div>
             <div className="absolute bottom-4 right-4 md:bottom-10 md:right-10 w-24 h-24 md:w-32 md:h-32 bg-[#513081] rounded-lg border-4 border-black shadow-[6px_6px_0_0_#000] rotate-12 animate-[pulse_3s_infinite]"></div>

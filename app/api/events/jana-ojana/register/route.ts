@@ -4,7 +4,7 @@ import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 import { Resend } from 'resend';
 import { buildIndividualRegistrationEmail } from '@/lib/email-templates/registration';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY || 're_placeholder_key');
 
 // Custom simple in-memory rate limiter
 const ipRequestMap = new Map<string, { count: number; resetTime: number }>();

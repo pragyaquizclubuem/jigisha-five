@@ -13,6 +13,11 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-roboto-condensed: var(--font-roboto-condensed);
+  --font-freckle-face: var(--font-freckle-face);
+  --font-fredoka: var(--font-fredoka);
+  --font-sniglet: var(--font-sniglet);
+  --font-dm-sans: var(--font-dm-sans);
+  --font-google-sans-flex: var(--font-google-sans-flex);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -401,4 +406,22 @@ body {
   100% {
     opacity: var(--opacity, 0);
   }
+}
+
+/* ── Event Drawer animations ─────────────────────────────────────────────── */
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
