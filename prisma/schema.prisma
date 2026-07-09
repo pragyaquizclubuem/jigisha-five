@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model JanaOjanaSchoolRegistration {
+  id                 String                  @id @default(uuid())
+  contactName        String
+  schoolName         String
+  mobileNumber       String
+  email              String
+  documentUrl        String
+  createdAt          DateTime                @default(now())
+  
+  students           JanaOjanaRegistration[]
+}
+
+model JanaOjanaRegistration {
+  id                 String   @id @default(uuid())
+  studentName        String
+  schoolName         String
+  mobileNumber       String?
+  altMobileNumber    String?
+  class              String
+  dob                DateTime?
+  age                Int?
+  email              String?
+  idCardUrl          String?
+  isAttended         Boolean  @default(false)
+  certificateIssued  Boolean  @default(false)
+  createdAt          DateTime @default(now())
+
+  schoolRegistrationId String?
+  schoolRegistration   JanaOjanaSchoolRegistration? @relation(fields: [schoolRegistrationId], references: [id])
+
+  @@index([studentName, schoolName, class])
+}

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #ffede0;
   --foreground: transparent;
   --page-padding: clamp(1rem, 5vw, 2.5rem);
   --content-max-width: 80rem;
@@ -13,6 +13,11 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-roboto-condensed: var(--font-roboto-condensed);
+  --font-freckle-face: var(--font-freckle-face);
+  --font-fredoka: var(--font-fredoka);
+  --font-sniglet: var(--font-sniglet);
+  --font-dm-sans: var(--font-dm-sans);
+  --font-google-sans-flex: var(--font-google-sans-flex);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -143,6 +148,12 @@ body {
 
 .col-full-width {
   grid-column: full-width-start / full-width-end;
+}
+
+/* ── Performance — content-visibility for below-fold sections ─────────────── */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
 }
 
 /* ── FAQ Section — Accordion animations ─────────────────────────────────────── */
@@ -172,7 +183,7 @@ body {
   transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ── FAQ card — Retro press-in interaction (matches Register Now button) ──── */
+/* FAQ card — Retro press-in interaction (matches Register Now button) ──── */
 .faq-card {
   box-shadow: 0 0 12px rgba(81, 48, 129, 0.2), 3px 3px 0 0 #2F0F56;
   transition: box-shadow 0.2s ease, translate 0.2s ease;
@@ -190,7 +201,7 @@ body {
   }
 }
 
-/* ── Reduced motion — disable FAQ animations for a11y ─────────────────────── */
+/* Reduced motion — disable FAQ animations for a11y ─────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .faq-item-enter {
     animation: none;
@@ -204,164 +215,6 @@ body {
   .faq-card {
     transition: none;
   }
-}
-
-/* ── Performance — content-visibility for below-fold sections ─────────────── */
-.cv-auto {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 600px;
-}
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: transparent;
-  --page-padding: clamp(1rem, 5vw, 2.5rem);
-  --content-max-width: 80rem;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-roboto-condensed: var(--font-roboto-condensed);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: transparent;
-    --foreground: transparent;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
-}
-
-/* ── NavLink — Bottom-fill hover effect ────────────────────────────────────── */
-
-/* The link container — must be position:relative + overflow:hidden */
-.nav-link-btn {
-  position: relative;
-  overflow: hidden;
-}
-
-/* The purple fill slab that rises from below */
-.nav-fill-layer {
-  position: absolute;
-  inset: 0;
-  background-color: #513081;
-  border-radius: 12px;
-  transform: translateY(100%);
-  will-change: transform;
-  z-index: 0;
-  /* Transition only on devices that support hover (not touch) */
-  transition: none;
-}
-
-/* Label text — always above the fill slab */
-.nav-link-label {
-  position: relative;
-  z-index: 1;
-}
-
-/* ── Hover effects — only on pointer devices (not touch screens) ──────────── */
-@media (hover: hover) and (pointer: fine) {
-  .nav-fill-layer {
-    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
-  /* Slide slab up on hover */
-  .nav-link-btn:hover .nav-fill-layer {
-    transform: translateY(0);
-  }
-
-  /* Turn label white as slab arrives */
-  .nav-link-label {
-    transition: color 0.15s ease-in-out;
-  }
-
-  .nav-link-btn:hover .nav-link-label {
-    color: #ffffff;
-  }
-
-  /* Mobile header menu button (light bg) hover */
-  .mobile-menu-btn:hover {
-    background-color: #513081;
-    border-color: #513081;
-    color: white;
-  }
-
-  /* Overlay close button (dark bg) hover */
-  .mobile-menu-btn-dark:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.35);
-  }
-
-  /* Full-screen overlay nav link hover */
-  .mobile-drawer-link:not([aria-current="page"]):hover {
-    background-color: rgba(255, 255, 255, 0.05);
-    color: rgba(255, 255, 255, 0.85);
-  }
-}
-
-/* ── Mobile nav items — sizing override for side drawer ─────────────────────── */
-.mobile-nav-item {
-  padding-top: 1.1rem;
-  padding-bottom: 1.1rem;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-  border-radius: 16px;
-  font-size: 0.95rem;
-  letter-spacing: 0.12em;
-}
-
-/* ── Custom transition duration (400ms) for drawer / backdrop ────────────────── */
-.duration-400 {
-  transition-duration: 400ms;
-}
-
-/* ── Mobile menu — staggered slide-up animation ─────────────────────────────── */
-@keyframes slideUp {
-  0% {
-    opacity: 0;
-    transform: translateY(32px) scale(0.97);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.animate-slide-up {
-  animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  opacity: 0;
-}
-
-/* ── Layout & Centering grid (without max-w-...) ─────────────────────────── */
-
-.grid-layout-bleed {
-  display: grid;
-  grid-template-columns:
-    [full-width-start] minmax(var(--page-padding, 1.5rem), 1fr) [content-start] min(100% - (2 * var(--page-padding, 1.5rem)), var(--content-max-width, 80rem)) [content-end] minmax(var(--page-padding, 1.5rem), 1fr) [full-width-end];
-}
-
-.col-content {
-  grid-column: content-start / content-end;
-}
-
-.col-full-width {
-  grid-column: full-width-start / full-width-end;
-}
-
-/* ── Content Visibility Utility ────────────────────────────────────────────── */
-.cv-auto {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 600px;
 }
 
 /* ── Gallery Section Keyframe Animations ────────────────────────────────────── */
@@ -436,4 +289,139 @@ body {
     width: auto !important;
     max-width: 100% !important;
   }
+}
+
+/* ── Footer — Pro-level animations ──────────────────────────────────────── */
+
+@keyframes footerShimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes footerGlowPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(92, 0, 173, 0); }
+  50% { box-shadow: 0 0 18px 4px rgba(92, 0, 173, 0.45); }
+}
+
+@keyframes footerLinkDraw {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+.footer-brand-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.04) 0%,
+    rgba(176,126,255,0.18) 30%,
+    rgba(255,185,0,0.22) 50%,
+    rgba(176,126,255,0.18) 70%,
+    rgba(255,255,255,0.04) 100%
+  );
+  background-size: 200% auto;
+  animation: footerShimmer 5s linear infinite;
+}
+
+.footer-social-orb:hover {
+  animation: footerGlowPulse 0.9s ease-out forwards;
+}
+
+.footer-nav-link {
+  position: relative;
+}
+
+.footer-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, #B07EFF, #FFB900);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.footer-nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* ── Flip Text Animation ─────────────────────────────────────────────────── */
+
+.flip-char {
+  color: inherit;
+  -webkit-text-fill-color: transparent;
+  height: 1.2em;
+  line-height: 1.2em;
+  vertical-align: middle;
+  animation: flip var(--flip-duration, 2.2s) var(--flip-delay, 0s) var(--flip-iteration, infinite) ease;
+}
+
+.flip-char::before,
+.flip-char::after {
+  color: inherit;
+  -webkit-text-fill-color: currentColor;
+  content: attr(data-char);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  animation: fade var(--flip-duration, 2.2s) var(--flip-delay, 0s) var(--flip-iteration, infinite) ease;
+}
+
+/* Front Face (Initial) */
+.flip-char::after {
+  transform: translate(-50%, -50%) translateZ(0.6em);
+}
+
+/* Bottom Face (Rotates in) */
+.flip-char::before {
+  transform: translate(-50%, -50%) rotateX(-90deg) translateZ(0.6em);
+  opacity: 0;
+  --opacity: 1;
+}
+
+@keyframes flip {
+  0% {
+    transform: rotateX(0deg);
+  }
+
+  25%,
+  100% {
+    transform: rotateX(90deg);
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 1;
+  }
+
+  30%,
+  100% {
+    opacity: var(--opacity, 0);
+  }
+}
+
+/* ── Event Drawer animations ─────────────────────────────────────────────── */
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
