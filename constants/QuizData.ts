@@ -11,7 +11,7 @@ export const quizData = [
   {
     id: "jana-ojana",
     title: "Jana Ojana",
-    image: "/images/Pragya_Team.avif",
+    image: "/images/posters/jana ojana.avif",
     tags: ["School Quiz", "Class 6 To 12", "General"],
     description: "Calling all bright sparks from classes 6 to 12 (including 2026 passouts) to step up, team up, and take on the thrill of brain-busting trivia, quirky questions, and a whole lot of fun.",
     link: "/events/jana-ojana",

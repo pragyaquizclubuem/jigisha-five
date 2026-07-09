@@ -209,28 +209,46 @@ export default function EventCard({ event }: { event: EventDetail }) {
 
         {/* Bottom Actions Row */}
         <div className="mt-auto flex flex-col sm:flex-row items-center gap-3 w-full">
-          {event.registerUrl && (
-            <Link
-              href={event.registerUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-2 w-full py-3 px-4 rounded-full bg-[#513081] hover:bg-[#3d2462] text-white font-black tracking-wide text-[14px] border-2 border-[#252525] shadow-[4px_4px_0_0_#252525] hover:-translate-y-1 hover:shadow-[6px_6px_0_0_#252525] active:translate-y-0 active:shadow-[2px_2px_0_0_#252525] transition-all"
-            >
-              <UserCircle className="w-4 h-4" />
-              Register With Rallyo
-            </Link>
+          {event.id === "jana ojana" ? (
+            event.registerUrl && (
+              <Link
+                href={event.registerUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center gap-2 w-full py-3 px-4 rounded-full bg-[#513081] hover:bg-[#3d2462] text-white font-black tracking-wide text-[14px] border-2 border-[#252525] shadow-[4px_4px_0_0_#252525] hover:-translate-y-1 hover:shadow-[6px_6px_0_0_#252525] active:translate-y-0 active:shadow-[2px_2px_0_0_#252525] transition-all"
+              >
+                <UserCircle className="w-4 h-4" />
+                Register with Rallyo
+              </Link>
+            )
+          ) : (
+            <div className="flex-1 flex items-center justify-center gap-2 w-full py-3 px-4 rounded-full bg-gray-200 text-gray-500 font-black tracking-wide text-[14px] border-2 border-[#252525] opacity-60 cursor-not-allowed select-none transition-all">
+              <UserCircle className="w-4 h-4 text-gray-500" />
+              Coming Soon.........
+            </div>
           )}
 
           <div className="flex flex-1 sm:flex-none w-full sm:w-auto gap-3">
             {(event.bannerImg || event.phoneImg) && (
-              <button
-                onClick={handleDownloadPoster}
-                title="Download Poster"
-                className="flex-1 sm:flex-none flex items-center justify-center gap-2 py-3 px-6 rounded-full bg-white hover:bg-gray-50 text-[#252525] font-black tracking-wide text-[14px] border-2 border-[#252525] shadow-[4px_4px_0_0_#252525] hover:-translate-y-1 hover:shadow-[6px_6px_0_0_#252525] active:translate-y-0 active:shadow-[2px_2px_0_0_#252525] transition-all"
-              >
-                <Download className="w-4 h-4" />
-                <span className="sm:hidden lg:inline">Download Poster</span>
-              </button>
+              event.id === "jana ojana" ? (
+                <button
+                  onClick={handleDownloadPoster}
+                  title="Download Poster"
+                  className="flex-1 sm:flex-none flex items-center justify-center gap-2 py-3 px-6 rounded-full bg-white hover:bg-gray-50 text-[#252525] font-black tracking-wide text-[14px] border-2 border-[#252525] shadow-[4px_4px_0_0_#252525] hover:-translate-y-1 hover:shadow-[6px_6px_0_0_#252525] active:translate-y-0 active:shadow-[2px_2px_0_0_#252525] transition-all"
+                >
+                  <Download className="w-4 h-4" />
+                  <span className="sm:hidden lg:inline">Download Poster</span>
+                </button>
+              ) : (
+                <button
+                  disabled
+                  title="Download Poster Coming Soon"
+                  className="flex-1 sm:flex-none flex items-center justify-center gap-2 py-3 px-6 rounded-full bg-gray-200 text-gray-500 font-black tracking-wide text-[14px] border-2 border-[#252525] opacity-60 cursor-not-allowed select-none transition-all"
+                >
+                  <Download className="w-4 h-4 text-gray-500" />
+                  <span className="sm:hidden lg:inline">Download Poster</span>
+                </button>
+              )
             )}
           </div>
         </div>

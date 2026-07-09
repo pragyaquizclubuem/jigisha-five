@@ -46,7 +46,7 @@ export default function EventDrawer({ event, onClose }: EventDrawerProps) {
 
       {/* Drawer Panel */}
       <div className="fixed right-0 top-0 h-full z-50 w-full sm:w-[520px] lg:w-[600px] bg-[#FFEDE0] border-l-4 border-[#252525] shadow-[-12px_0_0_0_#252525] overflow-y-auto animate-[slideIn_280ms_cubic-bezier(0.22,1,0.36,1)]">
-        
+
         {/* Sticky Header */}
         <div className="sticky top-0 z-10 bg-[#513081] border-b-4 border-[#252525] px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3 flex-1 min-w-0">
@@ -159,14 +159,26 @@ export default function EventDrawer({ event, onClose }: EventDrawerProps) {
             <ShareButton title={event.title} text={event.description} url={eventUrl} />
             <CalendarButton event={event} />
             {event.bannerImg && (
-              <a href={event.bannerImg} download className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold uppercase tracking-widest text-[#252525] bg-[#D7ABFF] rounded-full border-2 border-[#252525] hover:-translate-y-0.5 hover:shadow-[2px_2px_0_0_#252525] transition-all">
-                Download Poster
-              </a>
+              event.id === "jana ojana" ? (
+                <a href={event.bannerImg} download className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold uppercase tracking-widest text-[#252525] bg-[#D7ABFF] rounded-full border-2 border-[#252525] hover:-translate-y-0.5 hover:shadow-[2px_2px_0_0_#252525] transition-all">
+                  Download Poster
+                </a>
+              ) : (
+                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold uppercase tracking-widest text-gray-500 bg-gray-200 rounded-full border-2 border-[#252525] opacity-60 cursor-not-allowed select-none">
+                  Download Poster
+                </div>
+              )
             )}
-            {event.registerUrl && (
-              <Link href={event.registerUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#FFEDE0] bg-[#513081] rounded-full border-2 border-[#252525] hover:-translate-y-0.5 hover:shadow-[2px_2px_0_0_#252525] transition-all">
-                Register Now →
-              </Link>
+            {event.id === "jana ojana" ? (
+              event.registerUrl && (
+                <Link href={event.registerUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#FFEDE0] bg-[#513081] rounded-full border-2 border-[#252525] hover:-translate-y-0.5 hover:shadow-[2px_2px_0_0_#252525] transition-all">
+                  Register with Rallyo
+                </Link>
+              )
+            ) : (
+              <div className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-gray-500 bg-gray-200 rounded-full border-2 border-[#252525] opacity-60 cursor-not-allowed select-none">
+                Coming Soon.........
+              </div>
             )}
           </div>
 
