@@ -16,14 +16,14 @@ import SectionWrapper from "@/components/wrappers/SectionWrapper";
 
 const SOCIAL_MAP = {
   instagram: InstagramIcon,
-  facebook:  FacebookIcon,
-  linkedin:  LinkedInIcon,
+  facebook: FacebookIcon,
+  linkedin: LinkedInIcon,
 } as const;
 
 const SOCIAL_COLORS: Record<string, string> = {
   instagram: "hover:bg-gradient-to-br hover:from-[#f09433] hover:via-[#e6683c] hover:to-[#bc1888]",
-  facebook:  "hover:bg-[#1877F2]",
-  linkedin:  "hover:bg-[#0A66C2]",
+  facebook: "hover:bg-[#1877F2]",
+  linkedin: "hover:bg-[#0A66C2]",
 };
 
 const NAV_LINKS = [
@@ -39,7 +39,7 @@ const NAV_LINKS = [
 
 export default function Footer() {
   const [open, setOpen] = useState(false);
-  const openModal  = useCallback(() => setOpen(true),  []);
+  const openModal = useCallback(() => setOpen(true), []);
   const closeModal = useCallback(() => setOpen(false), []);
 
   const leftColLinks = NAV_LINKS.slice(0, 3);
@@ -78,46 +78,46 @@ export default function Footer() {
         ═══════════════════════════════════════════════════════════════════ */}
         <SectionWrapper as="div" className="relative z-10" contentClassName="py-10 flex flex-col items-start gap-6 sm:flex-row sm:items-end sm:justify-between">
 
-              {/* Brand */}
-              <div className="flex flex-col gap-3">
-                <Image
-                  src={jigishaBrand.src}
-                  alt={jigishaBrand.alt}
-                  width={jigishaBrand.width}
-                  height={jigishaBrand.height}
-                  className="h-auto w-44 object-contain sm:w-52"
-                  priority
-                />
-                <p className="max-w-xs text-[0.72rem] leading-relaxed text-white/45">
-                  The Annual Quiz Festival of University of Engineering &amp;&nbsp;Management,
-                  Kolkata — hosted by PRAGYA.
-                </p>
-              </div>
+          {/* Brand */}
+          <div className="flex flex-col gap-3">
+            <Image
+              src={jigishaBrand.src}
+              alt={jigishaBrand.alt}
+              width={jigishaBrand.width}
+              height={jigishaBrand.height}
+              className="h-auto w-44 object-contain sm:w-52"
+              priority
+            />
+            <p className="max-w-xs text-[0.72rem] leading-relaxed text-white/45">
+              The Annual Quiz Festival of University of Engineering &amp;&nbsp;Management,
+              Kolkata — hosted by PRAGYA.
+            </p>
+          </div>
 
-              {/* Social cluster */}
-              <div className="flex flex-col items-start gap-3 sm:items-end">
-                <p className="text-[0.6rem] font-bold uppercase tracking-[0.3em] text-[#B07EFF]/70">
-                  Follow Us
-                </p>
-                <div className="flex items-center gap-2.5">
-                  {footerSocials.map(({ label, href, icon }) => {
-                    const Icon  = SOCIAL_MAP[icon];
-                    const hover = SOCIAL_COLORS[icon] ?? "hover:bg-[#5C00AD]";
-                    return (
-                      <a
-                        key={label}
-                        href={href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Follow on ${label}`}
-                        className={`footer-social-orb group relative flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/55 transition-all duration-300 hover:border-transparent hover:text-white hover:scale-110 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#B07EFF] ${hover}`}
-                      >
-                        <Icon className="h-[18px] w-[18px] transition-transform duration-200 group-hover:scale-110" />
-                      </a>
-                    );
-                  })}
-                </div>
-              </div>
+          {/* Social cluster */}
+          <div className="flex flex-col items-start gap-3 sm:items-end">
+            <p className="text-[0.6rem] font-bold uppercase tracking-[0.3em] text-[#B07EFF]/70">
+              Follow Us
+            </p>
+            <div className="flex items-center gap-2.5">
+              {footerSocials.map(({ label, href, icon }) => {
+                const Icon = SOCIAL_MAP[icon];
+                const hover = SOCIAL_COLORS[icon] ?? "hover:bg-[#5C00AD]";
+                return (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Follow on ${label}`}
+                    className={`footer-social-orb group relative flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/55 transition-all duration-300 hover:border-transparent hover:text-white hover:scale-110 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#B07EFF] ${hover}`}
+                  >
+                    <Icon className="h-[18px] w-[18px] transition-transform duration-200 group-hover:scale-110" />
+                  </a>
+                );
+              })}
+            </div>
+          </div>
 
         </SectionWrapper>
 
@@ -127,63 +127,63 @@ export default function Footer() {
         <SectionWrapper as="div" className="relative z-10" contentClassName="py-8">
           <div className="grid grid-cols-1 gap-12 sm:grid-cols-2">
 
-              {/* Nav — links (hidden on mobile — ham menu covers this) */}
-              <div className="hidden sm:flex flex-col gap-1.5">
-                <p className="mb-2 text-[0.58rem] font-bold uppercase tracking-[0.3em] text-[#B07EFF]/70">
-                  Navigate
-                </p>
-                <div className="flex gap-8">
-                  <div className="flex flex-col gap-1.5 items-start">
-                    {leftColLinks.map(([label, href]) => (
-                      <Link
-                        key={label}
-                        href={href}
-                        className="footer-nav-link inline-block w-fit text-[0.78rem] font-semibold uppercase tracking-widest text-white/45 transition-colors duration-200 hover:text-white"
-                      >
-                        {label}
-                      </Link>
-                    ))}
-                  </div>
-                  <div className="flex flex-col gap-1.5 items-end text-right">
-                    {rightColLinks.map(([label, href]) => (
-                      <Link
-                        key={label}
-                        href={href}
-                        className="footer-nav-link inline-block w-fit text-[0.78rem] font-semibold uppercase tracking-widest text-white/45 transition-colors duration-200 hover:text-white"
-                      >
-                        {label}
-                      </Link>
-                    ))}
-                  </div>
+            {/* Nav — links (hidden on mobile — ham menu covers this) */}
+            <div className="hidden sm:flex flex-col gap-1.5">
+              <p className="mb-2 text-[0.58rem] font-bold uppercase tracking-[0.3em] text-[#B07EFF]/70">
+                Navigate
+              </p>
+              <div className="flex gap-8">
+                <div className="flex flex-col gap-1.5 items-start">
+                  {leftColLinks.map(([label, href]) => (
+                    <Link
+                      key={label}
+                      href={href}
+                      className="footer-nav-link inline-block w-fit text-[0.78rem] font-semibold uppercase tracking-widest text-white/45 transition-colors duration-200 hover:text-white"
+                    >
+                      {label}
+                    </Link>
+                  ))}
+                </div>
+                <div className="flex flex-col gap-1.5 items-end text-right">
+                  {rightColLinks.map(([label, href]) => (
+                    <Link
+                      key={label}
+                      href={href}
+                      className="footer-nav-link inline-block w-fit text-[0.78rem] font-semibold uppercase tracking-widest text-white/45 transition-colors duration-200 hover:text-white"
+                    >
+                      {label}
+                    </Link>
+                  ))}
                 </div>
               </div>
+            </div>
 
 
-              {/* Contact — editorial list style */}
-              <div className="flex flex-col gap-3">
-                <p className="text-[0.58rem] font-bold uppercase tracking-[0.3em] text-[#B07EFF]/70">
-                  Contact
-                </p>
-                <div className="flex flex-col">
-                  <a href="tel:9749967441" className="group py-1.5 text-sm text-white/55 transition-colors hover:text-white">
-                    <span className="text-white/30 text-xs">Supriyo Mondal</span>
-                    <span className="block font-mono font-semibold text-white/80 group-hover:text-white">+91 97499 67441</span>
-                  </a>
-                  <a href="tel:7878396475" className="group py-1.5 text-sm text-white/55 transition-colors hover:text-white">
-                    <span className="text-white/30 text-xs">Sneha Priya</span>
-                    <span className="block font-mono font-semibold text-white/80 group-hover:text-white">+91 78783 96475</span>
-                  </a>
-                  <a
-                    href="mailto:pragyatheofficialquizclubuem@gmail.com"
-                    className="group mt-3 py-1.5 text-sm text-white/55 transition-colors hover:text-white"
-                  >
-                    <span className="text-white/30 text-xs">Email</span>
-                    <span className="block break-all font-medium text-white/75 group-hover:text-white">
-                      pragyatheofficial<wbr />quizclubuem@gmail.com
-                    </span>
-                  </a>
-                </div>
+            {/* Contact — editorial list style */}
+            <div className="flex flex-col gap-3">
+              <p className="text-[0.58rem] font-bold uppercase tracking-[0.3em] text-[#B07EFF]/70">
+                Contact
+              </p>
+              <div className="flex flex-col">
+                <a href="tel:9749967441" className="group py-1.5 text-sm text-white/55 transition-colors hover:text-white">
+                  <span className="text-white/30 text-xs">Supriyo Mondal</span>
+                  <span className="block font-mono font-semibold text-white/80 group-hover:text-white">+91 97499 67441</span>
+                </a>
+                <a href="tel:7878396475" className="group py-1.5 text-sm text-white/55 transition-colors hover:text-white">
+                  <span className="text-white/30 text-xs">Sneha Priya</span>
+                  <span className="block font-mono font-semibold text-white/80 group-hover:text-white">+91 78783 96475</span>
+                </a>
+                <a
+                  href="mailto:contact@pragya.club"
+                  className="group mt-3 py-1.5 text-sm text-white/55 transition-colors hover:text-white"
+                >
+                  <span className="text-white/30 text-xs">Email</span>
+                  <span className="block break-all font-medium text-white/75 group-hover:text-white">
+                   contact<wbr />@pragya.club
+                  </span>
+                </a>
               </div>
+            </div>
           </div>
         </SectionWrapper>
 
@@ -192,22 +192,22 @@ export default function Footer() {
         ═══════════════════════════════════════════════════════════════════ */}
         <SectionWrapper as="div" className="relative z-10 bg-[#07030C]" contentClassName="py-5 flex flex-col items-center justify-between gap-2 sm:flex-row sm:gap-0">
 
-            {/* Left — copyright */}
-            <p className="text-sm font-medium text-white/65 text-center sm:text-left">
-              © 2026 Jigisha 5.0 &nbsp;&middot;&nbsp; All rights reserved.
-            </p>
+          {/* Left — copyright */}
+          <p className="text-sm font-medium text-white/65 text-center sm:text-left">
+            © 2026 Jigisha 5.0 &nbsp;&middot;&nbsp; All rights reserved.
+          </p>
 
-            {/* Right — team credit */}
-            <p className="text-sm font-medium text-white/65 text-center sm:text-right">
-              Designed &amp; built by&nbsp;
-              <button
-                type="button"
-                onClick={openModal}
-                className="font-bold text-[#B07EFF] underline underline-offset-4 decoration-[#B07EFF]/30 transition-all duration-200 hover:text-white hover:decoration-white/50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#B07EFF] rounded-sm cursor-pointer"
-              >
-                Team Pragya
-              </button>
-            </p>
+          {/* Right — team credit */}
+          <p className="text-sm font-medium text-white/65 text-center sm:text-right">
+            Designed &amp; built by&nbsp;
+            <button
+              type="button"
+              onClick={openModal}
+              className="font-bold text-[#B07EFF] underline underline-offset-4 decoration-[#B07EFF]/30 transition-all duration-200 hover:text-white hover:decoration-white/50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#B07EFF] rounded-sm cursor-pointer"
+            >
+              Team Pragya
+            </button>
+          </p>
         </SectionWrapper>
       </footer>
 

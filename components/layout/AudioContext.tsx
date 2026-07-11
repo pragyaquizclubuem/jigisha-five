@@ -17,7 +17,7 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     // Please place your background music file at public/audio/bgm.mp3
-    audioRef.current = new Audio('/sample_audio.mp3');
+    audioRef.current = new Audio('/bgaudio.mp3');
     audioRef.current.loop = true;
     audioRef.current.volume = 0.5;
     

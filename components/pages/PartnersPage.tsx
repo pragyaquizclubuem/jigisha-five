@@ -30,7 +30,7 @@ export default function PartnersPage() {
             </p>
           </div>
 
-          
+
 
           {/* Decorative Dots / Separator */}
           <div className="flex justify-center gap-3 mb-8">
@@ -50,10 +50,10 @@ export default function PartnersPage() {
             <p className="font-body text-base sm:text-lg">
               <span className="text-gray-600">Drop us a line at </span>
               <a
-                href="mailto:pragyatheofficialquizclubuem@gmail.com"
+                href="mailto:contact@pragya.club"
                 className="text-purple-600 font-semibold hover:text-purple-1000 hover:underline transition-colors"
               >
-                pragyatheofficialquizclubuem@gmail.com
+                contact@pragya.club
               </a>
             </p>
           </div>
