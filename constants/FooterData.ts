@@ -37,7 +37,7 @@ export const footerContacts: FooterContact[] = [
   { name: "Santi Alu", value: "7001478230", type: "phone" },
   {
     name: "Pragya Official",
-    value: "pragyatheofficialquizclubuem@gmail.com",
+    value: "contact@pragya.club",
     type: "email",
   },
 ];
