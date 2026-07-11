@@ -9,10 +9,26 @@ export default function CalendarButton({ event }: { event: EventDetail }) {
     // Example: "September 14, 2026" and "10:00 AM - 12:30 PM"
     // In a real prod environment we'd use moment/date-fns, but we'll do simple parsing here.
     
-    // For ICS we need YYYYMMDDTHHMMSSZ format. 
-    // This is a naive implementation for the given strings.
-    const dateObj = new Date(event.date);
-    const startStr = event.timeRange.split("-")[0].trim(); // "10:00 AM"
+    let dateStr = event.date;
+    let startStr = event.timeRange.split("-")[0].trim(); // "10:00 AM"
+    
+    if (dateStr.includes(" & ")) {
+      // e.g. "Prelims: August 15 & Finals: August 28, 2026"
+      const parts = dateStr.split(" & ");
+      const firstPart = parts[0].replace("Prelims:", "").trim(); // "August 15"
+      const secondPart = parts[1].replace("Finals:", "").trim(); // "August 28, 2026"
+      const yearMatch = secondPart.match(/\d{4}/);
+      const year = yearMatch ? yearMatch[0] : new Date().getFullYear().toString();
+      dateStr = `${firstPart}, ${year}`;
+    }
+    
+    if (event.timeRange.includes(" & ")) {
+      // e.g. "Prelims: 06:00 PM & Finals: 07:30 PM"
+      const parts = event.timeRange.split(" & ");
+      startStr = parts[0].replace("Prelims:", "").trim(); // "06:00 PM"
+    }
+
+    const dateObj = new Date(dateStr);
     
     const [time, modifier] = startStr.split(" ");
     let [hours, minutes] = time.split(":");

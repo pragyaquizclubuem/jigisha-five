@@ -36,7 +36,7 @@ export const faqData = {
       id: "faq-5",
       question: "What is the team size?",
       answer:
-        "Team size varies by quiz. Most quizzes allow teams of 2–4 members, but individual participation is also available for certain events. Check the specific quiz rules for details.",
+        "Team size varies by quiz. Most quizzes allow teams of 1–2 members, but individual participation is also available for certain events. Check the specific quiz rules for details.",
     },
     {
       id: "faq-6",
