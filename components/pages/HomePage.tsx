@@ -16,7 +16,7 @@ export default function HomePage() {
       <HomeHero />
       <AnnouncementStrip />
       <AboutUs />
-      <EventCountdown targetDate="2027-01-01T00:00:00" />
+      <EventCountdown targetDate="2026-08-29T00:00:00" />
       <BrochureSection />
       <OurQuizzes />
       <MapSection />
