@@ -5,12 +5,10 @@ import { MailIcon, PhoneIcon, ArrowRightIcon } from "@/components/icons/Icons";
 
 export default function ContactForm() {
     const contactPersons = [
-        { name: "John", number: "+91 98765 43210" },
-        { name: "Jane", number: "+91 98765 43211" },
-        { name: "Mike", number: "+91 98765 43212" },
-        { name: "Sarah", number: "+91 98765 43213" },
-        { name: "Alex", number: "+91 98765 43214" },
-        { name: "Emma", number: "+91 98765 43215" }
+        { name: "Supriyo", number: "+91 9749967441" },
+        { name: "Arunava", number: "+91 8001386218" },
+        { name: "Sneha", number: "+91 7878396275" },
+        { name: "Mahulee", number: "+91 9674623159" }
     ];
 
     return (
@@ -29,8 +27,8 @@ export default function ContactForm() {
                         </span>
                     </div>
                     <h2 className="font-roboto-condensed text-4xl md:text-5xl font-bold uppercase leading-tight tracking-tight text-[#252525]">
-                        Let's build <br className="md:hidden" />
-                        <span className="text-white drop-shadow-[0_4px_4px_rgba(0,0,0,0.5)] bg-[#513081] px-4 py-1 border-4 border-black shadow-[6px_6px_0_0_#000] inline-block -rotate-2 ml-2">something great</span>
+                        Have a Query? <br className="md:hidden" />
+                        <span className="text-white drop-shadow-[0_4px_4px_rgba(0,0,0,0.5)] bg-[#513081] px-4 py-1 border-4 border-black shadow-[6px_6px_0_0_#000] inline-block -rotate-2 ml-2">We're Here To Help</span>
                     </h2>
                 </div>
 
@@ -42,8 +40,8 @@ export default function ContactForm() {
                         </div>
                         <div className="overflow-hidden">
                             <h3 className="font-roboto-condensed text-xl md:text-2xl font-bold uppercase mb-1 text-black">Email Us</h3>
-                            <a href="mailto:hello@jigisha.com" className="text-base sm:text-lg md:text-xl font-bold text-black hover:text-[#513081] transition-colors border-b-2 border-transparent hover:border-[#513081] inline-block truncate w-full">
-                                hello@jigisha.com
+                            <a href="mailto:contact@pragya.club" className="text-base sm:text-lg md:text-xl font-bold text-black hover:text-[#513081] transition-colors border-b-2 border-transparent hover:border-[#513081] inline-block truncate w-full">
+                                contact@pragya.club
                             </a>
                         </div>
                     </div>
@@ -72,7 +70,7 @@ export default function ContactForm() {
 
                 {/* CTA */}
                 <div className="flex justify-center mt-2 md:mt-0 relative z-20">
-                    <a 
+                    <a
                         href="#start-chat-section"
                         className="group flex items-center gap-3 md:gap-4 bg-[#252525] text-white px-6 py-4 md:px-10 md:py-5 rounded-full border-4 border-black shadow-[6px_6px_0_0_#F4D21F] md:shadow-[8px_8px_0_0_#F4D21F] hover:shadow-[10px_10px_0_0_#F4D21F] md:hover:shadow-[12px_12px_0_0_#F4D21F] hover:-translate-y-1 transition-all duration-300 max-w-full"
                     >
