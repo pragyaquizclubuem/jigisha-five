@@ -39,7 +39,7 @@ export const eventData: EventDetail[] = [
       { name: "Piyush", phone: "+917596863383" }
     ],
     bannerImg: "/images/posters/jana-ojana.avif",
-    phoneImg: "/images/posters/jana-ojana.avif",
+    phoneImg: "/images/hposter/jana-ojana.avif",
     registerUrl: "https://janaojana.pragya.club"
   },
   {
@@ -60,8 +60,8 @@ export const eventData: EventDetail[] = [
       { name: "Supriyo", phone: "+919749967441" }
     ],
     bannerImg: "/images/posters/fnb.avif",
-    phoneImg: "/images/posters/fnb.avif",
-    registerUrl: "https://fnb.pragya.club"
+    phoneImg: "/images/hposter/fnb.avif",
+    registerUrl: "#"
   },
   {
     id: "HTH",
@@ -81,8 +81,8 @@ export const eventData: EventDetail[] = [
       { name: "Devi Prasad", phone: "+918210447474" }
     ],
     bannerImg: "/images/posters/hit-the-homerun.avif",
-    phoneImg: "/images/posters/hit-the-homerun.avif",
-    registerUrl: "https://unstop.com/o/23Jigisha5"
+    phoneImg: "/images/hposter/hit-the-homerun.avif",
+    registerUrl: "#"
   },
   {
     id: "convergence",
@@ -102,8 +102,8 @@ export const eventData: EventDetail[] = [
       { name: "Arunava", phone: "+918001386218" }
     ],
     bannerImg: "/images/posters/convergence.avif",
-    phoneImg: "/images/posters/convergence.avif",
-    registerUrl: "https://unstop.com/o/23Jigisha5"
+    phoneImg: "/images/hposter/convergence.avif",
+    registerUrl: "#"
   },
   {
     id: "fandomania",
@@ -123,7 +123,7 @@ export const eventData: EventDetail[] = [
       { name: "Sneha", phone: "+917878396475" }
     ],
     bannerImg: "/images/posters/fandomania.avif",
-    phoneImg: "/images/posters/fandomania.avif",
+    phoneImg: "/images/hposter/fandomania.avif",
     registerUrl: "https://unstop.com/o/23Jigisha5"
   },
   {
@@ -144,7 +144,7 @@ export const eventData: EventDetail[] = [
       { name: "Mahulee", phone: "+919674623159" }
     ],
     bannerImg: "/images/posters/p6.avif",
-    phoneImg: "/images/posters/p6.avif",
+    phoneImg: "/images/hposter/p6.avif",
     registerUrl: "https://unstop.com/o/23Jigisha5"
   }
 ];
