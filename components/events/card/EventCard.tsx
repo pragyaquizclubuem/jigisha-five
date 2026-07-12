@@ -151,14 +151,39 @@ export default function EventCard({ event }: { event: EventDetail }) {
 
         {/* 2x2 Info Grid */}
         <div className="grid grid-cols-2 gap-y-3 gap-x-3 sm:gap-x-4 mb-6 text-[11px] sm:text-[13px] font-bold text-[#4b5563]">
-          <div className="flex items-center gap-1.5 sm:gap-2 group/item">
-            <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#ef476f] shrink-0 group-hover/item:scale-125 group-hover/item:rotate-12 transition-transform" />
-            <span className="truncate">{event.date}</span>
-          </div>
-          <div className="flex items-center gap-1.5 sm:gap-2 group/item">
-            <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#06d6a0] shrink-0 group-hover/item:scale-125 group-hover/item:-rotate-12 transition-transform" />
-            <span className="truncate">{event.timeRange}</span>
-          </div>
+          {event.date.includes(" & ") ? (
+            <>
+              {/* Prelims */}
+              <div className="flex items-center gap-1.5 sm:gap-2 group/item">
+                <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#ef476f] shrink-0 group-hover/item:scale-125 group-hover/item:rotate-12 transition-transform" />
+                <span className="truncate">{event.date.split(" & ")[0]}</span>
+              </div>
+              <div className="flex items-center gap-1.5 sm:gap-2 group/item">
+                <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#06d6a0] shrink-0 group-hover/item:scale-125 group-hover/item:-rotate-12 transition-transform" />
+                <span className="truncate">{event.timeRange.split(" & ")[0]}</span>
+              </div>
+              {/* Finals */}
+              <div className="flex items-center gap-1.5 sm:gap-2 group/item">
+                <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#ef476f] shrink-0 group-hover/item:scale-125 group-hover/item:rotate-12 transition-transform" />
+                <span className="truncate">{event.date.split(" & ")[1]}</span>
+              </div>
+              <div className="flex items-center gap-1.5 sm:gap-2 group/item">
+                <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#06d6a0] shrink-0 group-hover/item:scale-125 group-hover/item:-rotate-12 transition-transform" />
+                <span className="truncate">{event.timeRange.split(" & ")[1]}</span>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="flex items-center gap-1.5 sm:gap-2 group/item">
+                <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#ef476f] shrink-0 group-hover/item:scale-125 group-hover/item:rotate-12 transition-transform" />
+                <span className="truncate">{event.date}</span>
+              </div>
+              <div className="flex items-center gap-1.5 sm:gap-2 group/item">
+                <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#06d6a0] shrink-0 group-hover/item:scale-125 group-hover/item:-rotate-12 transition-transform" />
+                <span className="truncate">{event.timeRange}</span>
+              </div>
+            </>
+          )}
           <div className="flex items-center gap-1.5 sm:gap-2 group/item">
             <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#118ab2] shrink-0 group-hover/item:scale-125 group-hover/item:rotate-12 transition-transform" />
             <span className="truncate">{event.teamSize}</span>
@@ -209,7 +234,7 @@ export default function EventCard({ event }: { event: EventDetail }) {
 
         {/* Bottom Actions Row */}
         <div className="mt-auto flex flex-col sm:flex-row items-center gap-3 w-full">
-          {event.id === "jana ojana" ? (
+          {event.id === "jana-ojana" ? (
             event.registerUrl && (
               <Link
                 href={event.registerUrl}
@@ -218,19 +243,19 @@ export default function EventCard({ event }: { event: EventDetail }) {
                 className="flex-1 flex items-center justify-center gap-2 w-full py-3 px-4 rounded-full bg-[#513081] hover:bg-[#3d2462] text-white font-black tracking-wide text-[14px] border-2 border-[#252525] shadow-[4px_4px_0_0_#252525] hover:-translate-y-1 hover:shadow-[6px_6px_0_0_#252525] active:translate-y-0 active:shadow-[2px_2px_0_0_#252525] transition-all"
               >
                 <UserCircle className="w-4 h-4" />
-                Register with Rallyo
+                Register
               </Link>
             )
           ) : (
             <div className="flex-1 flex items-center justify-center gap-2 w-full py-3 px-4 rounded-full bg-gray-200 text-gray-500 font-black tracking-wide text-[14px] border-2 border-[#252525] opacity-60 cursor-not-allowed select-none transition-all">
               <UserCircle className="w-4 h-4 text-gray-500" />
-              Coming Soon.........
+              Coming soon
             </div>
           )}
 
           <div className="flex flex-1 sm:flex-none w-full sm:w-auto gap-3">
             {(event.bannerImg || event.phoneImg) && (
-              event.id === "jana ojana" ? (
+              event.id === "jana-ojana" ? (
                 <button
                   onClick={handleDownloadPoster}
                   title="Download Poster"

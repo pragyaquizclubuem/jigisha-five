@@ -34,8 +34,8 @@ export const contributorData: Contributor[] = [
   {
     name: "Ritam Das Gupta",
     role: "Frontend Development & Component Design",
-    image: "/images/team/Ritam.avif",
-    github: "https://github.com/ritamdasgupta",
+    image: "/images/team/ritam.avif",
+    github: "https://github.com/ritamdg",
     linkedin: "https://www.linkedin.com/in/ritam-das-gupta-413877320",
     insta: "https://www.instagram.com/__agantuk__05",
     fb: "#",
@@ -43,10 +43,10 @@ export const contributorData: Contributor[] = [
   {
     name: "Anadir Paul",
     role: "Frontend Development & Asset Integration",
-    image: "/images/team/Anadir.avif",
-    github: "https://github.com/anadirpaul",
+    image: "/images/team/anadir.avif",
+    github: "https://github.com/Anadir123",
     linkedin: "https://www.linkedin.com/in/anadir-paul-28043a322",
-    fb: "https://facebook.com/anadirpaul",
+    fb: "https://www.facebook.com/share/1JhSiqL5T2/",
     insta: "https://www.instagram.com/anadeerpaul",
   },
 ];

@@ -89,22 +89,45 @@ export default function EventDrawer({ event, onClose }: EventDrawerProps) {
         <div className="p-6 space-y-6">
 
           {/* Info Pills Row */}
-          <div className="grid grid-cols-2 gap-3">
-            <div className="flex items-center gap-2 bg-white border-2 border-[#252525] px-3 py-2 rounded-lg shadow-[2px_2px_0_0_#252525] text-xs sm:text-sm">
-              <Calendar className="w-4 h-4 text-[#513081] shrink-0" />
-              <span className="font-medium text-[#252525]">{event.date}</span>
-            </div>
-            <div className="flex items-center gap-2 bg-white border-2 border-[#252525] px-3 py-2 rounded-lg shadow-[2px_2px_0_0_#252525] text-xs sm:text-sm">
-              <Clock className="w-4 h-4 text-[#513081] shrink-0" />
-              <span className="font-medium text-[#252525]">{event.timeRange}</span>
-            </div>
-            <div className="flex items-center gap-2 bg-white border-2 border-[#252525] px-3 py-2 rounded-lg shadow-[2px_2px_0_0_#252525] text-xs sm:text-sm">
+          <div className="grid grid-cols-2 gap-3 text-xs sm:text-sm">
+            {event.date.includes(" & ") ? (
+              <>
+                <div className="flex items-center gap-2 bg-white border-2 border-[#252525] px-3 py-2 rounded-lg shadow-[2px_2px_0_0_#252525]">
+                  <Calendar className="w-4 h-4 text-[#513081] shrink-0" />
+                  <span className="font-bold text-[#252525]">{event.date.split(" & ")[0]}</span>
+                </div>
+                <div className="flex items-center gap-2 bg-white border-2 border-[#252525] px-3 py-2 rounded-lg shadow-[2px_2px_0_0_#252525]">
+                  <Clock className="w-4 h-4 text-[#513081] shrink-0" />
+                  <span className="font-bold text-[#252525]">{event.timeRange.split(" & ")[0]}</span>
+                </div>
+                <div className="flex items-center gap-2 bg-white border-2 border-[#252525] px-3 py-2 rounded-lg shadow-[2px_2px_0_0_#252525]">
+                  <Calendar className="w-4 h-4 text-[#513081] shrink-0" />
+                  <span className="font-bold text-[#252525]">{event.date.split(" & ")[1]}</span>
+                </div>
+                <div className="flex items-center gap-2 bg-white border-2 border-[#252525] px-3 py-2 rounded-lg shadow-[2px_2px_0_0_#252525]">
+                  <Clock className="w-4 h-4 text-[#513081] shrink-0" />
+                  <span className="font-bold text-[#252525]">{event.timeRange.split(" & ")[1]}</span>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="flex items-center gap-2 bg-white border-2 border-[#252525] px-3 py-2 rounded-lg shadow-[2px_2px_0_0_#252525]">
+                  <Calendar className="w-4 h-4 text-[#513081] shrink-0" />
+                  <span className="font-bold text-[#252525]">{event.date}</span>
+                </div>
+                <div className="flex items-center gap-2 bg-white border-2 border-[#252525] px-3 py-2 rounded-lg shadow-[2px_2px_0_0_#252525]">
+                  <Clock className="w-4 h-4 text-[#513081] shrink-0" />
+                  <span className="font-bold text-[#252525]">{event.timeRange}</span>
+                </div>
+              </>
+            )}
+            <div className="flex items-center gap-2 bg-white border-2 border-[#252525] px-3 py-2 rounded-lg shadow-[2px_2px_0_0_#252525]">
               <Users className="w-4 h-4 text-[#513081] shrink-0" />
-              <span className="font-medium text-[#252525]">{event.teamSize}</span>
+              <span className="font-bold text-[#252525]">{event.teamSize}</span>
             </div>
-            <div className="flex items-center gap-2 bg-white border-2 border-[#252525] px-3 py-2 rounded-lg shadow-[2px_2px_0_0_#252525] text-xs sm:text-sm">
+            <div className="flex items-center gap-2 bg-white border-2 border-[#252525] px-3 py-2 rounded-lg shadow-[2px_2px_0_0_#252525]">
               <MapPin className="w-4 h-4 text-[#513081] shrink-0" />
-              <span className="font-medium text-[#252525]">{event.mode}</span>
+              <span className="font-bold text-[#252525]">{event.mode}</span>
             </div>
           </div>
 
@@ -159,7 +182,7 @@ export default function EventDrawer({ event, onClose }: EventDrawerProps) {
             <ShareButton title={event.title} text={event.description} url={eventUrl} />
             <CalendarButton event={event} />
             {event.bannerImg && (
-              event.id === "jana ojana" ? (
+              event.id === "jana-ojana" ? (
                 <a href={event.bannerImg} download className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold uppercase tracking-widest text-[#252525] bg-[#D7ABFF] rounded-full border-2 border-[#252525] hover:-translate-y-0.5 hover:shadow-[2px_2px_0_0_#252525] transition-all">
                   Download Poster
                 </a>
@@ -169,15 +192,15 @@ export default function EventDrawer({ event, onClose }: EventDrawerProps) {
                 </div>
               )
             )}
-            {event.id === "jana ojana" ? (
+            {event.id === "jana-ojana" ? (
               event.registerUrl && (
                 <Link href={event.registerUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#FFEDE0] bg-[#513081] rounded-full border-2 border-[#252525] hover:-translate-y-0.5 hover:shadow-[2px_2px_0_0_#252525] transition-all">
-                  Register with Rallyo
+                  Register
                 </Link>
               )
             ) : (
               <div className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-gray-500 bg-gray-200 rounded-full border-2 border-[#252525] opacity-60 cursor-not-allowed select-none">
-                Coming Soon.........
+                Coming soon
               </div>
             )}
           </div>

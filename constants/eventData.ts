@@ -22,7 +22,7 @@ export interface EventDetail {
 
 export const eventData: EventDetail[] = [
   {
-    id: "jana ojana",
+    id: "jana-ojana",
     title: "Jana Ojana",
     description: "Jana Ojana is the most prestigious school general quiz at Jigisha, where every question rewards curiosity and every answer brings you closer to glory. Covering every genre imaginable, it is the ultimate stage for school quizzers to challenge themselves and stand out.",
     rules: [
@@ -50,7 +50,7 @@ export const eventData: EventDetail[] = [
       "It is mandatory to bring a government ID card on the day of the quiz event."
     ],
     tags: ["U-25 Quiz", "MELA"],
-    date: "Prelims: August 15 & Finals: August 28, 2026",
+    date: "Prelims: August 15, 2026 & Finals: August 28, 2026",
     timeRange: "Prelims: 06:00 PM & Finals: 07:30 PM",
     teamSize: "Solo",
     mode: "Online Mode",
